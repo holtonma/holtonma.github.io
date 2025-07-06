@@ -27,10 +27,10 @@
 ## Post-Launch Tasks
 
 ### Analytics & SEO
-- [ ] Set up Google Analytics
-  - [ ] Create Google Analytics property for holtonma.github.io
-  - [ ] Get Measurement ID (G-XXXXXXXXXX format)
-  - [ ] Replace `YOUR_GA_MEASUREMENT_ID` in hugo.toml with real ID
+- [x] Set up Google Analytics
+  - [x] Create Google Analytics property for holtonma.github.io
+  - [x] Get Measurement ID (G-3VHWR9KEC4)
+  - [x] Configure GA4 tracking in hugo.toml
   - [ ] Optional: Set up Google Search Console and replace `YOUR_SEARCH_CONSOLE_TAG`
 
 ### Content & Features
