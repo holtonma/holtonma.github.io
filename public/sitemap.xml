@@ -2,13 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/tags/ai/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/mcp_blog_post/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/ai-integration/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/claude/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/conversational-ai/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/fastapi/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/mcp/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/postgresql/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/technical-tutorials/</loc>
+    <lastmod>2025-06-22T12:00:00-05:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/about/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/blogging/</loc>
-    <lastmod>2025-01-06T12:00:00-08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/first-post/</loc>
@@ -20,47 +59,8 @@
     <loc>http://localhost:1313/tags/hello/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-01-06T12:00:00-08:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/hello-world/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-01-06T12:00:00-08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-01-06T12:00:00-08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/ai/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/mcp_blog_post/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/ai-integration/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/claude/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/conversational-ai/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/fastapi/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/mcp/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/postgresql/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/technical-tutorials/</loc>
-    <lastmod>2025-01-06T12:00:00-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/search/</loc>
   </url>

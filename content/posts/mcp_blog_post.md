@@ -1,6 +1,6 @@
 ---
 title: "AI Integration: Building Conversational Apps with MCP"
-date: 2025-01-06T12:00:00-05:00
+date: 2025-06-22T12:00:00-05:00
 draft: false
 tags: ["AI", "MCP", "Python", "FastAPI", "PostgreSQL", "Claude", "Conversational AI"]
 categories: ["technical-tutorials", "ai-integration"]
