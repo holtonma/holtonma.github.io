@@ -2,6 +2,7 @@ baseURL = 'https://holtonma.github.io/'
 languageCode = 'en-us'
 title = 'Mark Holton - Hands on Software Architect'
 theme = 'PaperMod'
+googleAnalytics = 'G-3VHWR9KEC4'
 
 [params]
 env = "production"
