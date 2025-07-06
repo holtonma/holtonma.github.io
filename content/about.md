@@ -1,11 +1,9 @@
 ---
-title: "About"
+title: "About Mark Holton"
 date: 2025-01-06T12:00:00-08:00
 draft: false
-description: "About Mark Holton - Software Architect"
+description: "Software Architect specializing in data platforms, distributed systems, and agent-driven solutions"
 ---
-
-# About Mark Holton
 
 ![Data Engineer](/images/data_engineer.jpg)
 
