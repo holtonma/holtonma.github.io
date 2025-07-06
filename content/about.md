@@ -5,7 +5,7 @@ draft: false
 description: "Software Architect specializing in data platforms, distributed systems, and agent-driven solutions"
 ---
 
-![Data Engineer](/images/data_engineer.jpg)
+![Software architect Mark Holton working on distributed systems and data pipeline architecture](/images/data_engineer.jpg)
 
 I'm a hands-on Software Architect with over two decades of experience building resilient, scalable systems. I specialize in data platform engineering, distributed architectures, and agent-driven systems that solve real-world problems.
 

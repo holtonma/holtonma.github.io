@@ -8,11 +8,11 @@ description: "Why I chose Hugo and GitHub Pages for this blog, how it connects t
 author: "Mark Holton"
 cover:
     image: "/images/hugo_blog_building.jpg"
-    alt: "Building a technical blog setup"
+    alt: "Whimsical cartoon illustration of a determined Gopher mascot sitting at a computer building a Hugo blog with floating markdown files and GitHub icons"
     caption: "Crafting the perfect blogging workflow"
 ---
 
-![Building a technical blog setup](/images/hugo_blog_building.jpg)
+![Whimsical cartoon illustration of a determined Gopher mascot sitting at a computer building a Hugo blog with floating markdown files and GitHub icons](/images/hugo_blog_building.jpg)
 
 *[Generated with [Leonardo.ai](https://leonardo.ai/) using prompt: "A whimsical cartoon illustration in classic cartoon style showing a determined Gopher sitting in a cozy computer chair ..."]*
 
@@ -80,7 +80,7 @@ GitHub's infrastructure handles traffic spikes, global CDN distribution, and upt
 
 ## The Creative Element: Leonardo.ai for Imagery
 
-![Gopher painting artwork](/images/gopher_painting.jpg)
+![Artistic illustration of a Go gopher mascot painting or creating digital artwork, representing the creative process of generating AI imagery for blog posts](/images/gopher_painting.jpg)
 
 Technical blogs can feel sterile. I wanted to add visual interest without stock photo or copyright concerns.  I can be creative in the images I want to highlight the writing. I generate custom images that match the exact content and mood of each post. The MCP integration post got retro-futuristic data pipeline imagery. This post is a gopher blogging.
 

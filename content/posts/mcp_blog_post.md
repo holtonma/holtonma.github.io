@@ -8,11 +8,11 @@ description: "Learn how to build conversational AI applications using Model Cont
 author: "Mark Holton"
 cover:
     image: "/images/building_pipelines.jpg"
-    alt: "AI Integration with Data Pipelines"
+    alt: "Technical illustration of AI integration with data pipelines showing MCP protocol connecting conversational AI to backend systems"
     caption: "Building conversational AI applications with MCP"
 ---
 
-![AI Integration with Data Pipelines](/images/building_pipelines.jpg)
+![Technical illustration of AI integration with data pipelines showing MCP protocol connecting conversational AI to backend systems](/images/building_pipelines.jpg)
 
 ## Why This Matters: The Shift to Agentic AI
 
