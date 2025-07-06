@@ -127,3 +127,9 @@ unsafe = true
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
+section = ["HTML", "RSS"]
+
+[sitemap]
+changeFreq = "weekly"
+priority = 0.8
+filename = "sitemap.xml"

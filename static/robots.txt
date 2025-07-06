@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Specific AI agents
+User-agent: OpenAI-GPT
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Point to sitemap
+Sitemap: https://holtonma.github.io/sitemap.xml
