@@ -57,7 +57,8 @@ url = "https://github.com/holtonma"
 twitter = "markholton"
 
 [params.analytics.google]
-SiteVerificationTag = "XYZabc"
+SiteVerificationTag = "YOUR_SEARCH_CONSOLE_TAG"
+id = "YOUR_GA_MEASUREMENT_ID"
 
 [params.analytics.bing]
 SiteVerificationTag = "XYZabc"
