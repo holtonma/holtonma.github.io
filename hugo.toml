@@ -56,15 +56,15 @@ url = "https://github.com/holtonma"
 [params.social]
 twitter = "markholton"
 
-[params.analytics.google]
-SiteVerificationTag = "YOUR_SEARCH_CONSOLE_TAG"
-id = "YOUR_GA_MEASUREMENT_ID"
+# [params.analytics.google]
+# SiteVerificationTag = "YOUR_SEARCH_CONSOLE_TAG"
+# id = "YOUR_GA_MEASUREMENT_ID"
 
-[params.analytics.bing]
-SiteVerificationTag = "XYZabc"
+# [params.analytics.bing]
+# SiteVerificationTag = "XYZabc"
 
-[params.analytics.yandex]
-SiteVerificationTag = "XYZabc"
+# [params.analytics.yandex]
+# SiteVerificationTag = "XYZabc"
 
 [params.cover]
 hidden = true

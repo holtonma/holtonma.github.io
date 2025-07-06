@@ -6,27 +6,27 @@
     <description>Recent content in Categories on Mark Holton - Hands on Software Architect</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Jan 2025 12:00:00 -0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jun 2025 12:00:00 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>General</title>
-      <link>http://localhost:1313/categories/general/</link>
-      <pubDate>Mon, 06 Jan 2025 12:00:00 -0800</pubDate>
-      <guid>http://localhost:1313/categories/general/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Ai-Integration</title>
       <link>http://localhost:1313/categories/ai-integration/</link>
-      <pubDate>Mon, 06 Jan 2025 12:00:00 -0500</pubDate>
+      <pubDate>Sun, 22 Jun 2025 12:00:00 -0500</pubDate>
       <guid>http://localhost:1313/categories/ai-integration/</guid>
       <description></description>
     </item>
     <item>
       <title>Technical-Tutorials</title>
       <link>http://localhost:1313/categories/technical-tutorials/</link>
-      <pubDate>Mon, 06 Jan 2025 12:00:00 -0500</pubDate>
+      <pubDate>Sun, 22 Jun 2025 12:00:00 -0500</pubDate>
       <guid>http://localhost:1313/categories/technical-tutorials/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>General</title>
+      <link>http://localhost:1313/categories/general/</link>
+      <pubDate>Mon, 06 Jan 2025 12:00:00 -0800</pubDate>
+      <guid>http://localhost:1313/categories/general/</guid>
       <description></description>
     </item>
   </channel>
