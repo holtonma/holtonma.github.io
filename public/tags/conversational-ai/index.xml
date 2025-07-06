@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Conversational AI on Mark Holton - Hands on Software Architect</title>
-    <link>http://localhost:59216/tags/conversational-ai/</link>
+    <link>https://holtonma.github.io/tags/conversational-ai/</link>
     <description>Recent content in Conversational AI on Mark Holton - Hands on Software Architect</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Jun 2025 12:00:00 -0500</lastBuildDate>
-    <atom:link href="http://localhost:59216/tags/conversational-ai/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://holtonma.github.io/tags/conversational-ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI Integration: Building Conversational Apps with MCP</title>
-      <link>http://localhost:59216/posts/mcp_blog_post/</link>
+      <link>https://holtonma.github.io/posts/mcp_blog_post/</link>
       <pubDate>Sun, 22 Jun 2025 12:00:00 -0500</pubDate>
-      <guid>http://localhost:59216/posts/mcp_blog_post/</guid>
+      <guid>https://holtonma.github.io/posts/mcp_blog_post/</guid>
       <description>Learn how to build conversational AI applications using Model Context Protocol (MCP) to connect Claude directly to your FastAPI backend and PostgreSQL database.</description>
     </item>
   </channel>
