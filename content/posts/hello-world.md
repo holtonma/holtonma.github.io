@@ -1,6 +1,6 @@
 ---
 title: "On the board with Hugo"
-date: 2025-01-06T12:00:00-08:00
+date: 2025-06-20T12:00:00-08:00
 draft: false
 tags: ["hello", "first-post", "blogging"]
 categories: ["General"]
