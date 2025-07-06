@@ -53,12 +53,33 @@
 - [ ] Analyze Core Web Vitals
 - [ ] Review and optimize image loading
 
+## Deployment Issues Resolved ✅
+
+### GitHub Pages Jekyll vs Hugo Conflict
+**Issue**: GitHub Pages was intermittently running Jekyll instead of Hugo, causing posts to disappear randomly.
+
+**Root Cause**: GitHub Pages defaults to Jekyll for any repository with markdown files. Even with custom Hugo workflows, it would sometimes override with automatic Jekyll builds.
+
+**Solution**: 
+1. Created `.github/workflows/blog_publish.yml` with proper Hugo workflow
+2. Ensured GitHub Pages source is set to "GitHub Actions" in repository settings
+3. Added `static/.nojekyll` file to disable Jekyll processing
+4. Used `--cleanDestinationDir` flag in Hugo build for consistent deploys
+
+**Key Files**:
+- `.github/workflows/blog_publish.yml` - Custom Hugo deployment workflow
+- `static/.nojekyll` - Disables Jekyll processing
+- `.gitignore` - Excludes `public/` directory from version control
+
+**Verification**: GitHub Pages UI should show "Deploy Hugo site to Pages workflow" as the source.
+
 ## Completed ✅
 - [x] Hugo site setup with PaperMod theme
 - [x] About page with Publications and Patents
-- [x] Two blog posts with hero images
+- [x] Three blog posts with hero images and AI-generated artwork
 - [x] Twitter Card meta tags configured
-- [x] GitHub Actions deployment workflow
+- [x] GitHub Actions deployment workflow (Hugo, not Jekyll!)
 - [x] Custom share buttons (removed Facebook/WhatsApp)
 - [x] Professional navigation menu
 - [x] Social media links with custom SVG icons
+- [x] Resolved GitHub Pages Jekyll/Hugo deployment conflicts

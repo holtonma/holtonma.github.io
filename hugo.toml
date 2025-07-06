@@ -5,7 +5,7 @@ theme = 'PaperMod'
 
 [params]
 env = "production"
-title = "Mark Holton - Software Architecture"
+title = "Mark Holton"
 description = "A blog about software development and technology"
 keywords = ["software", "development", "technology", "programming"]
 author = "Mark Holton"
@@ -36,7 +36,7 @@ apple_touch_icon = "/apple-touch-icon.png"
 safari_pinned_tab = "/safari-pinned-tab.svg"
 
 [params.label]
-text = "Mark Holton - Software Architecture"
+text = "Mark Holton"
 icon = "/apple-touch-icon.png"
 iconHeight = 35
 
