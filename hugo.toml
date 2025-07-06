@@ -58,7 +58,7 @@ url = "https://github.com/holtonma"
 twitter = "markholton"
 
 [params.analytics.google]
-# SiteVerificationTag = "YOUR_SEARCH_CONSOLE_TAG"  # Add this later if you set up Search Console
+SiteVerificationTag = "fcAcxqVg1WFL-6SaeDOdfqEaJhetod2dh8EmNNSaKGQ"
 id = "G-3VHWR9KEC4"
 
 # [params.analytics.bing]
