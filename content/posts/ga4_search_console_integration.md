@@ -14,6 +14,8 @@ cover:
 
 ![Sherlock Holmes character analyzing data and analytics charts with magnifying glass, representing detective work in understanding website analytics](/images/sherlock_analytics.jpg)
 
+*A Sherlock Holmes gopher analyzing blog traffic*
+
 When setting up analytics for this blog, I connected Google Analytics 4 (GA4) with Google Search Console through a simple site verification tag. Here's what this integration actually provides and why it's worth the extra configuration step.
 
 ## The Setup
