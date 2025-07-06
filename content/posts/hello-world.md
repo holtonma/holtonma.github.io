@@ -5,6 +5,10 @@ draft: false
 tags: ["hello", "first-post", "blogging"]
 categories: ["General"]
 description: "Software Architect | Building Resilient, Agent-Driven Data Platforms"
+cover:
+    image: "/images/data_engineer.jpg"
+    alt: "Data Engineer"
+    caption: "Software Architect focused on data platforms"
 ---
 
 # Data Pipelines and Possibilities!

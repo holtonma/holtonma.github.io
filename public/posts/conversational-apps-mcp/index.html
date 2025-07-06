@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Mark Holton - Hands on Software Architect</title>
+<meta name="keywords" content="">
+<meta name="description" content="AI Integration: Building Conversational Apps with MCP
+Why This Matters: The Shift to Agentic AI
+[]building_pipelines.jpg
+
+The software landscape is shifting toward agentic AI systems - applications where Large Language Models (LLMs) don&rsquo;t just answer questions, but actively use tools to solve complex problems. Instead of building separate AI features, the market and industry are moving toward AI that can directly interact with your existing systems, databases, and workflows.
+This creates a fundamental challenge: how do you expose your application&rsquo;s capabilities to an LLM? How do you let Claude, for instance, query your database, analyze the results or trigger your business logic - all through natural conversation?">
+<meta name="author" content="Mark Holton">
+<link rel="canonical" href="http://localhost:1313/posts/conversational-apps-mcp/">
+<meta name="google-site-verification" content="XYZabc">
+<meta name="yandex-verification" content="XYZabc">
+<meta name="msvalidate.01" content="XYZabc">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/conversational-apps-mcp/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/posts/conversational-apps-mcp/">
+  <meta property="og:site_name" content="Mark Holton - Hands on Software Architect">
+  <meta property="og:title" content="Mark Holton - Hands on Software Architect">
+  <meta property="og:description" content="AI Integration: Building Conversational Apps with MCP Why This Matters: The Shift to Agentic AI
+[]building_pipelines.jpg
+The software landscape is shifting toward agentic AI systems - applications where Large Language Models (LLMs) don’t just answer questions, but actively use tools to solve complex problems. Instead of building separate AI features, the market and industry are moving toward AI that can directly interact with your existing systems, databases, and workflows.
+This creates a fundamental challenge: how do you expose your application’s capabilities to an LLM? How do you let Claude, for instance, query your database, analyze the results or trigger your business logic - all through natural conversation?">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="AI Integration: Building Conversational Apps with MCP
+Why This Matters: The Shift to Agentic AI
+[]building_pipelines.jpg
+
+The software landscape is shifting toward agentic AI systems - applications where Large Language Models (LLMs) don&rsquo;t just answer questions, but actively use tools to solve complex problems. Instead of building separate AI features, the market and industry are moving toward AI that can directly interact with your existing systems, databases, and workflows.
+This creates a fundamental challenge: how do you expose your application&rsquo;s capabilities to an LLM? How do you let Claude, for instance, query your database, analyze the results or trigger your business logic - all through natural conversation?">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "http://localhost:1313/posts/conversational-apps-mcp/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "AI Integration: Building Conversational Apps with MCP Why This Matters: The Shift to Agentic AI\n[]building_pipelines.jpg\nThe software landscape is shifting toward agentic AI systems - applications where Large Language Models (LLMs) don\u0026rsquo;t just answer questions, but actively use tools to solve complex problems. Instead of building separate AI features, the market and industry are moving toward AI that can directly interact with your existing systems, databases, and workflows.\nThis creates a fundamental challenge: how do you expose your application\u0026rsquo;s capabilities to an LLM? How do you let Claude, for instance, query your database, analyze the results or trigger your business logic - all through natural conversation?\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "AI Integration: Building Conversational Apps with MCP Why This Matters: The Shift to Agentic AI\n[]building_pipelines.jpg\nThe software landscape is shifting toward agentic AI systems - applications where Large Language Models (LLMs) don’t just answer questions, but actively use tools to solve complex problems. Instead of building separate AI features, the market and industry are moving toward AI that can directly interact with your existing systems, databases, and workflows.\nThis creates a fundamental challenge: how do you expose your application’s capabilities to an LLM? How do you let Claude, for instance, query your database, analyze the results or trigger your business logic - all through natural conversation?\nEnter the Model Context Protocol (MCP), open-sourced by Anthropic in November 2024. MCP provides a standardized way to connect any application to Claude (or other LLMs) through well-defined tools and protocols. Think of it as a bridge that lets your applications participate in AI conversations by exposing your functionality as tools.\nThis post walks through building a complete MCP integration - from a local FastAPI application with PostgreSQL (a personal “goal tracking” app) to a conversational interface where you can ask Claude to query your database, analyze trends, and even update records. You’ll see the practical patterns, common gotchas in setup, and why this approach represents a fundamental shift in how we build intelligent applications. The goal isn’t just to add AI features to your app - it’s to make your entire application conversational and intelligent by design. The Magic of MCP: Apps Meet Conversational AI\nBuilding conversational AI interfaces has been unlocked thanks to Anthropic’s Model Context Protocol (MCP). In this post, I’ll walk you through creating a local FastAPI application with PostgreSQL that Claude can interact with directly through structured tools - your local app talking to Claude Desktop. This demonstrates the core MCP integration patterns, and because we’re running everything locally, we won’t get bogged down with API keys, authentication, or hosting complexities.\nImagine asking Claude: “What goals do I have set up?” and having it query your PostgreSQL database, return structured data, and provide intelligent insights - all through a simple conversation. That’s a surface-level glimpse of the power of MCP. MCP bridges the gap between your applications and Claude’s conversational abilities by providing: Structured tool definitions that Claude can discover and use Type-safe data exchange through JSON schemas Real-time conversations with your actual application data\nArchitecture Overview The stack here demonstrates a modern Python development pattern: Claude Desktop ↔ MCP Server ↔ FastAPI App ↔ PostgreSQL ↕ Pydantic Models (Type Safety) Key Components: Pydantic Models: Define data structure and automatic validation SQLAlchemy: ORM for PostgreSQL with relationship management FastAPI: REST API with auto-generated OpenAPI docs MCP Server: Bridge between Claude and your application PostgreSQL: Robust relational database with JSON support\nProject Structure src/ ├── core/ │ ├── models/ # Pydantic data models │ ├── database/ # SQLAlchemy models and connection │ ├── api/ # FastAPI routes and app │ └── mcp/ # MCP server integration │ ├── server.py # Main MCP server │ ├── tools.py # Tool definitions for Claude │ └── handlers.py # Tool implementation logic Step 1: Pydantic Models for Type Safety Pydantic models serve as the single source of truth for your data structure: from pydantic import BaseModel, Field from typing import List, Optional from uuid import UUID from datetime import datetime\nclass Goal(BaseModel): “““A specific, time-bound outcome to achieve.””” id: UUID = Field(default_factory=uuid4) title: str = Field(…, description=“Clear, specific goal statement”) progress_percentage: float = Field(default=0.0, ge=0.0, le=100.0) status: str = Field(default=“active”) created_at: datetime = Field(default_factory=datetime.utcnow) class GoalWithMetrics(Goal): “““Goal with nested metrics for rich responses.””” metrics: List[Metric] = Field(default_factory=list) Why this matters: These same models generate: Database schemas (via SQLAlchemy) API documentation (via FastAPI) MCP tool schemas (for Claude integration)\nStep 2: SQLAlchemy Database Models Map Pydantic models to database tables This is the database layer that mirrors your Pydantic models. You’re defining the actual PostgreSQL table structure using SQLAlchemy’s ORM syntax. The key pattern here is model mapping - your Goal Pydantic model becomes a GoalTable SQLAlchemy model with the same fields, but now with database-specific details like column types, constraints, and relationships. The relationship(“MetricTable”, back_populates=“goal”) sets up the foreign key relationship so you can easily query goals with their associated metrics in one go. Why this matters: You now have type-safe data models (Pydantic) that automatically generate both your API schemas and your database tables (SQLAlchemy), keeping everything in sync without manual duplication. from sqlalchemy import Column, String, Float, DateTime from sqlalchemy.dialects.postgresql import UUID as PGUUID\nclass GoalTable(Base): tablename = “goals”\nid = Column(PGUUID(as_uuid=True), primary_key=True, default=uuid4) title = Column(String(200), nullable=False) progress_percentage = Column(Float, default=0.0) status = Column(String(20), default=\"active\") created_at = Column(DateTime(timezone=True), server_default=func.now()) # Relationships for complex queries metrics = relationship(\"MetricTable\", back_populates=\"goal\") Database migrations with Alembic handle schema evolution:\nGenerate migration from model changes poetry run alembic revision –autogenerate -m “Add goals table”\nApply migrations poetry run alembic upgrade head Step 3: FastAPI Routes Create REST endpoints that return Pydantic models: from fastapi import FastAPI, Depends from sqlalchemy.orm import Session\napp = FastAPI(title=“Your Local App”) @app.get(\"/goals\", response_model=List[GoalWithMetrics]) async def get_goals(session: Session = Depends(get_session)): goals = session.query(GoalTable).all()\n# Convert SQLAlchemy to Pydantic with nested data return [ GoalWithMetrics.model_validate({ \"id\": goal.id, \"title\": goal.title, \"progress_percentage\": goal.progress_percentage, \"status\": goal.status, \"created_at\": goal.created_at, \"metrics\": [metric_to_dict(m) for m in goal.metrics] }) for goal in goals ] Step 4: MCP Tool Definitions Now we get to the fun part - defining tools that Claude can discover and use! Here we are creating a “menu” of tools that tells Claude exactly what it can use from your application. Each tool definition is like a menu item that specifies: The name - get_goals What it does - “Get goals with their current progress” What options are available - status_filter, include_metrics\nThe inputSchema is the detailed specification of those options - it tells Claude “you can filter by active, completed, or paused, and you can choose whether to include metrics (default is yes).” When Claude sees this menu, it knows exactly how to “order” from your app: it can ask for goals, specify which status it wants, and decide whether it needs the extra metric details. This is the contract between Claude and your application - Claude knows what’s possible, and your app knows what to expect: from mcp.types import Tool\ndef get_goals_tool() -\u003e Tool: “““Tool for Claude to get goals with progress.””” return Tool( name=“get_goals”, description=“Get goals with their current progress and metrics”, inputSchema={ “type”: “object”, “properties”: { “status_filter”: { “type”: “string”, “enum”: [“active”, “completed”, “paused”], “description”: “Filter goals by status” }, “include_metrics”: { “type”: “boolean”, “description”: “Whether to include metric details”, “default”: True } } } ) Tip: Use Pydantic.model_json_schema() to auto-generate complex schemas: def create_goal_tool() -\u003e Tool: return Tool( name=“create_goal”, description=“Create a new goal”, inputSchema=Goal.model_json_schema() # Automatic schema generation! ) Step 5: MCP Server Implementation Create the server that bridges Claude and your app. The MCP server has two main jobs: “Here’s what I can do” - When Claude asks “what tools are available?”, the list_tools() function responds with a menu: “I can get goals, create goals, and update goals.” “Let me do that for you” - When Claude says “please get my goals with status=active”, the call_tool() function: Figures out which specific function to call (handle_get_goals) Passes along Claude’s parameters ({“status”: “active”}) Runs your database code Sends the results back to Claude as text\nThe run_mcp_server() function starts up this “translator” and keeps it running, listening for Claude’s requests through standard input/output (like a command-line program). from mcp.server import Server from mcp.types import TextContent from mcp.server.stdio import stdio_server\ndef create_server(): server = Server(“your-app-name”)\n@server.list_tools() async def list_tools(): return [get_goals_tool(), create_goal_tool(), update_goal_tool()] @server.call_tool() async def call_tool(name: str, arguments: dict): try: if name == \"get_goals\": result = await handle_get_goals(arguments) elif name == \"create_goal\": result = await handle_create_goal(arguments) # ... other tools return [TextContent(type=\"text\", text=result)] except Exception as e: # Error handling - shows up in Claude logs print(f\"Error in tool {name}: {str(e)}\", file=sys.stderr) return [TextContent(type=\"text\", text=f\"Error: {str(e)}\")] return server async def run_mcp_server(): server = create_server() async with stdio_server() as (read_stream, write_stream): await server.run(read_stream, write_stream, server.create_initialization_options()) Step 6: Tool Implementation with Database Integration Here we are creating the bridge between MCP and the database by: Extracting parameters from Claude’s tool call (like filtering and options) Querying your database using standard SQLAlchemy patterns with optional filtering Converting SQLAlchemy objects to plain dictionaries for JSON serialization Optionally loading related data (metrics) based on the include_metrics flag Returning structured JSON that Claude can understand and work with\nEssentially, you’re translating between Claude’s conversational requests and your database’s structured data - taking natural language tool calls and turning them into database queries, then formatting the results back into something Claude can interpret and discuss with the user. The pattern is: MCP tool call → database query → JSON response Connect MCP tools to your database: async def handle_get_goals(arguments: dict) -\u003e str: status_filter = arguments.get(“status_filter”) include_metrics = arguments.get(“include_metrics”, True)\n# Use your existing database session session = next(get_session()) try: query = session.query(GoalTable) if status_filter: query = query.filter(GoalTable.status == status_filter) goals = query.order_by(GoalTable.created_at).all() # Convert to Pydantic for validation and serialization goal_objects = [] for goal in goals: goal_data = { \"id\": str(goal.id), \"title\": goal.title, \"progress_percentage\": goal.progress_percentage, \"status\": goal.status, \"metrics\": [] } if include_metrics: metrics = session.query(MetricTable).filter( MetricTable.goal_id == goal.id ).all() goal_data[\"metrics\"] = [metric_to_dict(m) for m in metrics] goal_objects.append(goal_data) # Return formatted JSON for Claude return json.dumps(goal_objects, indent=2) finally: session.close() Step 7: Claude Desktop Configuration Configure Claude Desktop to connect to your MCP server: This step instructs Claude Desktop on where to locate your MCP server. You’re adding an entry to Claude’s configuration file that specifies: What to call - the command to start your MCP server Where to run it - the working directory for your project How to identify it - a name Claude uses to reference this server\nOnce configured, Claude Desktop will automatically start your MCP server when it launches and connect to it for tool access. The result: Claude can now discover and use the tools you defined in previous steps. File: ~/Library/Application Support/Claude/claude_desktop_config.json { “mcpServers”: { “your-app-name”: { “command”: “/bin/bash”, “args”: [\"-c\", “cd /path/to/your/project \u0026\u0026 poetry run python -m src.core.mcp.server”], “cwd”: “/path/to/your/project” } } } This follows the official MCP configuration pattern documented by Anthropic. Key points: Use absolute paths for reliability Ensure proper working directory with cwd Use bash wrapper to handle environment setup\nNote: In a production environment, you’d typically have your own AI agent or application connecting to the MCP server. Here, Claude Desktop acts as our “agent” - it discovers your MCP server on startup and makes the tools available through the chat interface. This local setup enables you to quickly explore MCP integrations before integrating them into larger systems. BONUS: CLI Integration for Easy Management Create a CLI for managing your servers: import typer import uvicorn import asyncio\napp = typer.Typer() @app.command() def start_api(): “““Start the FastAPI server.””” uvicorn.run(“src.core.api.app:app”, host=“127.0.0.1”, port=8000, reload=True) @app.command() def start_mcp(): “““Start the MCP server for Claude.””” from .mcp.server import run_mcp_server asyncio.run(run_mcp_server()) @app.command() def migrate(): “““Run database migrations.””” subprocess.run([“alembic”, “upgrade”, “head”]) Usage: poetry run your-app start-api # FastAPI server poetry run your-app start-mcp # MCP server poetry run your-app migrate # Database migrations The Result: Conversational Database Interactions Once everything is connected, you can have natural conversations with your data: You: “What are my 3 most recent goals?” Claude: Looking at your goals, your 3 most recent goals appear to be: [Calls get_goals with status_filter=“active”, include_metrics=true] Claude calls the get_goals tool and then analyzes the results to identify the 3 most recently created goals. Claude: *Based on your current goals, I found 3 that might need attention. You could enhance your tool definition to include: limit parameter (number of results to return) sort_by parameter (“created_at”, “updated_at”, etc.)\nThat would make the call: [Calls get_goals with limit=3, sort_by=“created_at”, include_metrics=true] Advanced Patterns Rich Insights with Cross-Domain Analysis Leverage Claude’s analytical capabilities: Instead of asking Claude to run individual queries (“show me my goals”, “show me my metrics”), you’re giving it rich, interconnected data and letting it find patterns and insights you might miss. The analytical leap: Raw approach: “What are my goals?” → Claude returns a list Rich approach: “Here’s my goals, metrics, and recent activity - what insights do you see?” → Claude identifies trends, correlations, and recommendations\nConcrete example: Claude might notice: “Your deadlift goal is at 15% progress, but I see you haven’t logged any gym sessions in 3 weeks, and your recent check-ins show you’ve been deep in learning new technologies. These might be connected - your intense focus on skill development may be crowding out your strength training routine.” Why this is powerful: Cross-domain thinking - Claude can spot relationships between different life areas Pattern recognition - Finds trends across time and different data types Proactive insights - Suggests what to focus on rather than just reporting status Strategic recommendations - Not just “what happened” but “what should I do next”\nBy connecting the goals app to the LLM, you’re essentially transformed a logging and metrics app into an AI-powered personal strategist that can see the whole picture and help you make better decisions about where to focus your energy. Does that help illustrate the power? async def handle_progress_summary(arguments: dict) -\u003e str: # Gather data from multiple tables goals = get_goals_data() metrics = get_metrics_data() recent_activity = get_recent_checkins()\n# Return rich data for Claude to analyze return json.dumps({ \"goals\": goals, \"metrics\": metrics, \"recent_activity\": recent_activity, \"suggested_insights\": [ \"Cross-reference goal progress with activity patterns\", \"Identify goals that haven't been updated recently\", \"Find correlation between metrics and goal completion\" ] }) Multiple MCP Servers You can run multiple MCP servers for different domains: Composability - you can connect multiple specialized servers to Claude simultaneously. Each server can focus on a different domain (your main app, analytics, financial data, etc.), and Claude can use tools from all of them in a single conversation. Instead of building one monolithic MCP server, you can create focused, single-purpose servers that Claude orchestrates together. Ask Claude to “analyze my goals progress and compare it with my financial metrics” - it seamlessly pulls from multiple apps to give you cross-system insights. { “mcpServers”: { “main-app”: { “command”: “poetry”, “args”: [“run”, “main-app”, “start-mcp”], “cwd”: “/path/to/main/app” }, “analytics-app”: { “command”: “poetry”, “args”: [“run”, “analytics”, “start-mcp”], “cwd”: “/path/to/analytics/app” } } } Streaming Responses for Large Data For large datasets, consider streaming responses: async def handle_large_query(arguments: dict) -\u003e str: # Process in chunks results = [] for chunk in process_in_batches(query_data(arguments)): results.extend(chunk) if len(results) \u003e 1000: # Limit response size break\nreturn json.dumps({ \"results\": results, \"truncated\": len(results) \u003e= 1000, \"total_available\": get_total_count(arguments) }) Common Issues and Solutions\n“Poetry could not find pyproject.toml” Error: MCP server can’t find your project files. Solution: Configuration probably has the wrong directory. Use shell wrapper with explicit directory change: { “command”: “/bin/bash”, “args”: [\"-c\", “cd /full/path/to/project \u0026\u0026 poetry run your-command”] } “relation ’table_name’ does not exist” Error: Database tables not created. Solution: You likely forgot to run a migration - run migrations before starting MCP server: poetry run alembic upgrade head JSON Parsing Errors in Claude Logs Error: Unexpected non-whitespace character after JSON Cause: SQLAlchemy debug output mixing with JSON responses. Solution: Either disable SQLAlchemy echo or ignore these warnings: engine = create_engine(DATABASE_URL, echo=False) # Disable in production Module Import Warnings Warning: RuntimeWarning: ‘module’ found in sys.modules Solution: This warning is harmless when running MCP servers. It occurs due to Python’s module loading order but doesn’t affect functionality. Debugging MCP Connections View MCP logs: tail -f ~/Library/Logs/Claude/mcp-server-your-app-name.log Test MCP server manually: cd /your/project/path poetry run python -m src.core.mcp.server Should wait for input without errors Add debug output to MCP handlers: async def handle_tool(arguments: dict) -\u003e str: try: # Your logic here result = process_data(arguments) return json.dumps(result) except Exception as e: # This appears in Claude logs print(f\"Debug: Tool failed with {arguments}\", file=sys.stderr) print(f\"Error: {str(e)}\", file=sys.stderr) return f\"Error: {str(e)}\" Conclusion Building MCP-enabled applications opens up imaginative possibilities for AI interactions and augmentation - transforming static applications into intelligent partners that can analyze, strategize, and evolve with your needs . The combination of Pydantic’s type safety, FastAPI’s performance, PostgreSQL’s robustness, and MCP’s conversational interface creates a powerful foundation for intelligent applications. Key takeaways: Pydantic models provide type safety across your entire stack MCP integration is surprisingly straightforward once you understand the stdio communication pattern Error handling and logging are crucial for debugging MCP connections The development experience is smooth with proper tooling and CLI commands Standardized AI integration - MCP provides the protocol layer that lets any LLM interact with your applications through well-defined tools\nThe result is a system that enables natural conversations with your data, allows you to create complex queries through simple language, and provides intelligent insights. Next steps: The patterns demonstrated here extend naturally to production environments with proper authentication, advanced tool chaining, and rich user interfaces. The future of AI application development leverages LLM advances to unlock the full potential of our applications, transforming them from static data repositories with APIs into dynamic, intelligent partners.\nBuilt with: Python 3.12, FastAPI, PostgreSQL, Pydantic, SQLAlchemy, Alembic, and Anthropic’s MCP About the Author: Mark Holton is a hands-on Software Architect at ShiftUp, where we’re building AI agents that revolutionize Go To Market and Sales Intelligence.\n",
+  "wordCount" : "2862",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Mark Holton"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/conversational-apps-mcp/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mark Holton - Hands on Software Architect",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mark Holton - Software Architecture (Alt + H)">
+                <img src="http://localhost:1313/apple-touch-icon.png" alt="" aria-label="logo"
+                    height="35">Mark Holton - Software Architecture</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">14 min&nbsp;·&nbsp;2862 words&nbsp;·&nbsp;Mark Holton&nbsp;|&nbsp;<a href="https://github.com/holtonma/holtonma.github.io/tree/main/content/posts/conversational-apps-mcp.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>AI Integration: Building Conversational Apps with MCP
+Why This Matters: The Shift to Agentic AI</p>
+<p>[]building_pipelines.jpg</p>
+<hr>
+<p>The software landscape is shifting toward agentic AI systems - applications where Large Language Models (LLMs) don&rsquo;t just answer questions, but actively use tools to solve complex problems. Instead of building separate AI features, the market and industry are moving toward AI that can directly interact with your existing systems, databases, and workflows.</p>
+<p>This creates a fundamental challenge: how do you expose your application&rsquo;s capabilities to an LLM? How do you let Claude, for instance, query your database, analyze the results or trigger your business logic - all through natural conversation?</p>
+<p>Enter the Model Context Protocol (MCP), open-sourced by Anthropic in November 2024. MCP provides a standardized way to connect any application to Claude (or other LLMs) through well-defined tools and protocols. Think of it as a bridge that lets your applications participate in AI conversations by exposing your functionality as tools.</p>
+<p>This post walks through building a complete MCP integration - from a local FastAPI application with PostgreSQL (a personal &ldquo;goal tracking&rdquo; app) to a conversational interface where you can ask Claude to query your database, analyze trends, and even update records. You&rsquo;ll see the practical patterns, common gotchas in setup, and why this approach represents a fundamental shift in how we build intelligent applications.
+The goal isn&rsquo;t just to add AI features to your app - it&rsquo;s to make your entire application conversational and intelligent by design.
+The Magic of MCP: Apps Meet Conversational AI</p>
+<p>Building conversational AI interfaces has been unlocked thanks to Anthropic&rsquo;s Model Context Protocol (MCP). In this post, I&rsquo;ll walk you through creating a local FastAPI application with PostgreSQL that Claude can interact with directly through structured tools - your local app talking to Claude Desktop. This demonstrates the core MCP integration patterns, and because we&rsquo;re running everything locally, we won&rsquo;t get bogged down with API keys, authentication, or hosting complexities.</p>
+<p>Imagine asking Claude: &ldquo;What goals do I have set up?&rdquo; and having it query your PostgreSQL database, return structured data, and provide intelligent insights - all through a simple conversation. That&rsquo;s a surface-level glimpse of the power of MCP.
+MCP bridges the gap between your applications and Claude&rsquo;s conversational abilities by providing:
+Structured tool definitions that Claude can discover and use
+Type-safe data exchange through JSON schemas
+Real-time conversations with your actual application data</p>
+<p>Architecture Overview
+The stack here demonstrates a modern Python development pattern:
+Claude Desktop ↔ MCP Server ↔ FastAPI App ↔ PostgreSQL
+↕
+Pydantic Models (Type Safety)
+Key Components:
+Pydantic Models: Define data structure and automatic validation
+SQLAlchemy: ORM for PostgreSQL with relationship management
+FastAPI: REST API with auto-generated OpenAPI docs
+MCP Server: Bridge between Claude and your application
+PostgreSQL: Robust relational database with JSON support</p>
+<p>Project Structure
+src/
+├── core/
+│   ├── models/         # Pydantic data models
+│   ├── database/       # SQLAlchemy models and connection
+│   ├── api/            # FastAPI routes and app
+│   └── mcp/            # MCP server integration
+│       ├── server.py   # Main MCP server
+│       ├── tools.py    # Tool definitions for Claude
+│       └── handlers.py # Tool implementation logic
+Step 1: Pydantic Models for Type Safety
+Pydantic models serve as the single source of truth for your data structure:
+from pydantic import BaseModel, Field
+from typing import List, Optional
+from uuid import UUID
+from datetime import datetime</p>
+<p>class Goal(BaseModel):
+&ldquo;&ldquo;&ldquo;A specific, time-bound outcome to achieve.&rdquo;&rdquo;&rdquo;
+id: UUID = Field(default_factory=uuid4)
+title: str = Field(&hellip;, description=&ldquo;Clear, specific goal statement&rdquo;)
+progress_percentage: float = Field(default=0.0, ge=0.0, le=100.0)
+status: str = Field(default=&ldquo;active&rdquo;)
+created_at: datetime = Field(default_factory=datetime.utcnow)
+class GoalWithMetrics(Goal):
+&ldquo;&ldquo;&ldquo;Goal with nested metrics for rich responses.&rdquo;&rdquo;&rdquo;
+metrics: List[Metric] = Field(default_factory=list)
+Why this matters: These same models generate:
+Database schemas (via SQLAlchemy)
+API documentation (via FastAPI)
+MCP tool schemas (for Claude integration)</p>
+<p>Step 2: SQLAlchemy Database Models
+Map Pydantic models to database tables
+This is the database layer that mirrors your Pydantic models. You&rsquo;re defining the actual PostgreSQL table structure using SQLAlchemy&rsquo;s ORM syntax.
+The key pattern here is model mapping - your Goal Pydantic model becomes a GoalTable SQLAlchemy model with the same fields, but now with database-specific details like column types, constraints, and relationships.
+The relationship(&ldquo;MetricTable&rdquo;, back_populates=&ldquo;goal&rdquo;) sets up the foreign key relationship so you can easily query goals with their associated metrics in one go.
+Why this matters: You now have type-safe data models (Pydantic) that automatically generate both your API schemas and your database tables (SQLAlchemy), keeping everything in sync without manual duplication.
+from sqlalchemy import Column, String, Float, DateTime
+from sqlalchemy.dialects.postgresql import UUID as PGUUID</p>
+<p>class GoalTable(Base):
+<strong>tablename</strong> = &ldquo;goals&rdquo;</p>
+<pre><code>id = Column(PGUUID(as_uuid=True), primary_key=True, default=uuid4)
+title = Column(String(200), nullable=False)
+progress_percentage = Column(Float, default=0.0)
+status = Column(String(20), default=&quot;active&quot;)
+created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+# Relationships for complex queries
+metrics = relationship(&quot;MetricTable&quot;, back_populates=&quot;goal&quot;)
+</code></pre>
+<p>Database migrations with Alembic handle schema evolution:</p>
+<h1 id="generate-migration-from-model-changes">Generate migration from model changes<a hidden class="anchor" aria-hidden="true" href="#generate-migration-from-model-changes">#</a></h1>
+<p>poetry run alembic revision &ndash;autogenerate -m &ldquo;Add goals table&rdquo;</p>
+<h1 id="apply-migrations">Apply migrations<a hidden class="anchor" aria-hidden="true" href="#apply-migrations">#</a></h1>
+<p>poetry run alembic upgrade head
+Step 3: FastAPI Routes
+Create REST endpoints that return Pydantic models:
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session</p>
+<p>app = FastAPI(title=&ldquo;Your Local App&rdquo;)
+@app.get(&quot;/goals&quot;, response_model=List[GoalWithMetrics])
+async def get_goals(session: Session = Depends(get_session)):
+goals = session.query(GoalTable).all()</p>
+<pre><code># Convert SQLAlchemy to Pydantic with nested data
+return [
+    GoalWithMetrics.model_validate({
+        &quot;id&quot;: goal.id,
+        &quot;title&quot;: goal.title,
+        &quot;progress_percentage&quot;: goal.progress_percentage,
+        &quot;status&quot;: goal.status,
+        &quot;created_at&quot;: goal.created_at,
+        &quot;metrics&quot;: [metric_to_dict(m) for m in goal.metrics]
+    })
+    for goal in goals
+]
+</code></pre>
+<p>Step 4: MCP Tool Definitions
+Now we get to the fun part - defining tools that Claude can discover and use!
+Here we are creating a &ldquo;menu&rdquo; of tools that tells Claude exactly what it can use from your application. Each tool definition is like a menu item that specifies:
+The name - get_goals
+What it does - &ldquo;Get goals with their current progress&rdquo;
+What options are available - status_filter, include_metrics</p>
+<p>The inputSchema is the detailed specification of those options - it tells Claude &ldquo;you can filter by active, completed, or paused, and you can choose whether to include metrics (default is yes).&rdquo; When Claude sees this menu, it knows exactly how to &ldquo;order&rdquo; from your app: it can ask for goals, specify which status it wants, and decide whether it needs the extra metric details. This is the contract between Claude and your application - Claude knows what&rsquo;s possible, and your app knows what to expect:
+from mcp.types import Tool</p>
+<p>def get_goals_tool() -&gt; Tool:
+&ldquo;&ldquo;&ldquo;Tool for Claude to get goals with progress.&rdquo;&rdquo;&rdquo;
+return Tool(
+name=&ldquo;get_goals&rdquo;,
+description=&ldquo;Get goals with their current progress and metrics&rdquo;,
+inputSchema={
+&ldquo;type&rdquo;: &ldquo;object&rdquo;,
+&ldquo;properties&rdquo;: {
+&ldquo;status_filter&rdquo;: {
+&ldquo;type&rdquo;: &ldquo;string&rdquo;,
+&ldquo;enum&rdquo;: [&ldquo;active&rdquo;, &ldquo;completed&rdquo;, &ldquo;paused&rdquo;],
+&ldquo;description&rdquo;: &ldquo;Filter goals by status&rdquo;
+},
+&ldquo;include_metrics&rdquo;: {
+&ldquo;type&rdquo;: &ldquo;boolean&rdquo;,
+&ldquo;description&rdquo;: &ldquo;Whether to include metric details&rdquo;,
+&ldquo;default&rdquo;: True
+}
+}
+}
+)
+Tip: Use Pydantic.model_json_schema() to auto-generate complex schemas:
+def create_goal_tool() -&gt; Tool:
+return Tool(
+name=&ldquo;create_goal&rdquo;,
+description=&ldquo;Create a new goal&rdquo;,
+inputSchema=Goal.model_json_schema()  # Automatic schema generation!
+)
+Step 5: MCP Server Implementation
+Create the server that bridges Claude and your app.
+The MCP server has two main jobs:
+&ldquo;Here&rsquo;s what I can do&rdquo; - When Claude asks &ldquo;what tools are available?&rdquo;, the list_tools() function responds with a menu: &ldquo;I can get goals, create goals, and update goals.&rdquo;
+&ldquo;Let me do that for you&rdquo; - When Claude says &ldquo;please get my goals with status=active&rdquo;, the call_tool() function:
+Figures out which specific function to call (handle_get_goals)
+Passes along Claude&rsquo;s parameters ({&ldquo;status&rdquo;: &ldquo;active&rdquo;})
+Runs your database code
+Sends the results back to Claude as text</p>
+<p>The run_mcp_server() function starts up this &ldquo;translator&rdquo; and keeps it running, listening for Claude&rsquo;s requests through standard input/output (like a command-line program).
+from mcp.server import Server
+from mcp.types import TextContent
+from mcp.server.stdio import stdio_server</p>
+<p>def create_server():
+server = Server(&ldquo;your-app-name&rdquo;)</p>
+<pre><code>@server.list_tools()
+async def list_tools():
+    return [get_goals_tool(), create_goal_tool(), update_goal_tool()]
+
+@server.call_tool()
+async def call_tool(name: str, arguments: dict):
+    try:
+        if name == &quot;get_goals&quot;:
+            result = await handle_get_goals(arguments)
+        elif name == &quot;create_goal&quot;:
+            result = await handle_create_goal(arguments)
+        # ... other tools
+        
+        return [TextContent(type=&quot;text&quot;, text=result)]
+        
+    except Exception as e:
+        # Error handling - shows up in Claude logs
+        print(f&quot;Error in tool {name}: {str(e)}&quot;, file=sys.stderr)
+        return [TextContent(type=&quot;text&quot;, text=f&quot;Error: {str(e)}&quot;)]
+
+return server
+</code></pre>
+<p>async def run_mcp_server():
+server = create_server()
+async with stdio_server() as (read_stream, write_stream):
+await server.run(read_stream, write_stream,
+server.create_initialization_options())
+Step 6: Tool Implementation with Database Integration
+Here we are creating the bridge between MCP and the database by:
+Extracting parameters from Claude&rsquo;s tool call (like filtering and options)
+Querying your database using standard SQLAlchemy patterns with optional filtering
+Converting SQLAlchemy objects to plain dictionaries for JSON serialization
+Optionally loading related data (metrics) based on the include_metrics flag
+Returning structured JSON that Claude can understand and work with</p>
+<p>Essentially, you&rsquo;re translating between Claude&rsquo;s conversational requests and your database&rsquo;s structured data - taking natural language tool calls and turning them into database queries, then formatting the results back into something Claude can interpret and discuss with the user.
+The pattern is: MCP tool call → database query → JSON response
+Connect MCP tools to your database:
+async def handle_get_goals(arguments: dict) -&gt; str:
+status_filter = arguments.get(&ldquo;status_filter&rdquo;)
+include_metrics = arguments.get(&ldquo;include_metrics&rdquo;, True)</p>
+<pre><code># Use your existing database session
+session = next(get_session())
+try:
+    query = session.query(GoalTable)
+    if status_filter:
+        query = query.filter(GoalTable.status == status_filter)
+        
+    goals = query.order_by(GoalTable.created_at).all()
+    
+    # Convert to Pydantic for validation and serialization
+    goal_objects = []
+    for goal in goals:
+        goal_data = {
+            &quot;id&quot;: str(goal.id),
+            &quot;title&quot;: goal.title,
+            &quot;progress_percentage&quot;: goal.progress_percentage,
+            &quot;status&quot;: goal.status,
+            &quot;metrics&quot;: []
+        }
+        
+        if include_metrics:
+            metrics = session.query(MetricTable).filter(
+                MetricTable.goal_id == goal.id
+            ).all()
+            goal_data[&quot;metrics&quot;] = [metric_to_dict(m) for m in metrics]
+        
+        goal_objects.append(goal_data)
+    
+    # Return formatted JSON for Claude
+    return json.dumps(goal_objects, indent=2)
+    
+finally:
+    session.close()
+</code></pre>
+<p>Step 7: Claude Desktop Configuration
+Configure Claude Desktop to connect to your MCP server:
+This step instructs Claude Desktop on where to locate your MCP server. You&rsquo;re adding an entry to Claude&rsquo;s configuration file that specifies:
+What to call - the command to start your MCP server
+Where to run it - the working directory for your project
+How to identify it - a name Claude uses to reference this server</p>
+<p>Once configured, Claude Desktop will automatically start your MCP server when it launches and connect to it for tool access. The result: Claude can now discover and use the tools you defined in previous steps.
+File: ~/Library/Application Support/Claude/claude_desktop_config.json
+{
+&ldquo;mcpServers&rdquo;: {
+&ldquo;your-app-name&rdquo;: {
+&ldquo;command&rdquo;: &ldquo;/bin/bash&rdquo;,
+&ldquo;args&rdquo;: [&quot;-c&quot;, &ldquo;cd /path/to/your/project &amp;&amp; poetry run python -m src.core.mcp.server&rdquo;],
+&ldquo;cwd&rdquo;: &ldquo;/path/to/your/project&rdquo;
+}
+}
+}
+This follows the official MCP configuration pattern documented by Anthropic. Key points:
+Use absolute paths for reliability
+Ensure proper working directory with cwd
+Use bash wrapper to handle environment setup</p>
+<p>Note: In a production environment, you&rsquo;d typically have your own AI agent or application connecting to the MCP server. Here, Claude Desktop acts as our &ldquo;agent&rdquo; - it discovers your MCP server on startup and makes the tools available through the chat interface. This local setup enables you to quickly explore MCP integrations before integrating them into larger systems.
+BONUS: CLI Integration for Easy Management
+Create a CLI for managing your servers:
+import typer
+import uvicorn
+import asyncio</p>
+<p>app = typer.Typer()
+@app.command()
+def start_api():
+&ldquo;&ldquo;&ldquo;Start the FastAPI server.&rdquo;&rdquo;&rdquo;
+uvicorn.run(&ldquo;src.core.api.app:app&rdquo;, host=&ldquo;127.0.0.1&rdquo;, port=8000, reload=True)
+@app.command()
+def start_mcp():
+&ldquo;&ldquo;&ldquo;Start the MCP server for Claude.&rdquo;&rdquo;&rdquo;
+from .mcp.server import run_mcp_server
+asyncio.run(run_mcp_server())
+@app.command()
+def migrate():
+&ldquo;&ldquo;&ldquo;Run database migrations.&rdquo;&rdquo;&rdquo;
+subprocess.run([&ldquo;alembic&rdquo;, &ldquo;upgrade&rdquo;, &ldquo;head&rdquo;])
+Usage:
+poetry run your-app start-api    # FastAPI server
+poetry run your-app start-mcp    # MCP server
+poetry run your-app migrate      # Database migrations
+The Result: Conversational Database Interactions
+Once everything is connected, you can have natural conversations with your data:
+You: &ldquo;What are my 3 most recent goals?&rdquo;
+Claude: Looking at your goals, your <strong>3 most recent goals</strong> appear to be:
+[Calls get_goals with status_filter=&ldquo;active&rdquo;, include_metrics=true]
+Claude calls the get_goals tool and then analyzes the results to identify the 3 most recently created goals.
+Claude: *Based on your current goals, I found 3 that might need attention.
+You could enhance your tool definition to include:
+limit parameter (number of results to return)
+sort_by parameter (&ldquo;created_at&rdquo;, &ldquo;updated_at&rdquo;, etc.)</p>
+<p>That would make the call:
+[Calls get_goals with limit=3, sort_by=&ldquo;created_at&rdquo;, include_metrics=true]
+Advanced Patterns
+Rich Insights with Cross-Domain Analysis
+Leverage Claude&rsquo;s analytical capabilities:
+Instead of asking Claude to run individual queries (&ldquo;show me my goals&rdquo;, &ldquo;show me my metrics&rdquo;), you&rsquo;re giving it rich, interconnected data and letting it find patterns and insights you might miss.
+The analytical leap:
+Raw approach: &ldquo;What are my goals?&rdquo; → Claude returns a list
+Rich approach: &ldquo;Here&rsquo;s my goals, metrics, and recent activity - what insights do you see?&rdquo; → Claude identifies trends, correlations, and recommendations</p>
+<p>Concrete example: Claude might notice: &ldquo;Your deadlift goal is at 15% progress, but I see you haven&rsquo;t logged any gym sessions in 3 weeks, and your recent check-ins show you&rsquo;ve been deep in learning new technologies. These might be connected - your intense focus on skill development may be crowding out your strength training routine.&rdquo;
+Why this is powerful:
+Cross-domain thinking - Claude can spot relationships between different life areas
+Pattern recognition - Finds trends across time and different data types
+Proactive insights - Suggests what to focus on rather than just reporting status
+Strategic recommendations - Not just &ldquo;what happened&rdquo; but &ldquo;what should I do next&rdquo;</p>
+<p>By connecting the goals app to the LLM, you&rsquo;re essentially transformed a logging and metrics app into an AI-powered personal strategist that can see the whole picture and help you make better decisions about where to focus your energy. Does that help illustrate the power?
+async def handle_progress_summary(arguments: dict) -&gt; str:
+# Gather data from multiple tables
+goals = get_goals_data()
+metrics = get_metrics_data()
+recent_activity = get_recent_checkins()</p>
+<pre><code># Return rich data for Claude to analyze
+return json.dumps({
+    &quot;goals&quot;: goals,
+    &quot;metrics&quot;: metrics,
+    &quot;recent_activity&quot;: recent_activity,
+    &quot;suggested_insights&quot;: [
+        &quot;Cross-reference goal progress with activity patterns&quot;,
+        &quot;Identify goals that haven't been updated recently&quot;,
+        &quot;Find correlation between metrics and goal completion&quot;
+    ]
+})
+</code></pre>
+<p>Multiple MCP Servers
+You can run multiple MCP servers for different domains:
+Composability - you can connect multiple specialized servers to Claude simultaneously. Each server can focus on a different domain (your main app, analytics, financial data, etc.), and Claude can use tools from all of them in a single conversation.
+Instead of building one monolithic MCP server, you can create focused, single-purpose servers that Claude orchestrates together. Ask Claude to &ldquo;analyze my goals progress and compare it with my financial metrics&rdquo; - it seamlessly pulls from multiple apps to give you cross-system insights.
+{
+&ldquo;mcpServers&rdquo;: {
+&ldquo;main-app&rdquo;: {
+&ldquo;command&rdquo;: &ldquo;poetry&rdquo;,
+&ldquo;args&rdquo;: [&ldquo;run&rdquo;, &ldquo;main-app&rdquo;, &ldquo;start-mcp&rdquo;],
+&ldquo;cwd&rdquo;: &ldquo;/path/to/main/app&rdquo;
+},
+&ldquo;analytics-app&rdquo;: {
+&ldquo;command&rdquo;: &ldquo;poetry&rdquo;,
+&ldquo;args&rdquo;: [&ldquo;run&rdquo;, &ldquo;analytics&rdquo;, &ldquo;start-mcp&rdquo;],
+&ldquo;cwd&rdquo;: &ldquo;/path/to/analytics/app&rdquo;
+}
+}
+}
+Streaming Responses for Large Data
+For large datasets, consider streaming responses:
+async def handle_large_query(arguments: dict) -&gt; str:
+# Process in chunks
+results = []
+for chunk in process_in_batches(query_data(arguments)):
+results.extend(chunk)
+if len(results) &gt; 1000:  # Limit response size
+break</p>
+<pre><code>return json.dumps({
+    &quot;results&quot;: results,
+    &quot;truncated&quot;: len(results) &gt;= 1000,
+    &quot;total_available&quot;: get_total_count(arguments)
+})
+</code></pre>
+<p>Common Issues and Solutions</p>
+<ol>
+<li>&ldquo;Poetry could not find pyproject.toml&rdquo;
+Error: MCP server can&rsquo;t find your project files.
+Solution: Configuration probably has the wrong directory. Use shell wrapper with explicit directory change:
+{
+&ldquo;command&rdquo;: &ldquo;/bin/bash&rdquo;,
+&ldquo;args&rdquo;: [&quot;-c&quot;, &ldquo;cd /full/path/to/project &amp;&amp; poetry run your-command&rdquo;]
+}</li>
+<li>&ldquo;relation &rsquo;table_name&rsquo; does not exist&rdquo;
+Error: Database tables not created.
+Solution: You likely forgot to run a migration - run migrations before starting MCP server:
+poetry run alembic upgrade head</li>
+<li>JSON Parsing Errors in Claude Logs
+Error: Unexpected non-whitespace character after JSON
+Cause: SQLAlchemy debug output mixing with JSON responses.
+Solution: Either disable SQLAlchemy echo or ignore these warnings:
+engine = create_engine(DATABASE_URL, echo=False)  # Disable in production</li>
+<li>Module Import Warnings
+Warning: RuntimeWarning: &lsquo;module&rsquo; found in sys.modules
+Solution: This warning is harmless when running MCP servers. It occurs due to Python&rsquo;s module loading order but doesn&rsquo;t affect functionality.
+Debugging MCP Connections
+View MCP logs:
+tail -f ~/Library/Logs/Claude/mcp-server-your-app-name.log
+Test MCP server manually:
+cd /your/project/path
+poetry run python -m src.core.mcp.server</li>
+</ol>
+<h1 id="should-wait-for-input-without-errors">Should wait for input without errors<a hidden class="anchor" aria-hidden="true" href="#should-wait-for-input-without-errors">#</a></h1>
+<p>Add debug output to MCP handlers:
+async def handle_tool(arguments: dict) -&gt; str:
+try:
+# Your logic here
+result = process_data(arguments)
+return json.dumps(result)
+except Exception as e:
+# This appears in Claude logs
+print(f&quot;Debug: Tool failed with {arguments}&quot;, file=sys.stderr)
+print(f&quot;Error: {str(e)}&quot;, file=sys.stderr)
+return f&quot;Error: {str(e)}&quot;
+Conclusion
+Building MCP-enabled applications opens up imaginative possibilities for AI interactions and augmentation - transforming static applications into intelligent partners that can analyze, strategize, and evolve with your needs . The combination of Pydantic&rsquo;s type safety, FastAPI&rsquo;s performance, PostgreSQL&rsquo;s robustness, and MCP&rsquo;s conversational interface creates a powerful foundation for intelligent applications.
+Key takeaways:
+Pydantic models provide type safety across your entire stack
+MCP integration is surprisingly straightforward once you understand the stdio communication pattern
+Error handling and logging are crucial for debugging MCP connections
+The development experience is smooth with proper tooling and CLI commands
+Standardized AI integration - MCP provides the protocol layer that lets any LLM interact with your applications through well-defined tools</p>
+<p>The result is a system that enables natural conversations with your data, allows you to create complex queries through simple language, and provides intelligent insights.
+Next steps: The patterns demonstrated here extend naturally to production environments with proper authentication, advanced tool chaining, and rich user interfaces. The future of AI application development leverages LLM advances to unlock the full potential of our applications, transforming them from static data repositories with APIs into dynamic, intelligent partners.</p>
+<hr>
+<p>Built with: Python 3.12, FastAPI, PostgreSQL, Pydantic, SQLAlchemy, Alembic, and Anthropic&rsquo;s MCP
+About the Author: Mark Holton is a hands-on Software Architect at ShiftUp, where we&rsquo;re building AI agents that revolutionize Go To Market and Sales Intelligence.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/hello-world/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>On the board with Hugo</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share  on x"
+            href="https://x.com/intent/tweet/?text=&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fconversational-apps-mcp%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share  on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fconversational-apps-mcp%2f&amp;title=&amp;summary=&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fconversational-apps-mcp%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share  on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fconversational-apps-mcp%2f&title=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share  on telegram"
+            href="https://telegram.me/share/url?text=&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fconversational-apps-mcp%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mark Holton - Hands on Software Architect</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

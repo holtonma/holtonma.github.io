@@ -53,6 +53,9 @@ imageTitle = "Mark Holton"
 name = "github"
 url = "https://github.com/holtonma"
 
+[params.social]
+twitter = "markholton"
+
 [params.analytics.google]
 SiteVerificationTag = "XYZabc"
 
