@@ -2,66 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://holtonma.github.io/tags/ai/</loc>
+    <loc>http://localhost:59970/tags/ai/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/posts/mcp_blog_post/</loc>
+    <loc>http://localhost:59970/posts/mcp_blog_post/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/categories/ai-integration/</loc>
+    <loc>http://localhost:59970/categories/ai-integration/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/categories/</loc>
+    <loc>http://localhost:59970/categories/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/claude/</loc>
+    <loc>http://localhost:59970/tags/claude/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/conversational-ai/</loc>
+    <loc>http://localhost:59970/tags/conversational-ai/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/fastapi/</loc>
+    <loc>http://localhost:59970/tags/fastapi/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/</loc>
+    <loc>http://localhost:59970/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/mcp/</loc>
+    <loc>http://localhost:59970/tags/mcp/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/postgresql/</loc>
+    <loc>http://localhost:59970/tags/postgresql/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/posts/</loc>
+    <loc>http://localhost:59970/posts/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/python/</loc>
+    <loc>http://localhost:59970/tags/python/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/</loc>
+    <loc>http://localhost:59970/tags/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/categories/technical-tutorials/</loc>
+    <loc>http://localhost:59970/categories/technical-tutorials/</loc>
     <lastmod>2025-06-22T12:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/about/</loc>
+    <loc>http://localhost:59970/about/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/blogging/</loc>
+    <loc>http://localhost:59970/tags/blogging/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/first-post/</loc>
+    <loc>http://localhost:59970/tags/first-post/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/categories/general/</loc>
+    <loc>http://localhost:59970/categories/general/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/tags/hello/</loc>
+    <loc>http://localhost:59970/tags/hello/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/posts/hello-world/</loc>
+    <loc>http://localhost:59970/posts/hello-world/</loc>
     <lastmod>2025-01-06T12:00:00-08:00</lastmod>
   </url><url>
-    <loc>https://holtonma.github.io/search/</loc>
+    <loc>http://localhost:59970/search/</loc>
   </url>
 </urlset>
