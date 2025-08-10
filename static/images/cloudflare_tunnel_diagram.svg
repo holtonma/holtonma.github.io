@@ -68,6 +68,6 @@
   <!-- Benefits Banner -->
   <rect x="50" y="220" width="800" height="45" rx="8" fill="#E3F2FD" stroke="#1976D2" stroke-width="2"/>
   <text x="450" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1976D2">
-    🎉 Enterprise-grade security + $2/month hosting + 20x better performance than cloud hosting
+    🔒 Encrypted tunnels - no exposed ports, no router configuration needed
   </text>
 </svg>
