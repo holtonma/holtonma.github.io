@@ -1,6 +1,6 @@
 ---
 title: "Self-Hosting Rails (and Python) Apps with Cloudflare Tunnels: Why I Ditched $17/Month Cloud Hosting for a $599 Mac Mini"
-date: 2025-08-10T00:00:00-07:00
+date: 2025-08-10T00:10:00-07:00
 draft: false
 tags: ["rails", "python", "self-hosting", "cloudflare", "mac-mini", "cost-optimization", "devops"]
 categories: ["technical-tutorials"]
@@ -243,6 +243,19 @@ Since moving to self-hosting, I've been able to implement features that would ha
 ## The Honest Downsides
 
 Self-hosting isn't perfect. Here are the real tradeoffs:
+
+### 0. Application Security is Still Your Responsibility
+
+**Important:** Cloudflare Tunnels secure your *infrastructure*, not your *application*. You still need to follow secure coding practices:
+
+- **Input validation** - Sanitize all user inputs to prevent SQL injection
+- **XSS protection** - Use Rails' built-in CSRF protection and sanitize outputs
+- **Authentication/authorization** - Implement proper user access controls
+- **Dependency management** - Keep Rails and gems updated (`bundle audit`)
+- **Environment variables** - Never commit secrets to your repository
+- **Database security** - Use parameterized queries, limit database permissions
+
+Cloud hosting doesn't magically make your code secure either, but don't let the infrastructure security improvements give you a false sense of application security. The same security best practices apply regardless of where you host.
 
 ### 1. Single Point of Failure
 Your app goes down if:
