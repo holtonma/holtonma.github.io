@@ -1,6 +1,6 @@
 ---
 title: "Self-Hosting Rails (and Python) Apps with Cloudflare Tunnels: Why I Ditched $17/Month Cloud Hosting for a $599 Mac Mini"
-date: 2025-08-10T00:15:00-07:00
+date: 2025-08-10T00:20:00-07:00
 draft: false
 tags: ["rails", "python", "self-hosting", "cloudflare", "mac-mini", "cost-optimization", "devops"]
 categories: ["technical-tutorials"]
@@ -106,7 +106,7 @@ Internet → Cloudflare Edge → Encrypted Tunnel → Your Server
 ✅ Zero router configuration needed
 ```
 
-![Cloudflare Tunnel Traffic Flow Diagram](/images/cloudflare_tunnel_diagram.svg)
+![Cloudflare Tunnel Traffic Flow Diagram](/images/cloudflare_tunnel_diagram_v2.svg)
 *Encrypted tunnels - no exposed ports, no router configuration needed*
 
 ### Setting Up EyeOnMajors.com with Cloudflare Tunnels
