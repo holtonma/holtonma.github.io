@@ -1,6 +1,6 @@
 ---
 title: "Self-Hosting Rails (and Python) Apps with Cloudflare Tunnels: Why I Ditched $17/Month Cloud Hosting for a $599 Mac Mini"
-date: 2025-08-10T00:20:00-07:00
+date: 2025-08-10T00:25:00-07:00
 draft: false
 tags: ["rails", "python", "self-hosting", "cloudflare", "mac-mini", "cost-optimization", "devops"]
 categories: ["technical-tutorials"]
@@ -397,7 +397,7 @@ I think we're seeing a shift back to self-hosting, driven by:
 3. **Security tools improving** (Cloudflare Tunnels, Tailscale, etc.)
 4. **Developer tools maturing** (Docker, simple deployment)
 
-**Self-hosting in 2024 feels like what cloud hosting promised in 2015** - simple, powerful, cost-effective.
+**Self-hosting in 2025 feels like what cloud hosting promised in 2015** - simple, powerful, cost-effective.
 
 ## Resources and Links
 
