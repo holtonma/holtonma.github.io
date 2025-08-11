@@ -1,6 +1,6 @@
 ---
-title: "Self-Hosting Rails (and Python) Apps with Cloudflare Tunnels: Why I Ditched $17/Month Cloud Hosting for a $599 Mac Mini"
-date: 2025-08-10T00:30:00-07:00
+title: "Self-Hosting Rails (and Python) Apps with Cloudflare Tunnels: Why I Swapped $17/Month Cloud Hosting for Self-hosting"
+date: 2025-08-10T00:31:00-07:00
 draft: false
 tags: ["rails", "python", "self-hosting", "cloudflare", "mac-mini", "cost-optimization", "devops"]
 categories: ["technical-tutorials"]
