@@ -1,19 +1,15 @@
 ---
-title: "Self-Hosting Rails (and Python) Apps with Cloudflare Tunnels: Why I Ditched $17/Month Cloud Hosting for a $599 Mac Mini"
-date: 2025-08-10T00:30:00-07:00
-draft: false
-tags: ["rails", "python", "self-hosting", "cloudflare", "mac-mini", "cost-optimization", "devops"]
-categories: ["technical-tutorials"]
-description: "A practical guide to self-hosting Rails apps with Cloudflare Tunnels - configs, costs, and real-world lessons"
-cover:
-    image: "/images/markholton-cloudflare-rocket.jpg"
-    alt: "Markbot robot riding a steampunk rocket through the clouds - representing the freedom and adventure of self-hosting"
-    caption: "Be adventurous and free - start hosting this stuff yourself!"
-ShowToc: true
-TocOpen: false
+title: Self-Hosting Rails Apps with Cloudflare Tunnels - Why I Ditched $17/Month Cloud Hosting for a $599 Mac Mini
+published: false
+description: A practical guide to self-hosting Rails apps with Cloudflare Tunnels - configs, costs, and real-world lessons
+tags: rails, selfhosting, cloudflare, devops
+canonical_url: https://holtonma.github.io/posts/self-hosting-rails-cloudflare-tunnels/
+cover_image: # Upload markholton-cloudflare-rocket.jpg here
 ---
 
-![Markbot Robot on Steampunk Rocket](/images/markholton-cloudflare-rocket.jpg)
+*Originally published on [holtonma.github.io](https://holtonma.github.io/posts/self-hosting-rails-cloudflare-tunnels/)*
+
+![Markbot Robot on Steampunk Rocket](# Upload markholton-cloudflare-rocket.jpg)
 *Be adventurous and free - start hosting this stuff yourself with no barriers to your exploration!*
 
 ## The $17/Month Death by a Thousand Cuts
@@ -106,7 +102,7 @@ Internet → Cloudflare Edge → Encrypted Tunnel → Your Server
 ✅ Zero router configuration needed
 ```
 
-![Cloudflare Tunnel Traffic Flow Diagram](/images/cloudflare_tunnel_diagram_v2.svg)
+![Cloudflare Tunnel Traffic Flow Diagram](# Upload cloudflare_tunnel_diagram_v2.svg)
 *Encrypted tunnels - no exposed ports, no router configuration needed*
 
 ### Setting Up EyeOnMajors.com with Cloudflare Tunnels
@@ -336,7 +332,7 @@ For the same functionality on cloud platforms:
 
 ## Why This Matters for Innovation
 
-![Money Savings Lab Exploration](/images/developer-selfhost-savings.jpg)
+![Money Savings Lab Exploration](# Upload developer-selfhost-savings.jpg)
 *Save money, build freely: Turn your home into a development playground*
 
 The real benefit isn't just cost savings - **it's removing barriers to exploration**.
@@ -422,7 +418,7 @@ Just me, a $599 Mac Mini, and the freedom to build whatever I can imagine.
 
 **I want to hear from you:** Are you currently paying $20/month or more for cloud hosting on hobby projects? What's your biggest barrier to trying self-hosting - is it the security concerns, the setup complexity, or something else entirely?
 
-Drop a comment or reach out on X [@markholton](https://twitter.com/markholton) - I'd love to help you get started or hear about your own self-hosting adventures.
+Drop a comment below - I'd love to help you get started or hear about your own self-hosting adventures!
 
 ---
 
