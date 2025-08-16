@@ -4,36 +4,40 @@ date: 2025-09-01T12:00:00-00:00
 draft: true
 tags: ["AI", "RAG", "Rerankers", "Machine Learning", "Voyage AI", "Cohere", "suggest.watch", "PydanticAI"]
 categories: ["ai-architecture", "technical-deep-dive"]
-description: "Building suggest.watch taught me that sometimes the secret to better AI isn't a bigger model—it's a more specialized one. A deep dive into rerankers and their role in RAG applications."
+description: "Sometimes the secret to better LLM agents or apps isn't a bigger model—it's a more specialized one. A look at rerankers and their role in RAG applications."
 author: "Mark Holton"
 cover:
-    image: "/images/reranker_architecture.jpg"
-    alt: "Technical illustration of reranker architecture improving RAG pipeline relevance scoring"
-    caption: "How rerankers transform RAG applications from good to great"
+    image: "/images/markbot-reranker.jpg"
+    alt: "AI robot analyzing and ranking search results for optimal relevance"
+    caption: "Reranker Models - purpose built for relevance ranking"
 ---
 
 ## Why Rerankers Are Important for RAG Applications: Some Research and Analysis
 
-*Building `suggest.watch` taught me that sometimes the secret to better AI isn't a bigger model—it's a more specialized one.*
-
 As I have [shared in the past](/posts/curiosity-and-craft/), I enjoy rolling up my sleeves and building to fully understand a tool, technique, or technology, especially when it's important to my craft. 
 
-If you're building RAG (Retrieval-Augmented Generation) applications, you've probably experienced this: your vector search returns decent results, but your LLM still generates mediocre responses. The missing piece might be a reranker—a specialized AI model that can greatly improve your retrieval quality.
+If you're building RAG (Retrieval-Augmented Generation) applications, you've probably experienced this: your vector search returns decent results, but your LLM still generates mediocre responses, or responses that don't match up with the intended ask. The missing architectural piece might be a reranker—a specialized AI model that can greatly improve your retrieval quality.
 
-Let me break down what rerankers are, why they matter, and how they could upgrade your RAG pipeline using real examples from building a sample side app i started, which i call `suggest.watch`.
+Let me break down what rerankers are, why they matter, and how they could upgrade your RAG pipeline using real examples from building a side exploration app I have been building, called `suggest.watch`.
 
-## The Problem to Solve: When Good Search Doesn't Click
+![AI robot analyzing and ranking search results for optimal relevance](/images/markbot-reranker.jpg)
+*Reranker Models - purpose built for relevance ranking*
+
+## The Problem to Solve: When Search Results Miss the Point
 
 Some background for context to help understand how this is used: `suggest.watch` is a side app I built to explore RAG applications when I get some time to dive into software architectures I want to understand.  The basic premise of the app is that it's like asking an LLM for movie recommendations, but over time the app "learns" your likes and dislikes over time through the use of RAG. The user as the tenant of the app, builds up his or her own set of vector relationships related to their past likes, dislikes of movies, shows, genres.  This is used when they talk to the LLM about subsequent movies. Unlike Netflix recommender or other services, it doesn't limit you to movies and shows on those platforms. It is just using your input over time, plus your input at the moment and bouncing that off the LLM.
 
+I want to be able to enter:
 > "in the mood for a dark detective mystery, on rainy London cobblestone streets, and make it a period movie!" 
 
-Example User Use-case:
+...and get some recommendations that match my general interests based on previous inputs, my mood, and the vast intelligence of the LLMs.
+
+Let's walk through an example use-case to help illustrate how this works and where rerankers fit in:
 
 Sarah opens `suggest.watch` at 9 PM on Friday. She's had a long week and types: 
 > *"I want something like Blade Runner but less depressing—I need something thoughtful but not heavy tonight."*
 
-This is exactly the kind of nuanced request that breaks most recommendation systems. Let me show you what happened when I first built the MVP of my RAG pipeline versus what I learned we actually needed.
+This is exactly the kind of nuanced request that can miss the mark in recommendation systems. Let me show you what happened when I first built the MVP of my RAG pipeline versus what I learned we actually needed.
 
 ### Without Reranking: Our First Attempt (Swing and a Miss)
 
@@ -65,7 +69,7 @@ A reranker changes (and improves) this. It takes those same 5 conversation snipp
 5. "I prefer movies from the 80s" (relevance: 0.72)
 ```
 
-Now our AI recommends: **Arrival**, **Ex Machina**, and **Edge of Tomorrow**.
+Now our AI recommends: **Arrival**, **The Martian**, and **Edge of Tomorrow**.
 
 Sarah's reaction (hopefully): *"Perfect! Exactly what I was looking for."*
 
@@ -79,7 +83,7 @@ A reranker is a specialized AI model trained for one job: scoring how relevant d
 
 This was my first question. Why can't I just ask Claude Sonnet 4 to rank my search results?
 
-There are known reasons and I kicked the tires a little on these approaches to understand them.  You can get more detailed obviously with this prompt, but for illustration purposes:
+There are known reasons and I kicked the tires a little on these approaches to understand them. You can get more detailed obviously with this prompt, but for illustration purposes:
 
 ### Using Claude for Reranking
 ```python
@@ -257,42 +261,7 @@ result = vo.rerank(
 - **Cost**: Standard embedding pricing
 - **Limitation**: Bi-encoder only, less accurate than dedicated rerankers
 
-### Local/Open Source Rerankers
-
-#### BGE Reranker (BAAI)
-```bash
-# Install and run locally
-pip install sentence-transformers
-```
-```python
-from sentence_transformers import CrossEncoder
-model = CrossEncoder('BAAI/bge-reranker-large')
-
-scores = model.predict([
-    [query, doc1],
-    [query, doc2],
-    [query, doc3]
-])
-```
-- **Best for**: Privacy-sensitive applications, cost control
-- **Performance**: Good accuracy, slower than cloud options
-- **Cost**: Free (just compute)
-
-#### MS MARCO Cross-Encoder
-```python
-from sentence_transformers import CrossEncoder
-model = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-12-v2')
-```
-- **Best for**: General-purpose reranking
-- **Strengths**: Well-tested, good baseline performance
-- **Limitations**: Older architecture, less context understanding
-
-#### RankLLaMA (Local LLM-based)
-- **Approach**: Fine-tuned LLaMA for ranking tasks
-- **Best for**: When you need explainable rankings
-- **Trade-off**: Slower but can provide reasoning
-
-## Different Use Cases for Rerankers
+## Different Example Use Cases for Rerankers for additional contex
 
 ### 1. E-commerce Search
 **Problem**: User searches "comfortable running shoes for flat feet"
@@ -338,7 +307,7 @@ relevant_products = reranker.rerank(query, products, top_k=10)
 
 ## Implementation Strategy: Start Simple, Add Intelligence
 
-Here's how I'd approach this in your codebase:
+Here's how I approached this in my codebase - start practical without it and iterate:
 
 ### Phase 1: MVP (No Reranking)
 ```python
@@ -360,36 +329,6 @@ async def get_recommendations(query: str, user_id: str):
         documents=candidates,
         top_k=5
     )
-    
-    return await llm.generate_recommendations(query, preferences)
-```
-
-### Phase 3: Hybrid Cloud/Local Based on Needs
-```python
-async def get_recommendations(query: str, user_id: str, tier: str):
-    candidates = await vector_search(query, user_id, limit=20)
-    
-    if tier == "premium" or is_complex_query(query):
-        # Use cloud reranker for best quality
-        preferences = await voyage_reranker.rerank(query, candidates, top_k=5)
-    else:
-        # Use local reranker for cost efficiency
-        preferences = await local_reranker.rerank(query, candidates, top_k=5)
-    
-    return await llm.generate_recommendations(query, preferences)
-```
-
-### Phase 4: Local-First with Cloud Fallback
-```python
-async def get_recommendations(query: str, user_id: str):
-    candidates = await vector_search(query, user_id, limit=20)
-    
-    try:
-        # Try local reranker first (privacy + cost)
-        preferences = await local_reranker.rerank(query, candidates, top_k=5)
-    except Exception:
-        # Fallback to cloud for reliability
-        preferences = await voyage_reranker.rerank(query, candidates, top_k=5)
     
     return await llm.generate_recommendations(query, preferences)
 ```
@@ -421,7 +360,7 @@ Based on suggest.watch usage patterns:
 - **Best for**: MVP, high-quality requirements, unpredictable traffic
 
 ### Local Rerankers (BGE)
-- **Setup cost**: ~$200/month for GPU-enabled server
+- **Setup cost**: GPU-enabled server (expensive)
 - **Operating cost**: Electricity + maintenance
 - **Monthly cost** (10k users, 5 queries each): ~$200 + electricity
 - **Break-even point**: ~40,000 queries per month
@@ -431,23 +370,23 @@ Based on suggest.watch usage patterns:
 
 Rerankers aren't just another AI trend—they're specialists that excel at understanding relevance in ways that general-purpose models simply can't match efficiently.
 
-In my experience building suggest.watch, adding a reranker was the difference between:
+The TLDR example addition with `suggest.watch`, adding a reranker was the difference between:
 - ❌ "Here are some sci-fi movies" 
 - ✅ "Here are thoughtful sci-fi films that won't ruin your Friday night mood"
 
-The cost? A few extra milliseconds and pennies per request. The benefit? Users who actually get what they're looking for instead of getting frustrated and leaving.
+The cost? A few extra milliseconds and pennies per request. The benefit? Users actually get closer what they're looking for instead of getting annoyed or confused.
 
-If you're building RAG applications and struggling with relevance, don't just throw a bigger LLM at the problem. Try a reranker first—your users (and your API bill) will thank you.
+If you're building RAG applications and struggling with relevance, don't just throw a bigger LLM at the problem. Certainly explore this bit of architecture and understand where it fits and can help!
 
 ## What's Next?
 
-The reranker space is evolving rapidly. We're seeing:
+The reranker tools are evolving rapidly like most things with LLM-based apps:
 - **Multimodal rerankers**: Understanding text, images, and audio together
 - **Domain-specific models**: Legal, medical, e-commerce specialized rerankers
 - **Explainable ranking**: Models that can tell you why they ranked something highly
 - **Real-time learning**: Rerankers that adapt based on user feedback
 
-suggest.watch serves as my testing ground for exploring these RAG technologies. The movie recommendation domain provides rich, nuanced queries perfect for evaluating how different reranking approaches handle complex user intent.
+`suggest.watch` serves as my testing ground for exploring these RAG technologies. The movie recommendation domain provides rich, nuanced queries which is nice for evaluating how different reranking approaches handle complex user intent.
 
 ## Additional Reading
 
@@ -457,4 +396,4 @@ suggest.watch serves as my testing ground for exploring these RAG technologies. 
 
 ---
 
-*Building AI applications that users actually love? I'm documenting the journey of creating suggest.watch—from MVP to market. Follow along for more practical insights on building with AI.*
+*Building AI applications that users actually love? Besides my day job, I'm sharing the journey of creating apps and features on my side apps. Follow along for more practical insights on building with AI toolchain.*
