@@ -449,6 +449,12 @@ The reranker space is evolving rapidly. We're seeing:
 
 suggest.watch serves as my testing ground for exploring these RAG technologies. The movie recommendation domain provides rich, nuanced queries perfect for evaluating how different reranking approaches handle complex user intent.
 
+## Additional Reading
+
+- [Boosting Your Search and RAG with Voyage's Rerankers](https://blog.voyageai.com/2024/03/15/boosting-your-search-and-rag-with-voyages-rerankers/) - Voyage AI's guide to their reranking models and use cases
+- [Rerankers and Two-Stage Retrieval](https://www.pinecone.io/learn/series/rag/rerankers/) - Pinecone's comprehensive guide to rerankers in RAG systems
+- [Improve RAG Performance Using Cohere Rerank](https://aws.amazon.com/blogs/machine-learning/improve-rag-performance-using-cohere-rerank/) - AWS blog post with practical implementation details and benchmarks
+
 ---
 
 *Building AI applications that users actually love? I'm documenting the journey of creating suggest.watch—from MVP to market. Follow along for more practical insights on building with AI.*
