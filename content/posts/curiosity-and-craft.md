@@ -1,6 +1,6 @@
 ---
 title: "Curiosity and Craft: What Drives Me to Build"
-date: 2025-08-16T12:00:00-00:00
+date: 2025-08-16T12:00:01-00:00
 draft: false
 tags: ["AI", "Home Lab", "Infrastructure", "Learning", "RAG", "Ollama", "Proxmox", "PydanticAI"]
 categories: ["ai-infrastructure", "personal-journey"]
@@ -84,7 +84,7 @@ AI pipelines, while different from [some of the pipelines I have built over the 
 ## What I'm Learning Today
 
 * **Vector databases** - exploring [Qdrant](https://qdrant.tech/documentation/overview/) for efficient similarity search
-* **Rerankers** - investigating the [BGE Reranker Model Family](https://huggingface.co/BAAI/bge-reranker-v2-m3#model-list) with different quality/speed tradeoffs
+* **Rerankers** - relevance sorters and intent matchers that are quite new to me. A colleague suggested investigating hosted services like [Voyage.ai](https://www.voyageai.com/) and [Cohere](https://cohere.com/) for practical reranking in RAG pipelines
 * **Embedding strategies** - techniques for converting text to meaningful vector representations
 * **RAG architectures** - patterns for retrieval-augmented generation systems
 * **Python frameworks** - PydanticAI and LangChain that connect the dots between components  
