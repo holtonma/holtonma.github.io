@@ -120,7 +120,7 @@ weight = 40
 noClasses = false
 codeFences = true
 guessSyntax = true
-lineNos = true
+lineNos = false
 style = "github"
 
 [markup.goldmark.renderer]
