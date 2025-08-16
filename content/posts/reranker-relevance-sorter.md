@@ -4,7 +4,7 @@ date: 2025-09-01T12:00:00-00:00
 draft: true
 tags: ["AI", "RAG", "Rerankers", "Machine Learning", "Voyage AI", "Cohere", "suggest.watch", "PydanticAI"]
 categories: ["ai-architecture", "technical-deep-dive"]
-description: "Sometimes the secret to better LLM agents or apps isn't a bigger model—it's a more specialized one. A look at rerankers and their role in RAG applications."
+description: "Sometimes the key to improved LLM agents or apps isn't a bigger model—it's a more specialized one. A look at rerankers and their role in RAG applications."
 author: "Mark Holton"
 cover:
     image: "/images/markbot-reranker.jpg"
