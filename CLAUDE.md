@@ -34,6 +34,7 @@
   - [ ] Optional: Set up Google Search Console and replace `YOUR_SEARCH_CONSOLE_TAG`
 
 ### Content & Features
+- [ ] Complete reranker blog post with real suggest.watch examples (target: Aug 19, 2025)
 - [ ] Consider adding more blog posts about:
   - [ ] Data platform architecture patterns
   - [ ] Agent-driven system design
@@ -41,6 +42,12 @@
 - [ ] Add RSS feed promotion
 - [ ] Consider adding newsletter signup
 - [ ] Add commenting system (if desired)
+
+### Home Lab Infrastructure Tasks
+- [ ] Set up Nginx container on Proxmox for ASRock home lab
+- [ ] Hook up PydanticAI web app to local models on ASRock
+- [ ] Move Cloudflare tunnel to container on ASRock and test with eyeonmajors
+- [ ] Build real-world examples for reranker post using suggest.watch data
 
 ### Technical Enhancements
 - [ ] Test Twitter Card display with Twitter Card Validator
