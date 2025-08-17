@@ -1,5 +1,5 @@
 ---
-title: "Why Rerankers Are Game-Changers for RAG Applications: A Deep Dive"
+title: "Understanding Rerankers: How They Improve RAG Search Quality"
 date: 2025-09-01T12:00:00-00:00
 draft: true
 tags: ["AI", "RAG", "Rerankers", "Machine Learning", "Voyage AI", "Cohere", "suggest.watch", "PydanticAI"]
@@ -19,6 +19,15 @@ As I have [shared in the past](/posts/curiosity-and-craft/), I enjoy rolling up 
 If you're building RAG (Retrieval-Augmented Generation) applications, you've probably experienced this: your vector search returns decent results, but your LLM still generates mediocre responses, or responses that don't match up with the intended ask. The missing architectural piece might be a reranker—a specialized AI model that can greatly improve your retrieval quality.
 
 Let me break down what rerankers are, why they matter, and how they could upgrade your RAG pipeline using real examples from building a side exploration app I have been building, called `suggest.watch`.
+
+## TL;DR: Key Takeaways
+
+- **Rerankers matter**: They dramatically improve retrieval quality by understanding context beyond simple vector similarity
+- **Better retrieval quality**: Transform mediocre search results into highly relevant matches for your specific query
+- **Cheap + fast**: Add minimal latency (~50-100ms) and cost (~$0.001 per 1K tokens) to your pipeline
+- **More relevance in RAG apps**: Bridge the gap between what users ask for and what your LLM receives as context
+- **When to use**: Essential for nuanced queries, user personalization, and domain-specific applications
+- **Real impact**: In `suggest.watch`, rerankers turned generic sci-fi recommendations into mood-aware, contextually perfect suggestions
 
 ![AI robot analyzing and ranking search results for optimal relevance](/images/markbot-reranker.jpg)
 *Reranker Models - purpose built for relevance ranking*

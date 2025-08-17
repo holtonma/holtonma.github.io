@@ -35,6 +35,12 @@
 
 ### Content & Features
 - [ ] Complete reranker blog post with real suggest.watch examples (target: Aug 19, 2025)
+  - [x] Add TLDR/Key Takeaways section for immediate digestibility
+  - [ ] Create visual decision framework table/graphic for when to use vs skip rerankers
+  - [ ] Add time-sensitive disclaimer to clarify evergreen vs current vendor info
+  - [ ] Improve narrative flow with better subheaders for easier scanning
+  - [ ] Add 1-2 external benchmark references (MS MARCO, HuggingFace) for credibility
+  - [ ] Strengthen conclusion by bringing suggest.watch personal narrative full circle
 - [ ] Consider adding more blog posts about:
   - [ ] Data platform architecture patterns
   - [ ] Agent-driven system design
@@ -80,6 +86,18 @@
 
 **Verification**: GitHub Pages UI should show "Deploy Hugo site to Pages workflow" as the source.
 
+## Content Quality Framework
+
+### Technical Content Standards
+See `content-guidelines.md` for detailed guidance on creating credible, long-lasting, shareable technical content.
+
+**Key principle**: Review all blog posts against the three pillars (Credibility, Long-Lasting, Shareable) before publishing.
+
+**Quick reference checklist:**
+- [ ] Credible: Evidence-based claims, transparent tradeoffs, clear definitions, concrete examples
+- [ ] Long-lasting: Focus on concepts over vendor features, timeless analogies, decision frameworks
+- [ ] Shareable: Compelling hooks, visual elements, actionable insights, fair but opinionated takes
+
 ## Completed ✅
 - [x] Hugo site setup with PaperMod theme
 - [x] About page with Publications and Patents
@@ -94,3 +112,4 @@
 - [x] Google Search Console verification configured
 - [x] SEO optimizations (robots.txt, alt text, structured data)
 - [x] Automatic pagination setup (10 posts per page default)
+- [x] Technical content framework added to CLAUDE.md for guidance
