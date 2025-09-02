@@ -13,7 +13,7 @@ cover:
 ---
 
 ![AI robot with bow and arrow representing vector similarity search targeting RAG movie pipeline](/images/markbot_suggest_watch.jpg)
-*AI robot aiming an arrow, symbolizing how a RAG pipeline targets relevant information for a user's query.*
+*AI robot aiming an arrow, symbolizing how a RAG pipeline targets relevant information for a user's query. Using a movie recommendation agent to explore these architectural concepts*
 
 ## Why I Am Building This
 
@@ -21,7 +21,7 @@ Do you and your significant other ever sit down to watch a movie, and find yours
 
 Let's say you wanted a recommendation engine external to Netflix that got better over time. Not limited to one platform's catalog, but something that learns your actual taste preferences and evolves with you.
 
-That's the premise behind a sample app I created, which I am calling `suggest.watch` - a side project to understand how vector databases work in RAG (Retrieval-Augmented Generation) pipelines. I wanted to explore by building around embeddings and similarity search and see how the pieces fit together.
+That's the premise behind a sample app I created, which I am calling `suggest.watch` - a side project to understand how vector databases work in RAG ([Retrieval-Augmented Generation](https://www.perplexity.ai/page/an-introduction-to-rag-models-jBULt6_mSB2yAV8b17WLDA)) pipelines. I wanted to explore by building around embeddings and similarity search and see how the pieces fit together.
 
 ## The Architecture We're Building
 
@@ -66,12 +66,12 @@ By combining these, we can perform highly sophisticated queries like: "Find pref
 
 Somehow we have to take inputs and break them down into pieces that can be vectorized.  This is "chunking":
 
-**General RAG chunking**: Breaking long documents into smaller pieces
+**[General RAG chunking](https://masteringllm.medium.com/11-chunking-strategies-for-rag-simplified-visualized-df0dbec8e373)**: Breaking long documents into smaller pieces
 - Example: Split a 50-page PDF into 500-word chunks
 - Sometimes: Arbitrary boundaries, context loss
 - Use case: Document retrieval, knowledge bases
 
-**suggest.watch approach**: In this walk-through, each user preference is already naturally "chunked"
+**`suggest.watch` approach**: In this walk-through, each user preference is already naturally "chunked"
 - Each conversation snippet: "Something like Arrival but more upbeat"
 - Each feedback signal: "Loved the philosophical themes but too slow"
 - Each rating context: "Perfect for Friday night viewing"
@@ -143,7 +143,7 @@ Beyond the 1024-number vector, each preference stores unlimited additional data:
 
 ## Setting Up the Embedding Model: `bge-large`
 
-### Why BAAI's `bge-large` (or multilingual variants)
+### Why BAAI's `bge-large`? 
 
 I use the [BAAI bge-large embedding model](https://huggingface.co/BAAI/bge-large-en), served locally via Ollama.
 
@@ -179,7 +179,7 @@ llama3.1:8b         46e0c10c039e    4.9 GB    42 hours ago
 ```
 
 **Model inventory**:
-- **bge-large:latest**: 670 MB embedding model (just installed)
+- **`bge-large:latest`**: 670 MB embedding model (just installed)
 - **llama3.1:8b**: 4.9 GB language model (for future recommendation generation)
 - **Combined footprint**: Together, this stack uses ~5.5 GB of local storage (depending on Ollama’s internal compression).
 
@@ -212,7 +212,7 @@ A view of our `user_preference_signals` collection in Qdrant, confirming the set
 
 Let's see the complete preference processing pipeline working with real data. 
 
-The following is a CLI that allows me to add text snippets, which are then converted to vector representations. Will walk through this and then share what is happening:
+The following is a CLI I created that allows me to add text snippets, which are then converted to vector representations. Will walk through this and then share what is happening:
 
 ```bash
 [markholton@macair:~/git/suggest-watch → main]$ source .venv/bin/activate
@@ -235,7 +235,7 @@ Commands:
 
 ### Processing User Preferences
 
-The core calls when a user preference is extracted, generated and embedded in the vector database: 
+Showing the core calls when a user preference is extracted, generated and embedded in the vector database: 
 ```python
 # 'learning_agent', 'embedding_service', 'settings', and 'self' 
 # (with qdrant_client, user_id, collection_name) are defined elsewhere.
