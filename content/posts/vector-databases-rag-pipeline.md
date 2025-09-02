@@ -28,9 +28,9 @@ That's the premise behind a sample app I created, which I am calling `suggest.wa
 Here's the high-level flow we'll construct in this walkthrough:
 
 ![RAG movie pipeline flow](/images/mermaid-diagram-suggest-watch-vector.png)
-*The architecture of the recommendation engine, showing how user input is processed in parallel for both semantic vector embedding and structured metadata extraction.*
+*The architecture of the recommendation engine, showing how user input is processed for both semantic vector embedding and structured metadata extraction.*
 
-This is the foundation of our advanced RAG system. But that second step, "Embedding & Metadata Extraction," is doing two crucial jobs at once. To truly understand a user's preference like "Something like Arrival but more upbeat," we need to process it in two parallel ways.
+This is the foundation of our RAG system. But that second step, "Embedding & Metadata Extraction," is doing two important jobs at once. To understand a user's preference like "Something like Arrival but more upbeat," we need to process it in two ways, from two different angles.
 
 ### A Dual AI Approach: Vectors and Structured Data
 
@@ -55,7 +55,7 @@ Think of this as giving our system two different ways to understand the user: on
 
 ### Why We Need Both
 
-This dual approach is what makes the system more targeted towards my searches:
+This dual approach is what makes the system more targeted towards my "what movie to watch now" searches:
 
 * **Vector search** finds you movies that are in the right "ballpark" of meaning.
 * **Metadata filtering** lets you apply hard rules, like filtering for a specific `user_id`, `mood`, `genre`, etc
@@ -79,9 +79,9 @@ Somehow we have to take inputs and break them down into pieces that can be vecto
 
 **For this, we need a text-to-vector converter**
 - In `suggest.watch`, each user preference is its own chunk. A comment like ‘Loved the themes but too slow’ is a self-contained, meaningful unit that we embed directly. This avoids the usual complexity of chunk size and overlap strategies.
-- In this walk-through, I am using the BAAI/`bge-large` model, served locally through [Ollama](https://ollama.com/library/bge-large). There are various ways to run this model; another excellent option is the FastEmbed library, which is optimized for speed and ease of use. But the concept I wanted to illustrate here is that each user preference is its own embedding unit.
+- In this walk-through, I am using the BAAI/`bge-large` model, served locally through [Ollama](https://ollama.com/library/bge-large). (Another excellent option is the FastEmbed library, which is optimized for speed and ease of use). But the concept I wanted to share here is that each user preference is its own embedding unit.
 
-This eliminates the complexity of chunk size optimization, overlap strategies, and context preservation across chunks. Each preference signal is a complete, meaningful unit that captures user intent perfectly.
+This eliminates the complexity of chunk size optimization, overlap strategies, and context preservation across chunks. Each preference signal is a complete, meaningful unit that is user intent.
 
 ## Vector Database Foundation: Qdrant Setup
 
@@ -107,7 +107,7 @@ Think of Qdrant as a digital library designed to understand "meaning" behind tex
 
 **Distance Metric**: Cosine similarity
 - How Qdrant measures how "similar" two preferences are
-- Cosine similarity measures how close two meaning fingerprints point in space. If two vectors point in the same direction, Qdrant sees them as semantically similar — even if the exact words differ (not just word matching)
+- Cosine [similarity](https://qdrant.tech/blog/what-is-vector-similarity/) measures how close two meaning fingerprints point in space. If two vectors point in the same direction, Qdrant sees them as semantically similar — even if the exact words differ (not just word matching)
 
 ### Rich Metadata Storage
 
@@ -137,7 +137,7 @@ Beyond the 1024-number vector, each preference stores unlimited additional data:
 - `on_disk_payload=True` stores metadata on disk for even more capacity
 - This rich metadata means you can filter or personalize recommendations not just by semantic similarity, but also by mood, context, or even viewing habits.
 
-**Query Performance**: Sub-millisecond searches
+**Query Performance**: Millisecond searches
 - On typical hardware, cosine similarity search across millions of vectors often completes in just a few milliseconds. 
 - Adding filters (like `user_id`) usually makes queries even faster since the search space is narrowed.
 
@@ -151,12 +151,12 @@ I use the [BAAI bge-large embedding model](https://huggingface.co/BAAI/bge-large
 - **1024 dimensions** - provides a rich semantic representation that works well for nuanced user preferences
 - **State-of-the-art English embeddings** for preference understanding
 - **Broad semantic coverage** = captures subtle taste nuances
-- **Does well for recommendation systems due to its ability to understand complex preference relationships.
+- **Does well for recommendation systems** due to its ability to understand complex preference relationships.
 
 **Architecture Advantages**:
-- **Ollama integration**: Runs locally within existing infrastructure
+- **Ollama integration**: Runs locally (within existing infrastructure on [my home lab](https://holtonma.github.io/posts/curiosity-and-craft/))
 - **Local inference**: Complete privacy + performance control
-- **Clean pipeline**: FastAPI → Ollama (bge-large) → Qdrant architecture
+- **Clean pipeline**: FastAPI → Ollama (`bge-large`) → Qdrant architecture
 
 ### Installation and Verification
 
@@ -212,7 +212,7 @@ A view of our `user_preference_signals` collection in Qdrant, confirming the set
 
 Let's see the complete preference processing pipeline working with real data. 
 
-The following is a CLI I created that allows me to add text snippets, which are then converted to vector representations. Will walk through this and then share what is happening:
+The following is a CLI I created that allows me to add text snippets, which are then converted to vector representations (once a front end is built, this will be utterances from a chat interface, but for now a CLI will do). Will walk through this and then share what is happening:
 
 ```bash
 [markholton@macair:~/git/suggest-watch → main]$ source .venv/bin/activate
@@ -231,6 +231,22 @@ Commands:
   quit                 - Exit
 
 > 
+```
+
+As we add utterances related to our movie preferences, they get extracted by Pydantic AI sent to the embedding model, and their resulting vectors stored in Qdrant:
+```bash
+> add Something like Arrival but more upbeat 
+📝 Processing: 'Something like Arrival but more upbeat'
+🧠 Extracting preference signals with Pydantic AI...
+   ✅ Extracted preferences with Pydantic AI
+🔢 Generating 1024-dimensional embedding with bge-large...
+   📡 Connecting to Ollama at 192.168.XX.XXX:11434
+   ✅ Received embedding: 1024 dimensions
+💾 Storing in Qdrant with metadata...
+✅ Stored preference vector in Qdrant
+   📊 Vector dimensions: 1024
+   🏷️  Preference strength: 0.80
+   📝 Extracted metadata: ['reference_content', 'genre', 'themes', 'mood', 'desired_tone', 'complexity_level', 'pacing_preference', 'format'] 
 ```
 
 ### Processing User Preferences
@@ -310,25 +326,8 @@ async def add_preference(self, preference_text: str) -> str:
 > 
 > **Output Validation**: This is a crucial final defense. Our architecture's use of Pydantic AI is a powerful security control. By forcing the LLM's output to conform to a strict, predefined JSON schema, we can simply reject any response that was successfully manipulated or malformed by an injection attack.
 
-As we add utterances related to our movie preferences, they get extracted by Pydantic AI sent to the embedding model, and their resulting vectors stored in Qdrant:
-```bash
-> add Something like Arrival but more upbeat 
-📝 Processing: 'Something like Arrival but more upbeat'
-🧠 Extracting preference signals with Pydantic AI...
-   ✅ Extracted preferences with Pydantic AI
-🔢 Generating 1024-dimensional embedding with bge-large...
-   📡 Connecting to Ollama at 192.168.XX.XXX:11434
-   ✅ Received embedding: 1024 dimensions
-💾 Storing in Qdrant with metadata...
-✅ Stored preference vector in Qdrant
-   📊 Vector dimensions: 1024
-   🏷️  Preference strength: 0.80
-   📝 Extracted metadata: ['reference_content', 'genre', 'themes', 'mood', 'desired_tone', 'complexity_level', 'pacing_preference', 'format'] 
-```
-
 ![QDrant vector for user preferences](/images/qdrant_graph1.png)
 *As vectors are added in Qdrant they get a unique ID, and their content is stored along with relevant metadata, as shown above for a user preference "chunk"*
-
 
 **Pipeline breakdown**:
 - 🔹 **Vector Generation (`bge-large`)** is the embedding model. This is an API call to Ollama converts to 1024-dimensional embedding. It turns the entered raw text into a high-dimensional vector representation. That’s what enables fast similarity search, clustering, and semantic retrieval. It’s not parsing the structure into “themes” or “genres” — it’s just encoding meaning into numbers.
