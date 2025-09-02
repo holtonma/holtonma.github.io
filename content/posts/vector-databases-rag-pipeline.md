@@ -1,10 +1,10 @@
 ---
-title: "Vector Databases in Action: Building a RAG Pipeline for Movie Recommendations"
+title: "Vector Databases in Action: Building a RAG Pipeline for Movie Recommendations - Part 1"
 date: 2025-09-01T09:00:00-00:00
 draft: false
 tags: ["AI", "RAG", "Vector Database", "Qdrant", "FastEmbed", "BGE", "suggest.watch", "Ollama"]
 categories: ["ai-architecture", "hands-on-guide"]
-description: "A hands-on walkthrough of vector databases in RAG pipelines, using movie recommendations as a real-world example. From preference storage to semantic search with actual results."
+description: "Part 1 of a hands-on walkthrough of vector databases in RAG pipelines, using movie recommendations as a real-world example. From preference storage to semantic search with actual results."
 author: "Mark Holton"
 cover:
     image: "/images/markbot_suggest_watch.jpg"
