@@ -441,4 +441,4 @@ The vector database gives us intelligent retrieval. The LLM gives us intelligent
 
 ---
 
-*Building RAG applications that users actually love? Exploring generative A.I. tools and patterns?  I'm sharing the journey of creating `suggest.watch` and exploring AI architecture patterns. Follow along for more hands-on insights into vector databases, embeddings, and practical AI systems.*
+*Building RAG applications that users actually love? Exploring generative A.I. tools and patterns?  I'm sharing the journey of creating apps like `suggest.watch` and others while exploring AI architecture patterns. Follow along for more hands-on insights into vector databases, embeddings, and practical AI systems.*
