@@ -19,7 +19,7 @@ cover:
 
 Do you and your significant other ever sit down to watch a movie, and find yourself surfing previews for 30-45 minutes before giving up?  Of course Netflix has a strong recommendation engine, but it's tuned for maximizing engagement across their catalog, not necessarily reflecting your personal taste over time.
 
-Let's say you wanted a recommendation engine external to Netflix that got better over time. Not limited to one platform's catalog, but something that learns your actual taste preferences and evolves with you.
+Let's say you wanted a recommendation engine external to Netflix that got better over time. Not limited to one platform's catalog, but something that learns your actual taste preferences and evolves with you. And one that also allows you to express what you are in the mood for!
 
 That's the premise behind a sample app I created, which I am calling `suggest.watch` - a side project to understand how vector databases work in RAG ([Retrieval-Augmented Generation](https://www.perplexity.ai/page/an-introduction-to-rag-models-jBULt6_mSB2yAV8b17WLDA)) pipelines. I wanted to explore by building around embeddings and similarity search and see how the pieces fit together.
 
@@ -30,7 +30,7 @@ Here's the high-level flow we'll construct in this walkthrough:
 ![RAG movie pipeline flow](/images/mermaid-diagram-suggest-watch-vector.png)
 *The architecture of the recommendation engine, showing how user input is processed for both semantic vector embedding and structured metadata extraction.*
 
-This is the foundation of our RAG system. But that second step, "Embedding & Metadata Extraction," is doing two important jobs at once. To understand a user's preference like "Something like Arrival but more upbeat," we need to process it in two ways, from two different angles.
+This is the foundation of our RAG system. But that second step, "Embedding & Metadata Extraction," is doing two important jobs together. To understand a user's preference like "Something like Arrival but more upbeat," we need to process it in two ways, from two different angles.
 
 ### A Dual AI Approach: Vectors and Structured Data
 
