@@ -1,6 +1,6 @@
 ---
 title: "Understanding Rerankers: How They Improve RAG Search Quality"
-date: 2025-09-01T12:00:00-00:00
+date: 2025-09-07T12:00:00-00:00
 draft: true
 tags: ["AI", "RAG", "Rerankers", "Machine Learning", "Voyage AI", "Cohere", "suggest.watch", "PydanticAI"]
 categories: ["ai-architecture", "technical-deep-dive"]

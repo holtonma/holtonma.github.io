@@ -55,6 +55,61 @@
 - [ ] Move Cloudflare tunnel to container on ASRock and test with eyeonmajors
 - [ ] Build real-world examples for reranker post using suggest.watch data
 
+## Content Strategy Plan: FastEmbed + Qdrant Integration
+
+### 1. Update Existing Reranker Post (`reranker-relevance-sorter.md`)
+
+#### Key Additions Needed:
+- **FastEmbed vs Cloud Rerankers section**: Position FastEmbed as the "local alternative" to Voyage/Cohere
+- **Cost comparison table**: Show $0/month local vs $0.05/1000 queries cloud  
+- **Performance benchmarks**: ONNX runtime speed advantages
+- **suggest.watch architecture diagram**: Complete pipeline with FastEmbed embeddings + rerankers
+- **Decision framework**: When to choose local vs cloud reranking
+
+#### Specific Updates:
+- Add FastEmbed to the "Choosing the Right Reranker" section
+- Update cost analysis with local option
+- Include installation/setup simplicity comparison
+- Add local inference benefits (privacy, latency, cost predictability)
+
+### 2. New Post: "Building a Local AI Stack with Qdrant + FastEmbed"
+
+#### Focus Areas:
+- **Real-world application**: Use suggest.watch as the complete case study
+- **Architecture deep-dive**: Vector embeddings → storage → retrieval → reranking pipeline
+- **Local vs Cloud tradeoffs**: Cost, performance, privacy, complexity
+- **Implementation walkthrough**: FastAPI + SQLModel + FastEmbed + Qdrant integration
+- **Production considerations**: Memory usage, scaling, monitoring
+
+#### Your Writing Style Elements to Maintain:
+- Practical, hands-on approach with real code examples
+- suggest.watch as the testing ground narrative
+- Cost analysis and technical tradeoffs
+- "Rolling up sleeves to understand" philosophy
+- Clear decision frameworks and when-to-use guidance
+
+### 3. Revised Post Sequencing Strategy (Implementation-First Approach)
+
+**Post 1 (New)**: "Building a Local AI Stack with Qdrant + FastEmbed" 
+- Focus: Implementation-first, hands-on exploration
+- Narrative: "I wanted to understand vector databases, so I built suggest.watch"
+- Shows the complete pipeline from FastAPI → FastEmbed → Qdrant
+- Authentic to your "roll up sleeves and build" philosophy
+
+**Post 2 (Updated Existing)**: "Understanding Rerankers: The Missing Piece"
+- Focus: The nuanced problem that emerged during implementation
+- Narrative: "After building the basic pipeline, I discovered recommendation quality issues..."
+- More compelling because readers already understand the foundation
+- Can reference the first post's architecture for context
+
+**Post 3 (Future)**: FastAPI + PydanticAI integration post
+
+#### Why This Sequence Works Better:
+- **Matches your actual journey**: You built first, then discovered reranking needs
+- **More engaging**: Readers see the complete working system before diving into optimization
+- **Natural progression**: Implementation → problem discovery → solution refinement  
+- **Authentic voice**: "Here's what I built" is more compelling than "Here's what rerankers are"
+
 ### Technical Enhancements
 - [ ] Test Twitter Card display with Twitter Card Validator
 - [ ] Verify Open Graph tags for LinkedIn sharing

@@ -16,6 +16,9 @@ resources/_gen/
 # Local development
 .hugo_build.lock
 
+# Local Claude notes
+CLAUDE.local.md
+
 # Legacy Jekyll files (can remove if not needed)
 _site/
 .sass-cache/
