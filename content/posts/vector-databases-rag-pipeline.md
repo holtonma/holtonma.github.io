@@ -86,7 +86,7 @@ This eliminates the complexity of chunk size optimization, overlap strategies, a
 ## Vector Database Foundation: Qdrant Setup
 
 ![AI robot with bow and arrow representing vector similarity search and targeting in RAG pipelines](/images/markbot_vectors.jpg)
-*Vector databases like Qdrant store 'meaning fingerprints,' allowing an AI to find the closest semantic match.*
+*Vector databases like Qdrant store 'meaning fingerprints,' allowing applications to find the closest semantic match.*
 
 ### The Collection Structure
 
@@ -149,7 +149,7 @@ I use the [BAAI bge-large embedding model](https://huggingface.co/BAAI/bge-large
 
 **Quality Benefits**:
 - **1024 dimensions** - provides a rich semantic representation that works well for nuanced user preferences
-- **State-of-the-art English embeddings** for preference understanding
+- **Reliable and widely used English embeddings** for preference understanding
 - **Broad semantic coverage** = captures subtle taste nuances
 - **Does well for recommendation systems** due to its ability to understand complex preference relationships.
 
@@ -332,7 +332,7 @@ async def add_preference(self, preference_text: str) -> str:
 **Pipeline breakdown**:
 - 🔹 **Vector Generation (`bge-large`)** is the embedding model. This is an API call to Ollama converts to 1024-dimensional embedding. It turns the entered raw text into a high-dimensional vector representation. That’s what enables fast similarity search, clustering, and semantic retrieval. It’s not parsing the structure into “themes” or “genres” — it’s just encoding meaning into numbers.
 - 🔹 **Preference Extraction ([Pydantic AI](https://ai.pydantic.dev/))**: This is the schema enforcement layer. We use Pydantic AI (a library that leverages Pydantic models to guarantee structured, validated output from an LLM) to turn the user's raw text into predictable JSON.
-- 🔹 `Vector Storage (Qdrant)` Stores with rich metadata and calculates preference strength (0.80)
+- 🔹 **Vector Storage (Qdrant)** stores with rich metadata and preference strength (0.80 indicates strong positive preference, calculated by Pydantic AI which analyzes the sentiment and intensity of the user's preference statement)
 
 ### Building a Rich Preference Profile
 
