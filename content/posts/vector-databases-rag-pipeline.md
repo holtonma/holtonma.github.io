@@ -15,7 +15,7 @@ cover:
 ![AI robot with bow and arrow representing vector similarity search targeting RAG movie pipeline](/images/markbot_suggest_watch.jpg)
 *AI robot aiming an arrow, symbolizing how a RAG pipeline targets relevant information for a user's query.*
 
-## Why I Built This
+## Why I Am Building This
 
 Do you and your significant other ever sit down to watch a movie, and find yourself surfing previews for 30-45 minutes before giving up?  Of course Netflix has a strong recommendation engine, but it's tuned for maximizing engagement across their catalog, not necessarily reflecting your personal taste over time.
 
