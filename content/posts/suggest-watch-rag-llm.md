@@ -1,19 +1,19 @@
 ---
 title: "Completing the RAG Loop: From Vector Search to LLM Recommendations - Part 2"
-date: 2025-09-04T09:00:00-00:00
+date: 2025-09-03T06:00:00-00:00
 draft: true
 tags: ["AI", "RAG", "LLM", "Llama3", "Ollama", "Pydantic", "FastAPI", "suggest.watch"]
 categories: ["ai-architecture", "hands-on-guide"]
 description: "Part 2: Taking vector search results and using a local LLM to generate personalized, streaming movie recommendations, completing our RAG pipeline."
 author: "Mark Holton"
 cover:
-    image: "/images/markbot-tbd.jpg"
+    image: "/images/markbot-llm-recommendations.jpg"
     alt: "AI robot refining a list of items, symbolizing an LLM reranking and generating recommendations"
     caption: "The LLM acts as the final reasoning layer, turning search results into tailored recommendations."
 ---
 
-![AI robot tbd generating recommendations](/images/markbot-tbd.jpg)
-*The LLM acts as the final reasoning layer, turning search results into tailored recommendations.*
+![AI robot tbd generating recommendations](/images/markbot-llm-recommendations.jpg)
+*The LLM acts as the final reasoning layer, turning vector based search results into tailored viewing recommendations.*
 
 ## Where We Left Off
 
@@ -27,16 +27,48 @@ When we searched for "thoughtful sci-fi tonight," we got back a ranked list of o
 
 This is the "Retrieval" part of RAG. It's fast, efficient, and semantically intelligent. But it leaves us with a critical question: *How do we turn this retrieved context into actual movie recommendations?*
 
-This is where the "Generation" part comes in. In this post, we'll complete the loop by building a service that feeds these search results to a Large Language Model (LLM) to generate personalized, well-reasoned movie suggestions.
+This is where the "Generation" part comes in. The real challenge—and opportunity—is going beyond similarity matching to understand *intent*: how you want a movie to *feel* tonight, combined with your historical taste patterns.
+
+In this post, we'll complete the loop by building a service that feeds these search results to a Large Language Model (LLM) to generate personalized, well-reasoned movie suggestions that meet you in the moment.
 
 ## Completing the RAG Architecture
 
 Our existing pipeline was fast and effective at retrieval. Now, we're adding the final reasoning layer. The complete architecture looks like this:
 
-![RAG movie pipeline with LLM generation](/images/tbd2.png)
-*The complete RAG pipeline: Vector search retrieves relevant context, which is then passed to an LLM for recommendation generation.*
+![RAG architecture flow diagram](/images/suggest-watch-flow-vertical.png)
+*The complete suggest.watch RAG pipeline: User query → Vector embedding → Similarity search → Context preparation → LLM generation with streaming output.*
 
-The flow is a classic "fast retrieval, slow generation" pattern:
+## Understanding the Flow
+
+The flow is a classic "fast retrieval, slow generation" pattern. Here's how the complete pipeline works step by step:
+
+**1. User Input** → Terminal receives your query (e.g., "thoughtful sci-fi tonight")
+
+**2. Dual BGE-large Processing:**
+   - **Vector Embedding**: Converts stored preferences into 1024-dim vectors (happens during setup)
+   - **Query Embedding**: Converts your current query into a matching 1024-dim vector
+
+**3. Qdrant Operations** → Single database handles both:
+   - **Storage**: Houses all your embedded preferences 
+   - **Search**: Finds semantically similar preferences using cosine similarity
+
+**4. Context Preparation** → Formats search results into structured prompt with:
+   - Your current query
+   - Top 3 most similar past preferences with similarity scores
+
+**5. LLM Generation** → Llama 3.1 8B processes the context to generate personalized movie recommendations with explanations
+
+**6. Streaming Output** → Recommendations flow back to your terminal in real-time, word by word
+
+**7. Complete Loop** → You see thoughtful, justified movie suggestions based on both your current mood and historical preferences
+
+**Key Architectural Benefits:**
+- **Single BGE-large model** handles both preference storage and query processing
+- **Single Qdrant instance** serves dual role as vector database and search engine  
+- **Linear flow** from query to recommendations with streaming feedback
+- **Complete round-trip** user experience from input back to terminal display
+
+The flow represents a classic "fast retrieval, slow generation" pattern:
 
 1.  **Vector Search (Fast):** The user's query is embedded and sent to Qdrant, which returns a list of semantically similar preferences in milliseconds.
 2.  **Context Preparation (Fast):** The raw text and metadata from the search results are formatted into a clear, structured prompt for the LLM.
@@ -94,6 +126,26 @@ async def _call_ollama_chat(self, prompt: str, streaming_callback=None) -> str:
 ```
 
 When we call our service, we pass a simple callback function that prints each token to the console. This small change transforms the user experience from a static wait to a live, conversational interaction.
+
+**Why Streaming Transforms the Experience:**
+- **Immediate feedback:** Users see right away that their query is being processed
+- **Progressive engagement:** Recommendations unfold in real time, building anticipation
+- **Error resilience:** Partial output is available even if not everything completes
+- **Perceived performance:** Feels much faster than waiting for a complete response
+
+**Implementation Details:**
+
+The streaming callback is elegantly simple:
+```python
+async def streaming_callback(token):
+    print(token, end="", flush=True)  # Print each token immediately
+```
+
+Key implementation considerations:
+- **JSON parsing resilience:** Skip malformed chunks gracefully with `try/except`
+- **Timeout protection:** 60-second timeout prevents hanging connections
+- **Clean termination:** Check for `"done": true` to know when generation completes
+- **Memory efficiency:** Process tokens as they arrive rather than buffering everything
 
 ## Building the Recommendation Prompt
 
@@ -191,17 +243,110 @@ Confidence score: 0.805
 🤖 Model used: llama3.1:8b
 ```
 
-The output streams in just like this, word by word. The result is a set of pretty high-quality, actionable recommendations, each with a clear explanation tying it back to the user's specific tastes. The LLM successfully synthesized the context—"thoughtful," "good characters," "upbeat," "like The Martian"—to generate a relevant and personalized list.
+The output streams in just like this, word by word. Here's what the streaming experience looks like in action:
+
+![Streaming recommendations animation](/images/streaming-recommendations.gif)
+*Live streaming output: Recommendations appear progressively as the LLM generates them, creating an engaging real-time experience.*
+
+The result is a set of pretty high-quality, actionable recommendations, each with a clear explanation tying it back to the user's specific tastes. The LLM successfully synthesized the context—"thoughtful," "good characters," "upbeat," "like The Martian"—to generate a relevant and personalized list.
+
+## Fine-Tuning the Generation: Parameter Deep Dive
+
+One major advantage of self-hosted models like our Llama 3.1 setup is **direct parameter control**. When you use OpenAI's GPT-4 or Anthropic's Claude, these companies have pre-configured the inference parameters based on their research and user feedback. You get excellent results, but limited customization.
+
+With local Ollama inference, we control every aspect of generation. Here's why each parameter matters for movie recommendations:
+
+```python
+"options": {
+    "temperature": 0.7,    # Creative but coherent recommendations
+    "top_p": 0.9,          # Diverse vocabulary, avoids weird words  
+    "top_k": 40,           # Focused vocabulary selection
+    "num_predict": 800,    # Enough tokens for detailed explanations
+}
+```
+
+**API Services vs Self-Hosted Parameter Control:**
+
+| Parameter | Self-Hosted (Ollama) | OpenAI API | Anthropic API |
+|-----------|---------------------|------------|---------------|
+| Temperature | ✅ Full control (0.0-2.0) | ✅ Limited range (0.0-2.0) | ✅ Limited range (0.0-1.0) |
+| Top-p | ✅ Full control | ✅ Available | ❌ Not exposed |
+| Top-k | ✅ Full control | ❌ Not available | ❌ Not exposed |
+| Max tokens | ✅ Full control | ✅ Available | ✅ Available |
+| Custom stopping | ✅ Full control | ✅ Available | ❌ Limited |
+
+This granular control lets us optimize specifically for movie recommendations rather than general text generation.
+
+**`Temperature` `(0.7)`:** Controls the randomness in the model's predictions. Higher values (0.8-1.2) generate more diverse/creative text, while lower values (0.2-0.5) stick closer to the most likely completion. Our 0.7 sweet spot gives us creative movie suggestions without going off the rails—too low and you get the same obvious blockbusters every time, too high and you get obscure art films that don't match the user's taste.
+
+**`Top-p` `(0.9)` - Nucleus Sampling:** Restricts choices to tokens within a cumulative probability threshold (top 90% likely). It dynamically adjusts the set of possible next tokens based on the model's confidence, balancing variety and focus. This keeps vocabulary diverse enough for interesting descriptions while avoiding bizarre word choices that would make recommendations feel unnatural.
+
+**`Top-k` `(40)`:** Cuts off the sample pool to the 40 most-likely tokens, ensuring the model can't generate rare/out-of-distribution tokens. This is especially helpful for recommendation tasks needing more determinism—keeping recommendations focused and relevant rather than wandering into random territory.
+
+**`Num_predict` `(800)`:** Limits how much the model can generate in response to a prompt. This provides enough tokens for 4 detailed recommendations with explanations, but not so many that the model starts repeating itself or adding irrelevant details.
+
+## Progressive Structure: From Raw Text to Structured APIs
+
+Currently, our system outputs natural language recommendations—perfect for the CLI and human consumption. But as we move toward a production web application, we'll want structured data.
+
+The beauty of this architecture is its flexibility. We can evolve in stages:
+
+**Stage 1 (Current):** Raw text output with streaming for immediate CLI value
+**Stage 2 (Next):** Pydantic models with JSON schema enforcement for reliable APIs
+**Stage 3 (Future):** Rich metadata integration (streaming services, ratings, genres)
+
+```python
+# Future: Structured recommendation model
+class MovieRecommendation(BaseModel):
+    title: str
+    year: int
+    description: str
+    reasoning: str
+    confidence: float
+    streaming_services: List[str] = []
+    imdb_rating: Optional[float] = None
+```
+
+This "progressive structure" approach lets us build value incrementally—start with working human-readable output, then add machine-readable structure when the use case demands it.
+
+## Performance Analysis: Speed vs Intelligence
+
+Our two-stage architecture creates an interesting performance profile:
+
+**Vector Search (Qdrant):** ~50ms for semantic similarity across thousands of preferences
+**LLM Generation (Llama 3.1):** ~5-15 seconds for 4 detailed recommendations
+
+This "fast retrieval, slower generation" pattern is intentional. Vector search gives us instant context relevance, while the LLM provides the reasoning and personalization that makes recommendations compelling. The streaming implementation masks the LLM latency by providing immediate progressive feedback.
 
 ## The RAG Loop is Complete
 
 Over these two posts, we have built a complete, end-to-end RAG pipeline from scratch:
 
--   ✅ **Semantic Storage:** Captured user preferences as 1024-dimensional vectors in Qdrant.
--   ✅ **Intelligent Retrieval:** Used cosine similarity to find the most relevant preferences for any given query.
--   ✅ **Contextual Generation:** Fed the retrieved context to a local LLM (Llama 3.1) to reason and generate recommendations.
--   ✅ **Streaming CLI:** Used streaming to provide a real-time, conversational experience. When we build the front end, we will carry this through
+-   🍿 **Semantic Storage:** Captured user preferences as 1024-dimensional vectors in Qdrant.
+-   🍿 **Intelligent Retrieval:** Used cosine similarity to find the most relevant preferences for any given query.
+-   🍿 **Contextual Generation:** Fed the retrieved context to a local LLM (Llama 3.1 8B) to reason and generate recommendations.
+-   🍿 **Streaming CLI:** Used streaming to provide a real-time, conversational experience. When we build the front end, we will carry this through
 
 This architecture gives us the best of both worlds: the speed and precision of vector search, combined with the reasoning and generative power of a large language model. Together, they create a system that understands not just *what* you like, but *why* you like it, and can help you discover your next favorite movie.
 
-```
+## What's Next: Building on the Foundation
+
+The current CLI demonstrates the core RAG pipeline, but the architecture sets us up for exciting enhancements:
+
+- **Reranking layers** for even better recommendation quality
+- **Web UI** a React UI front end for a conversational interface
+- **Preference learning** from user feedback on recommendations - once we have a UI, we can give feedback on what was watched
+- **Additional metadata** (ratings, reviews)
+- **Multi-modal inputs** (movie posters, trailer links?!)
+
+In the next post, I think I will explore how reranking can further improve recommendation quality and handle edge cases where simple similarity isn't enough.
+
+---
+
+## References and Further Reading
+
+1. **F22 Labs:** "What are Temperature, Top_p, and Top_k in AI?" 
+   - https://www.f22labs.com/blogs/what-are-temperature-top_p-and-top_k-in-ai/
+
+2. **Codefinity:** "Understanding Temperature, Top-k, and Top-p Sampling in Generative Models"
+   - https://codefinity.com/blog/Understanding-Temperature,-Top-k,-and-Top-p-Sampling-in-Generative-Models
