@@ -241,7 +241,7 @@ With TTL:
 
 ## Making Cache Visible
 
-With cache logging enabled, production logs surface cache reads and writes. The exact format varies by store and log level, but you'll see activity against your keys:
+I added a small log line around the cache boundary so cache hits and misses are explicit in production:
 
 ![Production log showing a cache write](/images/fragment-cache-logs-write.png)
 
