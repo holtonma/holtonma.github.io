@@ -15,6 +15,7 @@ defaultTheme = "auto"
 disableThemeToggle = false
 ShowReadingTime = true
 ShowShareButtons = true
+ShareButtons = ["x", "linkedin", "github"]
 ShowPostNavLinks = true
 ShowBreadCrumbs = true
 ShowCodeCopyButtons = true

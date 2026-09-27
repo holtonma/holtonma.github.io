@@ -81,16 +81,6 @@ I share insights about software architecture, career transitions, and lessons le
 </style>
 
 <div class="connect-links">
-  <a href="https://norafoundry.dev" class="social-link">
-    <img src="/images/nora-logo-flame.png" height="30" width="30" alt="NoraFoundry logo">
-    <span>NoraFoundry.dev</span>
-  </a>
-
-  <a href="https://norafoundry.dev/projects/keep" class="social-link">
-    <img src="/images/keep-logo.png" height="30" width="30" alt="KEEP logo">
-    <span>KEEP</span>
-  </a>
-
   <a href="https://www.linkedin.com/in/markholtonsoftware/" class="social-link">
     <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30" width="30" class="linkedin-icon" aria-hidden="true"><path d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z"></path></svg>
     <span>linkedin.com/in/markholtonsoftware</span>
@@ -99,6 +89,21 @@ I share insights about software architecture, career transitions, and lessons le
   <a href="https://x.com/markholton" class="social-link">
     <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30" width="30" fill="currentColor" aria-hidden="true"><path d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z"></path></svg>
     <span>x.com/markholton</span>
+  </a>
+
+  <a href="https://github.com/holtonma" class="social-link">
+    <svg version="1.1" viewBox="0 0 16 16" height="30" width="30" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+    <span>github.com/holtonma</span>
+  </a>
+
+  <a href="https://norafoundry.dev" class="social-link">
+    <img src="/images/nora-logo-flame.png" height="30" width="30" alt="NoraFoundry logo">
+    <span>NoraFoundry.dev</span>
+  </a>
+
+  <a href="https://norafoundry.dev/projects/keep" class="social-link">
+    <img src="/images/keep-logo.png" height="30" width="30" alt="KEEP logo">
+    <span>KEEP</span>
   </a>
 </div>
 
