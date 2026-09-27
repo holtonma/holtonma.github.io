@@ -4,7 +4,7 @@ date: 2026-09-27T14:09:00-04:00
 draft: false
 tags: ["AI", "Coding Agents", "Devin", "Kimi K3", "Reinforcement Learning", "LLM", "Claude Code"]
 categories: ["ai-architecture", "technical-deep-dive"]
-description: "How Cognition turned Moonshot's open-weight Kimi K3 into SWE-2 with verifiable software-engineering RL, and how the Devin harness puts it to work - plus what $20 actually buys compared to Claude Code."
+description: "I explore how Cognition used coding-focused RL to build SWE-2 from Moonshot’s open-weight Kimi K3, where Devin’s harness fits in, and how its cost compares with Claude Code."
 author: "Mark Holton"
 cover:
     image: "/images/moonshot-kimi-devin-hero.jpg"
