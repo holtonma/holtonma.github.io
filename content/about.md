@@ -9,13 +9,11 @@ description: "Software Architect specializing in distributed systems, data platf
 
 I'm a hands-on Software Architect with over two decades of experience building resilient, scalable systems.
 
-Before anything else, I spent over a decade at [Salesforce](https://salesforce.com) building [distributed systems and large-scale data platforms](https://engineering.salesforce.com/building-a-fault-tolerant-data-pipeline-for-chatbots-47d74bc31f5b/). Most recently, I was a Lead Architect at [ShiftUpAI.com](https://shiftupai.com), where I architected data pipelines for Go-To-Market Sales Intelligence.
+I spent over a decade at [Salesforce](https://salesforce.com) building [distributed systems and large-scale data platforms](https://engineering.salesforce.com/building-a-fault-tolerant-data-pipeline-for-chatbots-47d74bc31f5b/). In 2025, I was a [Lead Architect](https://www.businesswire.com/news/home/20250715808589/en/ShiftUp-Assembles-World-Class-Technical-Leadership-Team-with-Three-Strategic-Hires-from-Salesforce) at [ShiftUpAI.com](https://shiftupai.com), where I architected data pipelines for Go-To-Market Sales Intelligence.
 
 As of August 31, 2026, I've joined [Improving](https://www.improving.com/) as a Principal Consultant. If you need consulting help, [contact Improving](https://www.improving.com/).
 
-Before that, I founded [NoraFoundry.dev](https://norafoundry.dev), where I built durable, local-first software systems designed for long-term use. Nora Foundry is no longer accepting new client engagements.
-
-There I created **KEEP** — a sovereign, desktop portfolio management system focused on structure, memory, and judgment in long-term investing.
+In my spare time, I'm constantly experimenting with software, such as [**KEEP Terminal**](https://getkeep.app/) — a sovereign, desktop portfolio management system focused on structure, memory, and judgment in long-term investing — as a way to explore and learn the latest tools and techniques.
 
 Here I share what I'm learning about modern architectures, AI integration patterns, and navigating the next phase of a software engineering career.
 
