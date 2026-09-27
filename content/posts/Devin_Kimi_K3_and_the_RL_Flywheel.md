@@ -77,9 +77,9 @@ K3 contains **2.8 trillion parameters in total**, while roughly **104 billion ar
 
 *Diagram based on [Moonshot AI’s Kimi K3 model summary](https://github.com/MoonshotAI/Kimi-K3). Proportions are approximate; the router selects experts at each MoE layer.*
 
-That wiring does not by itself make a useful programmer. Training sets the numbers that govern how the parts transform information—including how the router scores and combines experts. Cognition starts from Moonshot’s trained K3 weights and further updates the model. Its public SWE-2 post does not enumerate precisely which parameters changed in each step. The **104 billion active** number is per token; different tokens can activate different experts across a training run.
+Cognition starts from Moonshot’s trained K3 weights and further updates the model through RL on coding tasks. The goal is to improve how the model approaches that work. Those updates could affect, for example, how the router scores experts, but Cognition’s SWE-2 post does not say precisely which parameters changed. The **104 billion active** figure applies to one token; different tokens can activate different experts across a training run.
 
-It is also worth resisting an unsupported comparison: OpenAI has disclosed a mixture-of-experts design for its **gpt-oss** models, but I have not found a corresponding public disclosure confirming whether **GPT-6 Astra** or the current **Claude Opus** models use MoE. [OpenAI: Introducing gpt-oss](https://openai.com/index/introducing-gpt-oss/)
+It is also worth resisting a comparison: OpenAI has disclosed a mixture-of-experts design for its **gpt-oss** models, but I have not found a corresponding public disclosure confirming whether **GPT-6 Astra** or the current **Claude Opus** models use MoE. [OpenAI: Introducing gpt-oss](https://openai.com/index/introducing-gpt-oss/)
 
 ## How do you train trillions of parameters from a coding task?
 

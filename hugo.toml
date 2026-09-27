@@ -45,7 +45,7 @@ iconHeight = 35
 [params.profileMode]
 enabled = false
 title = "Mark Holton"
-subtitle = "Software Developer"
+subtitle = "Software Architect"
 imageUrl = "/profile.jpg"
 imageWidth = 120
 imageHeight = 120
