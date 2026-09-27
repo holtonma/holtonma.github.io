@@ -126,6 +126,13 @@ style = "github"
 [markup.goldmark.renderer]
 unsafe = true
 
+# Pass LaTeX through untouched so KaTeX can render it (enable per post with `math: true`)
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)']]
+
 [outputs]
 home = ["HTML", "RSS", "JSON"]
 section = ["HTML", "RSS"]

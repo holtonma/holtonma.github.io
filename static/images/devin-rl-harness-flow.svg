@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">From Kimi K3 through training and the Devin harness to a reviewable pull request</title>
+  <desc id="desc">Moonshot Kimi K3 feeds Cognition reinforcement learning on coding tasks. The resulting SWE-2 model runs inside Devin's agent harness and produces code changes, tests, and a pull request for human review.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#536981"/></marker>
+  </defs>
+  <rect width="960" height="560" fill="#f7fafc"/>
+  <text x="480" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#193049">From foundation model to reviewed code</text>
+
+  <rect x="200" y="79" width="560" height="72" rx="13" fill="#e7edf6" stroke="#b8c9db" stroke-width="2"/>
+  <text x="480" y="109" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#193049">Moonshot Kimi K3</text>
+  <text x="480" y="134" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#41566e">Architecture and trained weights</text>
+  <path d="M480 153 V174" stroke="#536981" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="180" width="560" height="72" rx="13" fill="#e5f4ed" stroke="#91c9aa" stroke-width="2"/>
+  <text x="480" y="209" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#194a37">Cognition RL training</text>
+  <text x="480" y="234" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#386a54">Coding tasks and verified outcomes</text>
+  <path d="M480 254 V275" stroke="#536981" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="281" width="560" height="72" rx="13" fill="#e5f4ed" stroke="#91c9aa" stroke-width="2"/>
+  <text x="480" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#194a37">SWE-2</text>
+  <text x="480" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#386a54">Updated model weights</text>
+  <path d="M480 355 V376" stroke="#536981" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="382" width="560" height="72" rx="13" fill="#eaf0fb" stroke="#99b7e7" stroke-width="2"/>
+  <text x="480" y="411" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#234c8a">Devin agent harness</text>
+  <text x="480" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#496c9a">Tools, repository context, and agent loop</text>
+  <path d="M480 456 V477" stroke="#536981" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="483" width="560" height="60" rx="13" fill="#fff2df" stroke="#dab777" stroke-width="2"/>
+  <text x="480" y="508" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#765223">Reviewable pull request</text>
+  <text x="480" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#806b51">Code changes and tests, with a human decision</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-labelledby="title desc">
+  <title id="title">Kimi K3 parameter scale and per-token activation</title>
+  <desc id="desc">A proportional bar shows 2.8 trillion total parameters, with approximately 104 billion, or 3.7 percent, active for one token. A separate annotation states that each mixture-of-experts layer selects 16 of 896 routed experts, plus shared experts.</desc>
+  <rect width="960" height="340" fill="#f8fafc"/>
+  <rect x="24" y="24" width="912" height="292" rx="18" fill="#ffffff" stroke="#dbe3ed"/>
+  <text x="54" y="68" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" fill="#172337">Kimi K3: total vs. active parameters</text>
+  <text x="54" y="101" font-family="Inter, Arial, sans-serif" font-size="16" fill="#526174">A proportional view of parameters, not a map of individual network layers</text>
+
+  <text x="54" y="147" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" fill="#172337">2.8T parameters in the complete model</text>
+  <rect x="54" y="163" width="820" height="48" rx="8" fill="#dbe5f0"/>
+  <path d="M62 163 H84 V211 H62 A8 8 0 0 1 54 203 V171 A8 8 0 0 1 62 163 Z" fill="#2165d5"/>
+  <text x="96" y="193" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#344459">Other parameters may activate for different tokens</text>
+  <path d="M67 211 V230 H207" fill="none" stroke="#2165d5" stroke-width="2"/>
+  <circle cx="67" cy="211" r="3" fill="#2165d5"/>
+  <text x="213" y="236" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#164ca4">~104B active for this token</text>
+  <text x="590" y="236" font-family="Inter, Arial, sans-serif" font-size="16" fill="#526174">≈ 3.7% of total parameters</text>
+
+  <rect x="54" y="258" width="820" height="40" rx="8" fill="#eef4ff"/>
+  <text x="70" y="283" font-family="Inter, Arial, sans-serif" font-size="15" fill="#253b5b">At each MoE layer: 16 of 896 routed experts selected, alongside shared components.</text>
+</svg>
