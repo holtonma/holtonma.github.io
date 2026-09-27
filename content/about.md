@@ -2,18 +2,20 @@
 title: "About Mark Holton"
 date: 2025-01-06T12:00:00-08:00
 draft: false
-description: "Founder of NoraFoundry.dev — Software Architect specializing in distributed systems, data platforms, and durable architectures"
+description: "Software Architect specializing in distributed systems, data platforms, and durable architectures, currently Principal Consultant at Improving."
 ---
 
 ![Software architect Mark Holton working on distributed systems and data pipeline architecture](/images/data_engineer.jpg)
 
 I'm a hands-on Software Architect with over two decades of experience building resilient, scalable systems.
 
-Before anything else, I spent over a decade at [Salesforce](https://salesforce.com) building distributed systems and large-scale data platforms. Most recently, I was a Lead Architect at [ShiftUpAI.com](https://shiftupai.com), where I architected data pipelines for Go-To-Market Sales Intelligence.
+Before anything else, I spent over a decade at [Salesforce](https://salesforce.com) building [distributed systems and large-scale data platforms](https://engineering.salesforce.com/building-a-fault-tolerant-data-pipeline-for-chatbots-47d74bc31f5b/). Most recently, I was a Lead Architect at [ShiftUpAI.com](https://shiftupai.com), where I architected data pipelines for Go-To-Market Sales Intelligence.
 
-I'm now the founder of [NoraFoundry.dev](https://norafoundry.dev), where I build durable, local-first software systems designed for long-term use.
+As of August 31, 2026, I've joined [Improving](https://www.improving.com/) as a Principal Consultant. If you need consulting help, [contact Improving](https://www.improving.com/).
 
-I created **KEEP** — a sovereign, desktop portfolio management system focused on structure, memory, and judgment in long-term investing.
+Before that, I founded [NoraFoundry.dev](https://norafoundry.dev), where I built durable, local-first software systems designed for long-term use. Nora Foundry is no longer accepting new client engagements.
+
+There I created **KEEP** — a sovereign, desktop portfolio management system focused on structure, memory, and judgment in long-term investing.
 
 Here I share what I'm learning about modern architectures, AI integration patterns, and navigating the next phase of a software engineering career.
 
