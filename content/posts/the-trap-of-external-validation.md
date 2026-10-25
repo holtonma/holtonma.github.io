@@ -118,10 +118,10 @@ That's a much more sustainable definition of success.
 
 My Stage 4 A.I. certification is now behind me. I'm grateful for the experience and pleased to have reached a milestone that demonstrates the new techniques I've been developing the last 24 months.
 
-But what excites me most isn't having completed it, but in taking what I've learned and applying it to the next generation of AI workflows, continuing to experiment, and discovering new ways to create value.
+But what excites me most isn't having completed it, but taking what I've learned and applying it to the next generation of AI workflows, continuing to experiment, and discovering new ways to create value.
 
 There will always be more milestones, certifications, and opportunities along the way.
 
 I'll welcome the external feedback that comes with them, but I don't want to mistake that feedback for the reason I'm pursuing the work.
 
-Whether it's completing a milestone, earning a good grade, winning a competition, or getting kudos from a colleague you respect, it is important to internalize that **it is a only moment and it is the learning compounds. Fulfillment for many of the reasons mentioned above comes from staying aware of this.**
+Whether it's completing a milestone, earning a good grade, winning a competition, or getting kudos from a colleague you respect, it's worth remembering that **it is only a moment and it is the learning that compounds. Fulfillment for many of the reasons mentioned above comes from staying aware of this.**
