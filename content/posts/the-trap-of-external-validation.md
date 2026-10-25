@@ -16,7 +16,7 @@ TocOpen: false
 
 There's always another rung on the ladder. Another opportunity. Another certification. Another title. Another person whose recognition or approval seems to matter.
 
-And there's nothing inherently wrong with any of those things. Recognition feels good. Accomplishments deserve to be celebrated. External feedback can be a valuable signal that we're making progress.
+And there's nothing inherently wrong with any of those things. Recognition feels good. Accomplishments, especially those hard-earned, deserve to be celebrated. External feedback can be a valuable signal that we're making progress.
 
 But there's a subtle trap when those signals become the motivation itself.
 
@@ -80,7 +80,7 @@ Did someone notice? Was the accomplishment impressive enough? Am I keeping up wi
 Warren Buffett has often described this distinction as the difference between an *Inner Scorecard* and an *Outer Scorecard*—measuring success by our own values and standards rather than how others perceive us.
 
 > "The big question about how people behave is whether they've got an Inner Scorecard or an Outer Scorecard."
-> — Warren Buffett, quoted in *The Snowball* (2008)
+> Warren Buffett, quoted in *The Snowball* (2008)
 
 <div style="clear: both;"></div>
 
@@ -118,16 +118,10 @@ That's a much more sustainable definition of success.
 
 My Stage 4 A.I. certification is now behind me. I'm grateful for the experience and pleased to have reached a milestone that demonstrates the new techniques I've been developing the last 24 months.
 
-But what excites me most isn't having completed it. It's taking what I've learned and applying it to the next generation of AI workflows, continuing to experiment, and discovering new ways to create value.
+But what excites me most isn't having completed it, but in taking what I've learned and applying it to the next generation of AI workflows, continuing to experiment, and discovering new ways to create value.
 
-There will undoubtedly be more milestones, certifications, and opportunities along the way.
+There will always be more milestones, certifications, and opportunities along the way.
 
-I'll welcome the recognition that comes with them, but I don't want to mistake that recognition for the reason I'm pursuing the work.
+I'll welcome the external feedback that comes with them, but I don't want to mistake that feedback for the reason I'm pursuing the work.
 
-Whether it's completing a milestone, earning a good grade, winning a competition, or receiving praise from a colleague you respect, these are moments worth appreciating and celebrating.
-
-But they aren't the destination, nor should they define our worth.
-
-**Recognition is a moment. Learning compounds. Fulfillment comes from appreciating the achievement while finding lasting purpose in the journey.**
-
-Whether it's completing a milestone, getting a grade, winning a competition, getting kudos from a colleague you respect it is important to internalize that **Recognition is a moment and it is the learning compounds. Fulfillment for many of the reasons mentioned above comes from staying aware of this.**
+Whether it's completing a milestone, earning a good grade, winning a competition, or getting kudos from a colleague you respect, it is important to internalize that **it is a only moment and it is the learning compounds. Fulfillment for many of the reasons mentioned above comes from staying aware of this.**
