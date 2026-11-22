@@ -7,7 +7,7 @@ ShowToc: true
 TocOpen: false
 date: 2026-11-22T13:34:11-05:00
 author: "Mark Holton"
-draft: true
+draft: false
 cover:
     image: "/images/wave-of-security-breaches-hero.jpg"
     alt: "Illustration of a legion of dark, red-eyed robots advancing toward a cracked fortress defended by white robots, with bank-like symbols connected by red lines between them."
