@@ -1,5 +1,5 @@
 ---
-title: "A Week of Cyberattacks and a Call Back to the Fundamentals"
+title: "Evolving Threats, Strong Fundamentals, and AI-Assisted Defense"
 description: "After a week that brought a fully automated AI cyberattack and malicious code on 178 major websites through one vendor's scripts, here's how I'd raise the security bar: strong basics on your own accounts, AI on defense, and security built into design, review, deployment and operation."
 tags: ["security", "AI", "threat-model", "appsec", "supply-chain"]
 categories: ["ai-engineering"]
