@@ -19,4 +19,12 @@
     {left: '$$', right: '$$', display: true},
     {left: '\\(', right: '\\)', display: false}
   ]});"></script>
+{{- end }}{{- /* Mermaid, only on pages with a ```mermaid block (drawn by render-codeblock-mermaid.html).
+       Pinned to the version Factory H previews with, so the app shows what the blog draws. */ -}}
+{{- if and .IsPage (strings.Contains .RawContent "```mermaid") }}
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.esm.min.mjs";
+  const dark = document.body.classList.contains("dark");
+  mermaid.initialize({ startOnLoad: true, securityLevel: "strict", theme: dark ? "dark" : "neutral" });
+</script>
 {{- end }}
