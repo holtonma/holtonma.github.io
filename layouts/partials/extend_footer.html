@@ -1,0 +1,54 @@
+{{- /* Side notes: turn Markdown footnotes ([^1]) into side notes, as norafoundry does.
+       Wide screens: each note floats in the right margin beside the line that cites it.
+       Narrow screens: tapping the number opens the note in place.
+       Without JS, footnotes stay at the bottom of the page as usual.
+       Loaded on every page: PaperMod renders the footer with partialCached, so a
+       per-page condition here would be decided once and reused. The script exits
+       early when a page has no footnotes. */ -}}
+<script>
+(function () {
+  var content = document.querySelector(".post-content");
+  var footnotes = content && content.querySelector(".footnotes");
+  if (!footnotes) return;
+
+  content.querySelectorAll("a.footnote-ref").forEach(function (link, i) {
+    var target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    if (!target) return;
+
+    var body = target.cloneNode(true);
+    body.querySelectorAll(".footnote-backref").forEach(function (a) { a.remove(); });
+    var num = link.textContent.trim();
+    var id = "sn-" + (i + 1);
+
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "sidenote-ref";
+    button.textContent = num;
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", id);
+
+    var note = document.createElement("span");
+    note.className = "sidenote";
+    note.id = id;
+    note.setAttribute("role", "note");
+    var paras = body.querySelectorAll("p");
+    var html = paras.length === 1 ? paras[0].innerHTML : body.innerHTML;
+    note.innerHTML = '<span class="sidenote-number">' + num + "</span> " + html.trim();
+
+    var sup = link.closest("sup") || link;
+    sup.replaceWith(button);
+    button.after(note);
+  });
+
+  footnotes.remove();
+
+  content.addEventListener("click", function (e) {
+    var button = e.target.closest(".sidenote-ref");
+    if (!button) return;
+    var note = document.getElementById(button.getAttribute("aria-controls"));
+    if (!note) return;
+    var open = note.classList.toggle("sidenote--active");
+    button.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+})();
+</script>

@@ -1,0 +1,18 @@
+/* Reading column width on desktop. PaperMod's default is 720px.
+   .main uses max-width, so narrower screens (mobile) are unaffected.
+
+   Side notes (sidenotes.css) float in the right margin at >=1420px viewports,
+   sized 180-260px to fit; below that they open inline when tapped. */
+:root {
+    --main-width: 900px;
+    --sidenote-width: 260px;   /* max width of a margin side note */
+    --sidenote-gutter: 32px;
+}
+
+/* Small images (phone screenshots etc.): append #small to the image URL,
+   e.g. ![alt](/images/foo.jpg#small). Capped and centered; full width on mobile. */
+.post-content img[src$="#small"] {
+    max-width: min(420px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+}

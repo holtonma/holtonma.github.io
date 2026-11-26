@@ -1,0 +1,36 @@
+/* Content tables: light gray grid borders and subtle zebra striping.
+   Code-block tables (.highlighttable, .highlight table, gists) are left alone. */
+
+.post-content table:not(.highlighttable, .highlight table, .gist .highlight) {
+    border: 1px solid var(--tertiary);
+    border-radius: 0;
+    /* PaperMod makes tables display:block at 100% width, so the outer border
+       spanned the page. Shrink to content and center; wide tables still scroll. */
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post-content table:not(.highlighttable, .highlight table, .gist .highlight) th,
+.post-content table:not(.highlighttable, .highlight table, .gist .highlight) td {
+    border: 1px solid var(--tertiary);
+    padding: 8px 12px;
+    vertical-align: top;
+}
+
+.post-content table:not(.highlighttable, .highlight table, .gist .highlight) thead th {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.post-content table:not(.highlighttable, .highlight table, .gist .highlight) tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+.dark .post-content table:not(.highlighttable, .highlight table, .gist .highlight) thead th {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.dark .post-content table:not(.highlighttable, .highlight table, .gist .highlight) tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.035);
+}

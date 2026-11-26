@@ -1,0 +1,78 @@
+/* Side notes, built from Markdown footnotes by layouts/partials/extend_footer.html.
+   Narrow screens: hidden until the number is tapped, then shown in place.
+   Wide screens: always shown, floated into the right margin beside the citing line. */
+
+.sidenote-ref {
+    display: inline;
+    font: inherit;
+    font-size: 0.72em;
+    font-weight: 600;
+    line-height: 0;
+    vertical-align: super;
+    padding: 0 1px;
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+.sidenote-ref:hover,
+.sidenote-ref[aria-expanded="true"] {
+    color: var(--primary);
+}
+
+.sidenote-number {
+    font-weight: 600;
+    font-size: 0.8em;
+    vertical-align: super;
+    line-height: 0;
+    margin-right: 0.2em;
+}
+
+.sidenote {
+    display: none;
+    font-size: 0.85em;
+    line-height: 1.55;
+    color: var(--secondary);
+    background: var(--code-bg);
+    border-left: 2px solid var(--tertiary);
+    border-radius: 0 4px 4px 0;
+    padding: 0.5rem 0.75rem;
+    margin: 0.5rem 0 0.75rem;
+}
+
+.sidenote--active {
+    display: block;
+}
+
+.sidenote code {
+    font-size: 0.85em;
+}
+
+/* Wide screens: the right margin must hold the note (180–260px) plus the gutter.
+   With a 900px column that needs about 1420px of viewport. */
+@media screen and (min-width: 1420px) {
+    .post-content .sidenote {
+        display: block;
+        float: right;
+        clear: right;
+        width: clamp(180px, calc((100vw - var(--main-width)) / 2 - var(--gap) - var(--sidenote-gutter) - 24px), var(--sidenote-width));
+        margin: 0.3rem calc(-1 * (var(--sidenote-gutter) + clamp(180px, calc((100vw - var(--main-width)) / 2 - var(--gap) - var(--sidenote-gutter) - 24px), var(--sidenote-width)))) 0.75rem 0;
+        padding: 0;
+        background: none;
+        border: none;
+        border-radius: 0;
+        font-size: 0.8em;
+        line-height: 1.5;
+    }
+
+    /* Inside tables, a float would break the cell; keep notes in place there. */
+    .post-content td .sidenote,
+    .post-content th .sidenote {
+        float: none;
+        width: auto;
+        margin: 0.25rem 0 0;
+    }
+
+    .post-content .sidenote-ref {
+        cursor: default;
+    }
+}
