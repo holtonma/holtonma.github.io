@@ -9,7 +9,7 @@ date: 2026-11-26T10:52:25-05:00
 author: "Mark Holton"
 draft: false
 cover:
-    image: "/images/claude-sub-agents-hero.png"
+    image: "/images/claude-sub-agents-hero.jpg"
     alt: "A robot foreman in a yellow hard hat hands out a task card while specialist robots study books, write, and check documents at separate workbenches. A human reviews the results at a desk marked \"Final Approval.\""
     caption: "The foreman delegates. The specialists do the work. A person has the final say."
 factoryh_piece: "92c2e9c0-b749-424a-a1bd-6b2b45415bfc"
@@ -17,7 +17,7 @@ factoryh_piece: "92c2e9c0-b749-424a-a1bd-6b2b45415bfc"
 
 Why split one agent that can do everything into five narrower ones? Because the one that does everything is the hardest to evaluate. I want my agents to do more on their own, with each making decisions within a clearly defined scope of responsibility.
 
-![A robot foreman in a yellow hard hat hands out a task card while specialist robots study books, write, and check documents at separate workbenches. A human reviews the results at a desk marked "Final Approval."](/images/claude-sub-agents-hero.png)
+![A robot foreman in a yellow hard hat hands out a task card while specialist robots study books, write, and check documents at separate workbenches. A human reviews the results at a desk marked "Final Approval."](/images/claude-sub-agents-hero.jpg)
 *The foreman delegates. The specialists do the work. A person approves the result or guides the next iteration.*
 
 That means separating who does the work from who chooses what happens next. Automate what can be checked. Let the model decide when the criteria are clear. Hand it to a person when they aren't.
