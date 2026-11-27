@@ -1,0 +1,8 @@
+{
+  "name": "substack-crosspost",
+  "private": true,
+  "description": "Renders mermaid diagrams for the Substack cross-post script",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "12.2.0"
+  }
+}

@@ -26,3 +26,10 @@ _site/
 .jekyll-metadata
 .bundle/
 vendor/
+
+# Substack cross-post script
+scripts/substack/out/
+scripts/substack/.venv/
+scripts/substack/node_modules/
+__pycache__/
+.pytest_cache/
