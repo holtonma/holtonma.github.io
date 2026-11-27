@@ -20,7 +20,7 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
-CONFIG_DIR = Path(os.environ.get("SUBSTACK_CROSSPOST_HOME", Path.home() / ".config" / "substack-crosspost"))
+CONFIG_DIR = Path(os.environ.get("CROSSPOST_HOME", Path.home() / ".config" / "crosspost"))
 
 CREATING = "creating"
 CREATED = "created"

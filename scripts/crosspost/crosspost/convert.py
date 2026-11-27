@@ -15,6 +15,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Callable
 
 from markdown_it import MarkdownIt
 from markdown_it.token import Token
@@ -247,14 +248,48 @@ def _fence_ranges(body: str) -> list[tuple[int, int]]:
 def _md_image(alt: str, path: Path | str, caption: str | None = None) -> str:
     alt = alt.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
     target = str(path)
+    if any(c in target for c in " ()<>"):
+        target = f"<{target}>"  # CommonMark form; only when the path needs it
     if caption:
         caption = caption.replace("\\", "\\\\").replace('"', '\\"')
-        return f'![{alt}](<{target}> "{caption}")'
-    return f"![{alt}](<{target}>)"
+        return f'![{alt}]({target} "{caption}")'
+    return f"![{alt}]({target})"
 
 
 def local_image_path(repo: Path, src: str) -> Path:
     return (repo / "static" / src.lstrip("/")).resolve()
+
+
+@dataclass
+class Style:
+    """How one target wants the shared conversion written out.
+
+    locate turns an image (a /images/ src from the post, or a rendered file
+    under out/) into the reference the target can use: a local path for
+    targets that upload, a public URL for targets that can't.
+    """
+
+    locate: Callable[[str | Path], str]
+    tables: str = "list"  # "list": list (+ PNG when big); "markdown": keep the table
+    captions: str = "title"  # "title": ![alt](src "caption"); "figcaption": HTML line
+    escape_dollars: bool = True
+
+
+def substack_style(repo: Path) -> Style:
+    def locate(ref):
+        if isinstance(ref, Path):
+            return str(ref.resolve())
+        return str(local_image_path(repo, ref))
+
+    return Style(locate=locate, tables="list", captions="title", escape_dollars=True)
+
+
+def figure_markdown(style: Style, alt: str, ref, caption: str | None) -> str:
+    target = style.locate(ref)
+    if caption and style.captions == "figcaption":
+        safe = caption.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        return _md_image(alt, target) + f"\n<figcaption>{safe}</figcaption>"
+    return _md_image(alt, target, caption)
 
 
 def rewrite(
@@ -265,36 +300,40 @@ def rewrite(
     table_pngs: dict[int, Path],
     image_overrides: dict[str, Path],
     permalink: str,
+    style: Style | None = None,
 ) -> str:
-    """Produce the Substack-ready Markdown.
+    """Produce the target-ready Markdown.
 
     mermaid_pngs is parallel to analysis.mermaids. table_pngs maps a table's
     index in analysis.tables to its PNG (big tables only). image_overrides maps
     an original /images/ src to a substitute file (e.g. an SVG rasterized to PNG).
     """
+    style = style or substack_style(repo)
     lines = body.split("\n")
     code_ranges = _fence_ranges(body)
 
     replacements: list[tuple[int, int, str]] = []
     for n, (m, png) in enumerate(zip(analysis.mermaids, mermaid_pngs, strict=True), start=1):
-        replacements.append((m.start, m.end, _md_image(m.alt(n), png.resolve())))
-    for n, table in enumerate(analysis.tables):
-        block = table_to_list(table)
-        if n in table_pngs:
-            alt = "Table: " + ", ".join(h for h in table.headers if h)
-            block = _md_image(alt, table_pngs[n].resolve()) + "\n\n" + block
-        replacements.append((table.start, table.end, block))
+        replacements.append((m.start, m.end, _md_image(m.alt(n), style.locate(png))))
+    if style.tables == "list":
+        for n, table in enumerate(analysis.tables):
+            block = table_to_list(table)
+            if n in table_pngs:
+                alt = "Table: " + ", ".join(h for h in table.headers if h)
+                block = _md_image(alt, style.locate(table_pngs[n])) + "\n\n" + block
+            replacements.append((table.start, table.end, block))
     for fig in analysis.figures:
-        path = image_overrides.get(fig.src) or local_image_path(repo, fig.src)
-        replacements.append((fig.start, fig.end, _md_image(fig.alt, path, fig.caption)))
+        ref = image_overrides.get(fig.src) or fig.src
+        replacements.append((fig.start, fig.end, figure_markdown(style, fig.alt, ref, fig.caption)))
 
     replaced: set[int] = set()
     for start, end, _ in replacements:
         replaced.update(range(start, end))
-    for ln in range(len(lines)):
-        if ln in replaced or any(s <= ln < e for s, e in code_ranges):
-            continue
-        lines[ln] = escape_dollars(lines[ln])
+    if style.escape_dollars:
+        for ln in range(len(lines)):
+            if ln in replaced or any(s <= ln < e for s, e in code_ranges):
+                continue
+            lines[ln] = escape_dollars(lines[ln])
 
     for start, end, text in sorted(replacements, key=lambda r: r[0], reverse=True):
         lines[start:end] = text.split("\n")

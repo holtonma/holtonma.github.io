@@ -4,7 +4,9 @@ import json
 
 import pytest
 
-from crosspost import live
+from crosspost import guard
+from crosspost import substack as live
+from crosspost.substack import SubstackTarget
 from crosspost.ledger import CREATED, CREATING, PENDING, Ledger, Locked, key
 
 PUB = "https://example.substack.com"
@@ -75,13 +77,13 @@ def env(tmp_path):
 
 
 def create(api, ledger):
-    return live.create_draft(api, ledger, PUB, LINK, SPEC, log=lambda m: None, body_builder=fake_body)
+    return guard.create_once(SubstackTarget(api, body_builder=fake_body), ledger, LINK, SPEC, log=lambda m: None)
 
 
 def test_second_run_returns_existing_url(env):
     api, ledger = env
     first = create(api, ledger)
-    with pytest.raises(live.Stop, match=first["url"]):
+    with pytest.raises(guard.Stop, match=first["url"]):
         create(api, ledger)
     assert api.creates == 1
 
@@ -90,7 +92,7 @@ def test_lost_ledger_entry_found_by_permalink(env):
     api, ledger = env
     first = create(api, ledger)
     ledger.clear(key(PUB, LINK))
-    with pytest.raises(live.Stop, match=first["url"]):
+    with pytest.raises(guard.Stop, match=first["url"]):
         create(api, ledger)
     assert api.creates == 1
     assert ledger.get(key(PUB, LINK))["state"] == CREATED
@@ -101,7 +103,7 @@ def test_published_post_counts_as_existing(env):
     first = create(api, ledger)
     api.published.append(first["id"])
     ledger.clear(key(PUB, LINK))
-    with pytest.raises(live.Stop, match="already exists"):
+    with pytest.raises(guard.Stop, match="already exists"):
         create(api, ledger)
 
 
@@ -116,7 +118,7 @@ def test_deleted_draft_searches_then_creates(env):
 def test_failed_listing_stops_without_creating(env):
     api, ledger = env
     api.list_fails = True
-    with pytest.raises(live.AmbiguousLookup):
+    with pytest.raises(guard.AmbiguousLookup):
         create(api, ledger)
     assert api.creates == 0
 
@@ -124,7 +126,7 @@ def test_failed_listing_stops_without_creating(env):
 def test_timeout_leaves_pending_and_never_retries(env):
     api, ledger = env
     api.create_behavior = "timeout"
-    with pytest.raises(live.Stop, match="may exist"):
+    with pytest.raises(guard.Stop, match="may exist"):
         create(api, ledger)
     assert api.creates == 1
     assert ledger.get(key(PUB, LINK))["state"] == PENDING
@@ -133,10 +135,10 @@ def test_timeout_leaves_pending_and_never_retries(env):
 def test_pending_is_recovered_when_search_finds_the_draft(env):
     api, ledger = env
     api.create_behavior = "timeout"
-    with pytest.raises(live.Stop):
+    with pytest.raises(guard.Stop):
         create(api, ledger)
     api.create_behavior = "ok"
-    with pytest.raises(live.Stop, match="recovered from 'pending'"):
+    with pytest.raises(guard.Stop, match="recovered from 'pending'"):
         create(api, ledger)
     assert api.creates == 1
     assert ledger.get(key(PUB, LINK))["state"] == CREATED
@@ -145,10 +147,10 @@ def test_pending_is_recovered_when_search_finds_the_draft(env):
 def test_pending_with_nothing_found_still_refuses(env):
     api, ledger = env
     api.create_behavior = "no_id"
-    with pytest.raises(live.Stop):
+    with pytest.raises(guard.Stop):
         create(api, ledger)
     api.create_behavior = "ok"
-    with pytest.raises(live.Stop, match="--resolve-pending"):
+    with pytest.raises(guard.Stop, match="--resolve-pending"):
         create(api, ledger)
     assert api.creates == 1
 
@@ -161,7 +163,7 @@ def test_crash_after_intent_is_treated_as_pending(env):
     assert ledger.get(key(PUB, LINK))["state"] == CREATING
     # The draft did land; the next run finds it rather than creating another.
     api.create_behavior = "ok"
-    with pytest.raises(live.Stop, match="recovered from 'creating'"):
+    with pytest.raises(guard.Stop, match="recovered from 'creating'"):
         create(api, ledger)
     assert api.creates == 1
 
@@ -169,12 +171,12 @@ def test_crash_after_intent_is_treated_as_pending(env):
 def test_crash_with_no_draft_needs_dashboard_confirmation(env):
     api, ledger = env
     ledger.set(key(PUB, LINK), CREATING)
-    with pytest.raises(live.Stop, match="--resolve-pending"):
+    with pytest.raises(guard.Stop, match="--resolve-pending"):
         create(api, ledger)
-    with pytest.raises(live.Stop, match="did not match"):
-        live.resolve_pending(api, ledger, PUB, LINK, ask=lambda _: "yes", log=lambda m: None)
+    with pytest.raises(guard.Stop, match="did not match"):
+        guard.resolve_pending(SubstackTarget(api), ledger, LINK, ask=lambda _: "yes", log=lambda m: None)
     assert ledger.get(key(PUB, LINK))["state"] == CREATING
-    live.resolve_pending(api, ledger, PUB, LINK, ask=lambda _: LINK, log=lambda m: None)
+    guard.resolve_pending(SubstackTarget(api), ledger, LINK, ask=lambda _: LINK, log=lambda m: None)
     assert ledger.get(key(PUB, LINK)) is None
     assert api.creates == 0  # resolving never creates
 
@@ -190,7 +192,7 @@ def test_concurrent_run_hits_the_lock(env):
 def test_validation_rejection_clears_record_and_allows_fixed_retry(env):
     api, ledger = env
     api.create_behavior = "rejected"
-    with pytest.raises(live.Stop, match="nothing was created"):
+    with pytest.raises(guard.Stop, match="nothing was created"):
         create(api, ledger)
     assert ledger.get(key(PUB, LINK)) is None
     api.create_behavior = "ok"

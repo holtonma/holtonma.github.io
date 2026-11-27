@@ -28,8 +28,8 @@ _site/
 vendor/
 
 # Substack cross-post script
-scripts/substack/out/
-scripts/substack/.venv/
-scripts/substack/node_modules/
+scripts/crosspost/out/
+scripts/crosspost/.venv/
+scripts/crosspost/node_modules/
 __pycache__/
 .pytest_cache/
