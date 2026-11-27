@@ -23,7 +23,9 @@ Run every command from `scripts/crosspost/` with `.venv/bin/python`. If `.venv` 
 .venv/bin/python export.py ../../content/posts/<post>.md --to <target> --dry-run
 ```
 
-If it stops with **unsupported content** (shortcodes, raw HTML, an image sharing a paragraph with text) or **not live on Hugo**, tell the user exactly what it says and stop. Don't edit the post to get around a block unless they ask for that specific edit.
+A dry run works even if the post isn't live yet: the report then says **NOT LIVE YET** next to the permalink. Use that for a new post. Run the dry run first, so any Dev.to images it lists can be committed **with the post** and go out in one deploy. The live run (step 4) needs the post published and deployed.
+
+If it stops with **unsupported content** (shortcodes, raw HTML, an image sharing a paragraph with text) or because Hugo doesn't know the post, tell the user exactly what it says and stop. Don't edit the post to get around a block unless they ask for that specific edit.
 
 Otherwise summarize the report in a few lines:
 - what converts and how: diagrams, tables, captions, footnotes
@@ -33,7 +35,7 @@ Otherwise summarize the report in a few lines:
 
 Point them at the preview file(s) printed in the report.
 
-**Dev.to only:** if the report lists **images to commit and deploy**, those PNGs must be live on the blog before the live run (Dev.to can't take uploads). Say so. With the user's go-ahead, commit them. Pushing to `main` deploys the site, so get explicit permission before any push. Wait until the deploy finishes. The live run checks every image URL and refuses if any isn't live yet.
+**Dev.to only:** if the report lists **images to commit and deploy**, those PNGs must be live on the blog before the live run (Dev.to can't take uploads). If the post isn't live yet, they should go in the same commit as the post. Say so. With the user's go-ahead, commit them. Pushing to `main` deploys the site, so get explicit permission before any push. Wait until the deploy finishes. The live run checks every image URL and refuses if any isn't live yet.
 
 ## 3. Ask before the live run
 

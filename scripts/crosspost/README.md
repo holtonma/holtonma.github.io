@@ -89,6 +89,16 @@ Dev.to has an official API with drafts (`published: false`) and `canonical_url`,
 - The post's own images are referenced at `https://holtonma.github.io/images/...`.
 - Rendered PNGs (mermaid, SVGs) are copied to `static/images/crosspost/<post>/`. The dry run lists them. **Commit and deploy them before the live run**: it checks every image URL and refuses if any isn't live.
 
+### New post: one deploy
+
+A dry run works before the post is live (it uses the URL Hugo will give it and says "NOT LIVE YET"), so:
+
+1. `export.py <post> --to both --dry-run`, while the post is still a draft or not yet deployed.
+2. Commit the post **and** any `static/images/crosspost/<post>/` PNGs it lists, together. Deploy once.
+3. Once the post is live: `export.py <post> --to both` creates the drafts.
+
+A live run always requires the post to be published.
+
 Differences from Substack: tables stay as Markdown tables, captions become `<figcaption>`, `$` isn't escaped, and any `{%`/`{{` left in the output stops the run (Dev.to would read it as Liquid). Tags: `devto_tags:` or the first four Hugo tags, lowercased with punctuation stripped. AI label: `ai_disclosure:` in front matter, default `some_ai`.
 
 API key: dev.to → Settings → Extensions → "DEV Community API Keys" → generate. Save it with `.venv/bin/python export.py --save-devto-key` (stored at `~/.config/crosspost/devto/api_key`, mode 600).

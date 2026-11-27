@@ -79,12 +79,20 @@ def split_front_matter(raw: str) -> tuple[dict, str, int]:
 # ------------------------------------------------------------------ shared build
 
 
-def build(post: Path, targets: list[str]) -> dict:
-    """Everything both targets share: checks, analysis, rendered PNGs."""
+def build(post: Path, targets: list[str], dry_run: bool = False) -> dict:
+    """Everything both targets share: checks, analysis, rendered PNGs.
+
+    A dry run also works on a post that isn't live yet (using the URL it will
+    have), so its rendered images can ship in the same deploy as the post.
+    A live run requires the post to be published.
+    """
     raw = post.read_text()
     meta, body, offset = split_front_matter(raw)
     try:
-        permalink = hugo.published_permalink(REPO, post)
+        if dry_run:
+            permalink, live = hugo.permalink(REPO, post)
+        else:
+            permalink, live = hugo.published_permalink(REPO, post), True
     except hugo.NotLive as exc:
         fail(str(exc))
 
@@ -144,6 +152,7 @@ def build(post: Path, targets: list[str]) -> dict:
         "warnings": warnings,
         "cover": cover,
         "svgs": svgs,
+        "live": live,
     }
 
 
@@ -165,7 +174,7 @@ def report(b: dict) -> None:
     a = b["analysis"]
     captions = sum(1 for f in a.figures if f.caption)
     print(f"Post:       {b['meta'].get('title')}")
-    print(f"Permalink:  {b['permalink']}")
+    print(f"Permalink:  {b['permalink']}" + ("" if b["live"] else "  (NOT LIVE YET: the URL it will have)"))
     print(f"Mermaid:    {len(a.mermaids)} → PNG")
     print(f"Tables:     {len(a.tables)}")
     print(f"Images:     {len(a.figures)} ({captions} with captions, {len(b['svgs'])} SVG → PNG)")
@@ -440,13 +449,18 @@ def main() -> None:
             fail(str(exc))
         return
 
-    b = build(post, targets)
+    b = build(post, targets, dry_run=args.dry_run)
     report(b)
     preps = {
         t: (substack_prepare(b) if t == "substack" else devto_prepare(b)) for t in targets
     }
     if args.dry_run:
         print("\nDry run: nothing sent.")
+        if not b["live"]:
+            print(
+                "The post isn't live yet. Commit any images listed above together with the post,\n"
+                "deploy once, then run without --dry-run to create the draft(s)."
+            )
         return
 
     results: dict[str, str] = {}
