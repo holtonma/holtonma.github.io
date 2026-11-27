@@ -267,13 +267,25 @@ def devto_style(b: dict) -> tuple[convert.Style, list[Path]]:
         if isinstance(ref, Path):
             publish_dir.mkdir(parents=True, exist_ok=True)
             dest = publish_dir / ref.name
-            if not dest.exists() or dest.read_bytes() != ref.read_bytes():
+            if not dest.exists() or not same_pixels(dest, ref):
                 shutil.copyfile(ref, dest)
             published.append(dest)
             return f"{b['site']}/images/crosspost/{b['slug']}/{ref.name}"
         return f"{b['site']}{ref}"
 
     return convert.Style(locate=locate, tables="markdown", captions="figcaption", escape_dollars=False), published
+
+
+def same_pixels(a: Path, b: Path) -> bool:
+    """Re-rendering a diagram gives different PNG bytes but the same image."""
+    if a.read_bytes() == b.read_bytes():
+        return True
+    from PIL import Image, ImageChops
+
+    with Image.open(a) as ia, Image.open(b) as ib:
+        if ia.size != ib.size:
+            return False
+        return ImageChops.difference(ia.convert("RGBA"), ib.convert("RGBA")).getbbox() is None
 
 
 def unpublished_files(paths: list[Path]) -> list[str]:
