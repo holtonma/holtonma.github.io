@@ -46,7 +46,7 @@ I wanted to automate that adversarial review: a second agent with its own clean 
 
 You might ask why this needs a new terminal at all. Couldn't a shell script, or WezTerm's own splits, do the same job?
 
-A shell script on its own can't, because I discovered a shell like [zsh](https://www.zsh.org/) and a traditional GPU terminal emulator like WezTerm work at completely different layers. `zsh` is a single-stream command interpreter inside one `pty` buffer.[^2] It has no native idea of split layouts, sibling panes or cross-pane communication, so a process running inside zsh can't spawn a visible neighbour pane, type into it, and inspect its state.
+A shell script on its own can't, because I discovered a shell like [zsh](https://www.zsh.org/) and a traditional GPU terminal emulator like WezTerm work at completely different layers. `zsh` is a single-stream command interpreter inside one `pty` buffer.[^2] `zsh` has no built-in concept of a pane. To open a visible split and send a command to it, my script needs a terminal or multiplexer with a CLI.
 
 [^2]: *(Beyond the scope of this read, [you can read about pseudoterminals (`pty`) here](https://man7.org/linux/man-pages/man7/pty.7.html). It's basically a kernel-level bidirectional text pipe connecting a terminal window to a single shell process, which is why it has no awareness of sibling panes, window layouts, or cross-pane messaging the way Rex does.)*
 
