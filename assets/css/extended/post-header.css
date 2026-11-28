@@ -27,7 +27,7 @@
     display: none;
 }
 
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1200px) {
     .has-toc-rail .post-single .toc {
         display: none;
     }
@@ -44,8 +44,14 @@
         padding: 10px 12px;
         border-radius: var(--radius);
         border: 1px solid transparent;
-        opacity: 0.45;   /* dim at rest; full strength on hover (below) */
-        transition: opacity 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    /* Dim at rest, full strength on hover (below). The robot stays crisp. */
+    .toc-rail .rail-title,
+    .toc-rail ol {
+        opacity: 0.45;
+        transition: opacity 0.15s ease;
     }
 
     .toc-rail .rail-title {
@@ -58,10 +64,17 @@
         color: var(--secondary);
     }
 
+    .toc-rail .rail-title {
+        margin-left: 38px;
+    }
+
+    /* The vertical rail the robot peeks out from behind. */
     .toc-rail ol {
         list-style: none;
-        margin: 0;
-        padding: 0;
+        margin: 0 0 0 38px;
+        padding: 0 0 0 10px;
+        border-left: 2px solid currentColor;
+        color: var(--secondary);
     }
 
     .toc-rail li {
@@ -109,6 +122,66 @@
         color: var(--primary);
     }
 
+    .toc-rail a.active .label {
+        font-weight: 600;
+    }
+
+    /* You are here: robot goggles beside the section being read, eyes on it. */
+    .toc-rail .rail-bot {
+        position: absolute;
+        left: 6px;
+        top: 0;
+        width: 36px;
+        height: 19px;
+        pointer-events: none;
+        opacity: 0.7;   /* a little dim while reading; full on hover/focus */
+        transition: top 0.3s ease, opacity 0.2s ease;
+    }
+
+    .toc-rail:hover .rail-bot,
+    .toc-rail:focus-within .rail-bot {
+        opacity: 1;
+    }
+
+    .toc-rail .rail-bot .gaze {
+        transform-box: view-box;
+        transition: transform 0.2s ease;
+    }
+
+    .toc-rail .rail-bot.look-up .gaze { transform: translateY(-2.4px); }
+    .toc-rail .rail-bot.look-down .gaze { transform: translateY(2.4px); }
+
+    .toc-rail .rail-bot .pupils {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: rail-bot-blink 7s infinite;
+    }
+
+    @keyframes rail-bot-blink {
+        0%, 95%, 100% { transform: scaleY(1); }
+        97% { transform: scaleY(0.1); }
+    }
+
+    /* Hover: a little orange book follows the cursor. */
+    .toc-rail .book {
+        display: none;
+        flex: 0 0 auto;
+        width: 18px;
+        height: 14px;
+        margin-left: -4px;
+    }
+
+    .toc-rail:hover a:hover .book,
+    .toc-rail a:focus-visible .book {
+        display: inline-block;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .toc-rail .rail-bot,
+        .toc-rail .rail-bot .gaze { transition: none; }
+        .toc-rail .rail-bot .pupils { animation: none; }
+    }
+
     .toc-rail a.active .dash {
         opacity: 1;
         width: 20px;
@@ -120,9 +193,15 @@
     }
 
     /* Open on hover or keyboard focus. */
+    .toc-rail:hover .rail-title,
+    .toc-rail:hover ol,
+    .toc-rail:focus-within .rail-title,
+    .toc-rail:focus-within ol {
+        opacity: 1;
+    }
+
     .toc-rail:hover,
     .toc-rail:focus-within {
-        opacity: 1;
         overflow-y: auto;
         background: var(--entry);
         border-color: var(--border);
