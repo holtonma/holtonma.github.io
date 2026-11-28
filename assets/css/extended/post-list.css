@@ -1,0 +1,136 @@
+/* Post list cards (layouts/_default/list.html).
+   .hero-entry  : newest post on page 1. Its image fades into a card tinted with
+                  the image's own bottom-edge color (--hero-bg, set by the
+                  template), with the title over the fade, like Substack.
+   .thumb-entry : any other post with a cover image, thumbnail on the left. */
+
+/* ---------- featured (newest) post ---------- */
+.hero-entry {
+    --hero-bg: #3c4a44;                                   /* fallback when no color was sampled */
+    --hero-card: color-mix(in srgb, var(--hero-bg) 58%, #000);
+    padding: 0;
+    overflow: hidden;
+    border: none;
+    background: var(--hero-card);
+    color: #fff;
+}
+
+.hero-entry .hero-media {
+    position: relative;
+    aspect-ratio: 16 / 8;
+    overflow: hidden;
+}
+
+.hero-entry .hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* The image dissolves into the card color over its lower half. */
+.hero-entry .hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 40% 0 0 0;
+    background: linear-gradient(to bottom, transparent, var(--hero-card) 92%);
+    pointer-events: none;
+}
+
+/* Pull the text up over the faded part of the image. */
+.hero-entry .entry-body {
+    position: relative;
+    margin-top: -120px;
+    padding: 0 calc(var(--gap) * 1.5) calc(var(--gap) * 1.25);
+}
+
+.hero-entry .entry-header h2 {
+    color: #fff;
+    font-size: 36px;
+    line-height: 1.2;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
+.hero-entry .entry-content {
+    color: rgba(255, 255, 255, 0.82);
+    -webkit-line-clamp: 3;
+    font-size: 16px;
+}
+
+.hero-entry .entry-footer {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.hero-entry:hover .hero-media img {
+    transform: scale(1.02);
+}
+
+/* Wide screens: let the featured card spill past the reading column. */
+@media (min-width: 1240px) {
+    .hero-entry {
+        margin-inline: -100px;
+    }
+}
+
+/* ---------- every other post with a cover ---------- */
+.thumb-entry {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.thumb-entry .thumb-media {
+    flex: 0 0 220px;
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--code-bg);
+}
+
+.thumb-entry .thumb-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumb-entry .entry-body {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Phones: smaller thumbnail, still on the left; featured card text shrinks. */
+@media (max-width: 600px) {
+    .thumb-entry {
+        gap: 14px;
+        align-items: flex-start;
+    }
+
+    .thumb-entry .thumb-media {
+        flex-basis: 104px;
+        aspect-ratio: 1 / 1;
+    }
+
+    .thumb-entry .entry-content {
+        display: none;
+    }
+
+    .thumb-entry .entry-header h2 {
+        font-size: 18px;
+        line-height: 1.3;
+    }
+
+    .hero-entry .hero-media {
+        aspect-ratio: 4 / 3;
+    }
+
+    .hero-entry .entry-body {
+        margin-top: -70px;
+        padding: 0 var(--gap) var(--gap);
+    }
+
+    .hero-entry .entry-header h2 {
+        font-size: 24px;
+    }
+}

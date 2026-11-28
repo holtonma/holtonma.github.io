@@ -142,3 +142,32 @@ section = ["HTML", "RSS"]
 changeFreq = "weekly"
 priority = 0.8
 filename = "sitemap.xml"
+
+# Project folders, listed explicitly so static/images can also be read as
+# image resources (list.html samples hero colors and makes thumbnails).
+# Defining any mount replaces Hugo's defaults, so all of them are here.
+[module]
+[[module.mounts]]
+source = "content"
+target = "content"
+[[module.mounts]]
+source = "static"
+target = "static"
+[[module.mounts]]
+source = "layouts"
+target = "layouts"
+[[module.mounts]]
+source = "assets"
+target = "assets"
+[[module.mounts]]
+source = "static/images"
+target = "assets/images"
+[[module.mounts]]
+source = "data"
+target = "data"
+[[module.mounts]]
+source = "i18n"
+target = "i18n"
+[[module.mounts]]
+source = "archetypes"
+target = "archetypes"
