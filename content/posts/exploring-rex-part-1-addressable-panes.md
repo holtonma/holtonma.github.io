@@ -176,7 +176,9 @@ rex skill setup
 ```
 (Tested on macOS with Rex `0.1.0-preview.25`, `Claude Code 2.1.332`, and `Codex CLI 0.172.0`.)
 
-Next, install codex-review (which requires jq and either shasum or sha256sum):
+Next, install codex-review (which requires jq and either shasum or sha256sum):[^7]
+
+[^7]: I wrote `codex-review` for my own workflow and haven't published it yet. If you'd like to run it yourself, ping me and I'll release it along with the offline test harness.
 
 ```bash
 codex-review --install
