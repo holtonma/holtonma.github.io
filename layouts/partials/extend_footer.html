@@ -52,3 +52,63 @@
   });
 })();
 </script>
+
+{{- /* Table of contents rail: on wide screens (post-header.css), the post's TOC
+       becomes a column of dashes on the left, one per heading, that opens into
+       the section list on hover or focus, and marks the section being read.
+       Built from PaperMod's own TOC links; without JS the inline TOC stays. */ -}}
+<script>
+(function () {
+  var inner = document.querySelector(".post-single .toc .inner");
+  if (!inner) return;
+  var links = Array.prototype.slice.call(inner.querySelectorAll('a[href^="#"]'));
+  if (links.length < 3) return;
+
+  var nav = document.createElement("nav");
+  nav.className = "toc-rail";
+  nav.setAttribute("aria-label", "Table of contents");
+  var list = document.createElement("ol");
+  var items = [];
+
+  links.forEach(function (a) {
+    var depth = 0;
+    for (var el = a.parentElement; el && el !== inner; el = el.parentElement) {
+      if (el.tagName === "UL") depth++;
+    }
+    var li = document.createElement("li");
+    li.className = "depth-" + Math.min(Math.max(depth - 1, 0), 2);
+    var link = document.createElement("a");
+    link.href = a.getAttribute("href");
+    link.title = a.textContent.trim();
+    link.innerHTML = '<span class="dash" aria-hidden="true"></span><span class="label"></span>';
+    link.querySelector(".label").textContent = a.textContent.trim();
+    li.appendChild(link);
+    list.appendChild(li);
+    var target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    if (target) items.push({ link: link, target: target });
+  });
+
+  var title = document.createElement("span");
+  title.className = "rail-title";
+  title.textContent = "Contents";
+  nav.appendChild(title);
+  nav.appendChild(list);
+  document.body.appendChild(nav);
+  document.documentElement.classList.add("has-toc-rail");
+
+  // Mark the last heading that has scrolled past the top third of the window.
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var line = window.innerHeight / 3, current = null;
+    items.forEach(function (it) {
+      if (it.target.getBoundingClientRect().top <= line) current = it;
+    });
+    items.forEach(function (it) { it.link.classList.toggle("active", it === current); });
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
+})();
+</script>

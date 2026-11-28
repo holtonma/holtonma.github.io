@@ -1,0 +1,162 @@
+/* Single post header and table of contents.
+   - Subtitle (front-matter description) in gray, like Substack's.
+   - Inline TOC: smaller and tighter, so the hero image sits closer.
+   - Wide screens: the TOC becomes a rail of dashes on the left (built by the
+     script in layouts/partials/extend_footer.html); hovering it shows the
+     section list. The inline TOC is hidden only when the rail was built. */
+
+.post-header .post-description {
+    color: var(--secondary);
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.toc {
+    margin: 0 2px 24px 2px;
+    padding: 0.25em 0.4em;
+    font-size: 15px;
+}
+
+.toc .inner {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ---------- left rail (wide screens) ---------- */
+.toc-rail {
+    display: none;
+}
+
+@media screen and (min-width: 1100px) {
+    .has-toc-rail .post-single .toc {
+        display: none;
+    }
+
+    .toc-rail {
+        display: block;
+        position: fixed;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 50;
+        max-height: 80vh;
+        overflow: hidden;
+        padding: 10px 12px;
+        border-radius: var(--radius);
+        border: 1px solid transparent;
+        opacity: 0.45;   /* dim at rest; full strength on hover (below) */
+        transition: opacity 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .toc-rail .rail-title {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--secondary);
+    }
+
+    .toc-rail ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .toc-rail li {
+        margin: 0;
+    }
+
+    .toc-rail a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 4px 0;
+        color: var(--secondary);
+        text-decoration: none;
+        box-shadow: none;
+    }
+
+    .toc-rail .dash {
+        flex: 0 0 auto;
+        width: 14px;
+        height: 2px;
+        border-radius: 1px;
+        background: currentColor;
+        opacity: 0.8;
+        transition: width 0.15s ease, opacity 0.15s ease;
+    }
+
+    .toc-rail .depth-1 .dash { width: 9px; margin-left: 5px; }
+    .toc-rail .depth-2 .dash { width: 6px; margin-left: 8px; }
+
+    .toc-rail .label {
+        max-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        opacity: 0;
+        font-size: 14px;
+        line-height: 1.35;
+        transition: opacity 0.15s ease;
+    }
+
+    .toc-rail .depth-1 .label { font-size: 13px; }
+    .toc-rail .depth-2 .label { font-size: 13px; }
+
+    .toc-rail a.active {
+        color: var(--primary);
+    }
+
+    .toc-rail a.active .dash {
+        opacity: 1;
+        width: 20px;
+    }
+
+    .toc-rail .depth-1 a.active .dash,
+    .toc-rail .depth-2 a.active .dash {
+        width: 14px;
+    }
+
+    /* Open on hover or keyboard focus. */
+    .toc-rail:hover,
+    .toc-rail:focus-within {
+        opacity: 1;
+        overflow-y: auto;
+        background: var(--entry);
+        border-color: var(--border);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .toc-rail:hover .label,
+    .toc-rail:focus-within .label {
+        max-width: 300px;
+        opacity: 1;
+    }
+
+    .toc-rail a:hover {
+        color: var(--primary);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .post-header .post-description {
+        font-size: 17px;
+    }
+}
+
+/* Less space between the site header and the page. */
+.page-header,
+.post-header {
+    margin-top: 0;
+}
+
+.main {
+    padding-top: 8px;
+}
+
+/* List titles (Posts, Tags...) were 40px; quieter now. */
+.page-header h1 {
+    font-size: 30px;
+}

@@ -1,0 +1,36 @@
+{{- define "main" }}
+{{- /* About page (layout: about in content/about.md). The cover image is a hero:
+     the title sits over a dark fade at the top, the description over a fade at
+     the bottom tinted with the image's own bottom-edge color, as on the post
+     list's featured card. Styles: assets/css/extended/about.css */}}
+{{- $img := .Params.cover.image }}
+{{- $alt := .Params.cover.alt | default .Title | plainify }}
+{{- $src := $img | absURL }}{{ $bg := "" }}
+{{- with $img }}{{ with resources.Get (strings.TrimPrefix "/" (string .)) }}
+  {{- $src = (.Resize "1600x webp q82").RelPermalink }}
+  {{- with ((.Resize "200x").Crop "200x24 Bottom").Colors }}{{ $bg = (index . 0).ColorHex }}{{ end }}
+{{- end }}{{ end }}
+<article class="post-single about-page">
+  {{- if $img }}
+  <header class="about-hero"{{ with $bg }} style="--hero-bg: {{ . | safeCSS }}"{{ end }}>
+    <img src="{{ $src }}" alt="{{ $alt }}" fetchpriority="high" decoding="async">
+    <h1 class="about-title">{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="about-description">{{ . }}</p>
+    {{- end }}
+  </header>
+  {{- else }}
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+  </header>
+  {{- end }}
+  {{- if .Content }}
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+</article>
+{{- end }}

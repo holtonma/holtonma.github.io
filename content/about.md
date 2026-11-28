@@ -3,9 +3,11 @@ title: "About Mark Holton"
 date: 2025-01-06T12:00:00-08:00
 draft: false
 description: "Software Architect specializing in distributed systems, data platforms, and durable architectures, currently Principal Consultant at Improving."
+layout: "about"
+cover:
+    image: "/images/data_engineer.jpg"
+    alt: "A green robot works at a computer in a sunlit control room, beside a glowing data pipeline diagram and a window onto green hills, a playful stand-in for software architect Mark Holton at work on distributed systems and data pipeline architecture."
 ---
-
-![Software architect Mark Holton working on distributed systems and data pipeline architecture](/images/data_engineer.jpg)
 
 I'm a hands-on Software Architect with over two decades of experience building resilient, scalable systems.
 
