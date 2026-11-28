@@ -132,7 +132,7 @@ def build(post: Path, targets: list[str], dry_run: bool = False) -> dict:
     for n, m in enumerate(analysis.mermaids, start=1):
         if m.alt(n) == f"Diagram {n}":
             warnings.append(
-                f"mermaid {n} has generic alt text 'Diagram {n}'; add a `%% description` "
+                f"mermaid {n} has generic alt text 'Diagram {n}'; add an `accDescr:` or `%% description` "
                 "first line to the block"
             )
 

@@ -46,16 +46,17 @@ Then in Substack, review the draft against the Hugo post → **Publish** → cho
 
 | Hugo | Substack draft |
 | --- | --- |
-| ```` ```mermaid ```` | PNG (mermaid-cli, neutral theme) |
+| ```` ```mermaid ```` | PNG (mermaid-cli, neutral theme); alt text from `accDescr:`, `accTitle:` or a `%%` first line |
 | Table, ≤3 columns and ≤8 rows | bullet list, each value next to its header |
 | Larger table | PNG, then the same header-labelled list |
 | `![alt](/images/x)` + `*caption*` on the next line | captioned image (uploaded) |
 | `.svg` image | rasterized to PNG (Substack only takes JPEG, PNG, GIF, WebP) |
+| `<video poster="/images/…">` with one `<source src="/videos/…">` | the poster image, then a "▶ Watch the video on the blog" link (neither site takes video through its API; on Substack you can drag the MP4 into the draft by hand) |
 | `[^n]` side notes | Substack footnotes |
 | `$` in prose | escaped, so python-substack doesn't read it as LaTeX |
 | — | "Originally published at <permalink>" footer |
 
-**Refused (blocking):** Hugo shortcodes, raw or inline HTML, an image sharing a paragraph with text, image paths outside `/images/`, missing image files, and posts that `hugo list published` doesn't list (drafts, future-dated, expired). Fix the post or add a converter. There is no override.
+**Refused (blocking):** Hugo shortcodes, raw or inline HTML (other than the `<video>` form above), an image sharing a paragraph with text, image paths outside `/images/`, missing image files, and posts that `hugo list published` doesn't list (drafts, future-dated, expired). Fix the post or add a converter. There is no override.
 
 **Tags:** `substack_tags:` from front matter if set, otherwise the Hugo `tags:` list. They're added right after the draft is created; if that fails, you get a warning and the draft is kept.
 

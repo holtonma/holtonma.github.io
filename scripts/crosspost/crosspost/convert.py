@@ -5,6 +5,7 @@ What Substack can't take as-is gets rewritten here:
   - tables             -> a header-labelled bullet list, plus a PNG for big tables
   - /images/... paths  -> absolute paths into static/, which python-substack uploads
   - bare `$` in prose  -> `\\$`, so python-substack's math plugin leaves prices alone
+  - <video> blocks     -> the poster image plus a link to the video on the blog
 
 Anything else it would drop or mangle (shortcodes, raw HTML, images that share a
 paragraph with text, image paths outside /images/) is a blocking error.
@@ -16,6 +17,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
+from urllib.parse import urlsplit
 
 from markdown_it import MarkdownIt
 from markdown_it.token import Token
@@ -58,6 +60,11 @@ class Mermaid:
     end: int
 
     def alt(self, n: int) -> str:
+        # Mermaid's own accessibility lines, which the blog's diagram already uses.
+        for key in ("accDescr", "accTitle"):
+            m = re.search(rf"^\s*{key}\s*:\s*(.+)$", self.source, re.M)
+            if m:
+                return m.group(1).strip()
         for line in self.source.splitlines():
             line = line.strip()
             if line.startswith("%%") and not line.startswith("%%{"):
@@ -77,10 +84,22 @@ class Figure:
 
 
 @dataclass
+class Video:
+    """A raw <video> block: neither target hosts video, so it becomes its poster plus a link."""
+
+    poster: str  # /images/... (the picture readers see)
+    src: str  # /videos/... (where the link goes)
+    alt: str
+    start: int
+    end: int
+
+
+@dataclass
 class Analysis:
     tables: list[Table] = field(default_factory=list)
     mermaids: list[Mermaid] = field(default_factory=list)
     figures: list[Figure] = field(default_factory=list)
+    videos: list[Video] = field(default_factory=list)
     images: list[str] = field(default_factory=list)
     footnote_refs: int = 0
     problems: list[str] = field(default_factory=list)
@@ -146,12 +165,38 @@ def analyze(body: str, line_offset: int = 0) -> Analysis:
             a.tables.append(table)
         elif t.type == "fence" and t.info.strip().split(" ")[0] == "mermaid":
             a.mermaids.append(Mermaid(t.content, t.map[0], t.map[1]))
+        elif t.type == "html_block" and t.content.lstrip().lower().startswith("<video"):
+            _check_video(t, a, where(t))
         elif t.type == "html_block":
             a.problems.append(f"{where(t)}: raw HTML block ({t.content.strip()[:60]!r})")
         elif t.type == "inline":
             _check_inline(t, tokens, i, a, where(t))
         i += 1
     return a
+
+
+def _attr(html: str, name: str) -> str | None:
+    m = re.search(rf'\b{name}\s*=\s*"([^"]*)"', html)
+    return m.group(1) if m else None
+
+
+def _check_video(tok: Token, a: Analysis, where: str) -> None:
+    """Accept <video poster="/images/..."> with one <source src="/videos/...">; block anything else."""
+    html = tok.content
+    opening = html.split(">", 1)[0]
+    poster = _attr(opening, "poster")
+    sources = re.findall(r'<source\b[^>]*\bsrc\s*=\s*"([^"]*)"', html)
+    alt = _attr(opening, "aria-label") or ""
+    if not poster or not poster.startswith("/images/"):
+        a.problems.append(f'{where}: <video> needs poster="/images/..." to stand in for it')
+        return
+    if len(sources) != 1 or not sources[0].startswith("/videos/"):
+        a.problems.append(f'{where}: <video> needs exactly one <source src="/videos/...">')
+        return
+    if not alt.strip():
+        a.warnings.append(f"{where}: <video> has no aria-label, so its poster has no alt text")
+    a.images.append(poster)
+    a.videos.append(Video(poster, sources[0], alt, tok.map[0], tok.map[1]))
 
 
 def _caption_of(children: list[Token]) -> tuple[str | None, bool]:
@@ -325,6 +370,10 @@ def rewrite(
     for fig in analysis.figures:
         ref = image_overrides.get(fig.src) or fig.src
         replacements.append((fig.start, fig.end, figure_markdown(style, fig.alt, ref, fig.caption)))
+    site = "{0.scheme}://{0.netloc}".format(urlsplit(permalink))
+    for v in analysis.videos:
+        block = _md_image(v.alt, style.locate(v.poster)) + f"\n\n[▶ Watch the video on the blog]({site}{v.src})"
+        replacements.append((v.start, v.end, block))
 
     replaced: set[int] = set()
     for start, end, _ in replacements:

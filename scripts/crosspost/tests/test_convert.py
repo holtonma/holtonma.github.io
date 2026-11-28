@@ -81,3 +81,49 @@ def test_rewrite_turns_caption_into_image_title_and_adds_source_link(tmp_path):
     assert '"Cap with \\"quotes\\""' in md
     assert "Price \\$5." in md
     assert md.rstrip().endswith("*Originally published at [https://example.com/p/](https://example.com/p/).*")
+
+
+VIDEO = (
+    '<video controls muted poster="/images/clip-poster.jpg" aria-label="Two panes talking">\n'
+    '  <source src="/videos/clip.mp4" type="video/mp4">\n'
+    "  Your browser does not support video.\n"
+    "</video>\n"
+    "\n"
+    "*The caption*\n"
+)
+
+
+def test_video_becomes_poster_plus_link():
+    a = analyze(VIDEO)
+    assert a.problems == []
+    (v,) = a.videos
+    assert (v.poster, v.src, v.alt) == ("/images/clip-poster.jpg", "/videos/clip.mp4", "Two panes talking")
+    assert "/images/clip-poster.jpg" in a.images  # checked for existence and, on Dev.to, for being live
+    md = rewrite(VIDEO, a, REPO, [], {}, {}, "https://example.com/posts/p/")
+    assert "<video" not in md and "<source" not in md
+    assert "![Two panes talking](" in md and "clip-poster.jpg)" in md
+    assert "[▶ Watch the video on the blog](https://example.com/videos/clip.mp4)" in md
+    assert "*The caption*" in md
+
+
+@pytest.mark.parametrize(
+    "html, problem",
+    [
+        ('<video controls>\n  <source src="/videos/c.mp4">\n</video>\n', "needs poster="),
+        ('<video poster="/elsewhere/p.jpg">\n  <source src="/videos/c.mp4">\n</video>\n', "needs poster="),
+        ('<video poster="/images/p.jpg">\n  <source src="https://x.com/c.mp4">\n</video>\n', "exactly one <source"),
+        ('<video poster="/images/p.jpg">\n  <source src="/videos/a.mp4">\n  <source src="/videos/b.webm">\n</video>\n', "exactly one <source"),
+        ('<video poster="/images/p.jpg" src="/videos/c.mp4"></video>\n', "inline HTML"),  # one line: not a block
+    ],
+)
+def test_video_without_poster_or_local_source_blocks(html, problem):
+    a = analyze(html)
+    assert a.videos == []
+    assert any(problem in p for p in a.problems)
+
+
+def test_mermaid_alt_prefers_acc_descr_then_acc_title():
+    both = "```mermaid\nsequenceDiagram\n    accTitle: Short\n    accDescr: The long description\n    A->>B: hi\n```\n"
+    title = "```mermaid\nsequenceDiagram\n    accTitle: Short\n    A->>B: hi\n```\n"
+    assert analyze(both).mermaids[0].alt(1) == "The long description"
+    assert analyze(title).mermaids[0].alt(1) == "Short"
