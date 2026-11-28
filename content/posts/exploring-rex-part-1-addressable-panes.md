@@ -24,11 +24,11 @@ I have been exploring Rex, a new GPU-accelerated terminal and persistent multipl
 
 I've used WezTerm for over two years and enjoyed customizing it. Since receiving my Rex invite, I am enjoying Rex's advantages for agentic coding and working in parallel, with the same level of customization and, frankly, the same pleasure in using it.
 
-When exploring Rex, one lightbulb went on in my head that I could retire being a "human clipboard" between two AI models. Do you ever have Claude Code drafting a plan in one tab, and then copy it out by hand, pasted it into another model as a rough version of an adversarial reviewer, and carry back whatever edge cases it caught?
+When exploring Rex, one lightbulb went on in my head that I could retire being a "human clipboard" between two AI models. Ever have Claude Code draft a plan in one tab, copy it into another model for a second opinion, then carry the findings back to Claude?
 
 Rex is the terminal that let me hand the "human clipboard" job back to the agents, and the first time I did, I learned that an agent reading another agent's screen makes a bad clipboard too. The fix was to pass a file, not a screen, and to let a hook decide when a plan is allowed to reach me.
 
-The first pass I did the clipboard job by hand between two panes. Then I handed it to Claude, which read Codex's screen through Rex via `rex capture`. Then I used Rex to let the agents to start passing files that a hook can check.
+On the first pass, I did the clipboard job by hand between two panes. Then I handed it to Claude, which read Codex’s screen with `rex capture`. Here’s where I ended up: Codex writes its review to a file Claude can read, and a hook checks that a `SHIP` verdict still matches the exact plan I’m about to approve.
 
 Before I share what I did, their [public testing beta](https://www.superlogical.com/updates/public-testing-beginning) is here, and this is the first post on Rex features I find useful. Part 1 is: an adversarial review between Claude Code's plan and Codex, running side by side in a repo I am working in.
 
