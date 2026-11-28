@@ -105,14 +105,14 @@ None of those is a typo-level nitpick. Each is a way two devices could disagree 
 
 The swipe-to-delete and Backlog sync plan took **four rounds** to reach `SHIP`, starting with 16 findings in round one (*"I would not implement this plan unchanged"*). Across rounds one through three, the sync architecture was essentially rebuilt: deletions became permanent and always won over concurrent moves, initial capture states dropped local timestamps so they couldn't overwrite earlier decisions, a monotonic change counter replaced a simple dirty flag, and the 5-second Undo window was upgraded from an in-memory timer to a durable database record so a mid-window restart wouldn't resurrect a deleted item. Three minor edge cases (such as the 8 MiB message ceiling and legacy phone compatibility) were explicitly documented as accepted risks rather than silently dropped, and Codex confirmed they were stated accurately before issuing `SHIP` on round four.
 
-I didn't override anything at the approval menu—both that feature plan and the five-round review of `codex-review` itself were approved only after reaching `SHIP`. Ironically, because the SHA-256 hook wasn't installed yet during those runs, I still folded in a couple of tiny wording tweaks from Codex's final `SHIP` notes right before approving—the exact kind of post-verdict edit the new hash gate now catches and blocks until re-verified.
+I didn't override anything at the approval menu. That feature plan and the five-round review of `codex-review` itself were approved only after reaching `SHIP` status from the Codex pane.
 
 ![Two scenes with builder characters: on the left, a pair examines an orange plan with a pencil; on the right, a pair inspects a phone showing swipe-to-delete, using a magnifying glass beside a laptop.](/images/exploring-rex-part-1-addressable-panes-status-signal-art.png)
 *A second set of eyes: Codex challenges Claude Code's plan before anyone approves implementation.*
 
-### The badges told me when to look
+### The badges are helpful and fun
 
-While Claude and Codex went back and forth, I didn't need to watch. The session switcher on the left stayed clean, showing `factoryh-swipe-delete`. The `swipedelete` window tab carried a small Claude badge and, whenever either agent in the window was actively running, an animated three-dot working indicator on the right side of the tab. Nice touches.  Once both agents had finished and were waiting on me (`SHIP` in Codex, the 1, 2, 3 approval prompt in Claude), the dots cleared (you can see some of this in the ScreenStudio capture video above).
+While Claude and Codex went back and forth, the session switcher on the left stayed clean, showing the `factoryh-swipe-delete` session. The `swipedelete` window tab showed a small Claude badge and, whenever either agent in the window was actively running, an animated three-dot progress "working" indicator on the right side of the tab. Nice touches. Once both agents had finished and were waiting on me (`SHIP` in Codex, the 1, 2, 3 approval prompt in Claude), the dots cleared (you can see some of this in the Screen Studio capture video above).
 
 Codex didn't have its content hiding behind its own tab, because it was in a split pane inside the same window. It showed its status in that pane's title bar (`Audit sync parity plan | holton-daily-os`) and in its inline footer, which went from `Working (58s)` to `Worked for 30s`. The tab aggregated active work across the panes, so one glance told me whether anything in the window was still busy.
 
