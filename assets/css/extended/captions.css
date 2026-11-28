@@ -1,0 +1,14 @@
+/* Captions (the italic line under an image, video or diagram): small,
+   gray and centered under the picture, as Substack shows them.
+   All screen sizes. */
+.post-content p:has(> img) > em,
+.post-content video + p > em:only-child,
+.post-content pre.mermaid + p > em:only-child {
+    display: block;
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.45;
+    text-align: center;
+    text-wrap: balance;   /* even lines, no lone last word */
+    color: var(--secondary);
+}

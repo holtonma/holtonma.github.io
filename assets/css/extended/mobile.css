@@ -1,0 +1,73 @@
+/* Phones: a calmer single-post layout, closer to Substack's mobile reader.
+   Only applies at <= 600px; desktop is unchanged. */
+@media screen and (max-width: 600px) {
+    /* Header: logo and menu wrap onto two rows on phones; each row was
+       --header-height (60px) tall, leaving a big gap. */
+    .nav {
+        line-height: 44px;
+        padding-top: 6px;
+    }
+
+    .logo a {
+        font-size: 22px;
+    }
+
+    #menu {
+        margin-top: -6px;
+    }
+
+    #menu li + li {
+        margin-inline-start: 18px;
+    }
+
+    /* Post header */
+    .post-header {
+        margin-bottom: 18px;
+    }
+
+    .breadcrumbs {
+        font-size: 13px;
+    }
+
+    .post-title {
+        font-size: 28px;
+        line-height: 1.18;
+        letter-spacing: -0.01em;
+        margin-top: 4px;
+    }
+
+    .post-header .post-description {
+        margin-top: 10px;
+        font-size: 17px;
+        line-height: 1.45;
+    }
+
+    .post-meta {
+        margin-top: 10px;
+        font-size: 13px;
+    }
+
+    .toc {
+        margin-bottom: 18px;
+    }
+
+    .toc details summary {
+        font-size: 15px;
+    }
+
+    /* Body: slightly smaller text and headings so lines aren't so short. */
+    .post-content {
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    .post-content h2 {
+        font-size: 23px;
+        line-height: 1.25;
+    }
+
+    .post-content h3 {
+        font-size: 19px;
+        line-height: 1.3;
+    }
+}
